@@ -13,3 +13,6 @@ format = "service-worker"
 [site]
 bucket = "./contents"
 entry-point = "."
+
+[vars]
+ENV_BASE_URL = "https://ramen-api.yusukebe.workers.dev/"

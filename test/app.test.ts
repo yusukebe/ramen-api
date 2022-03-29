@@ -1,7 +1,4 @@
 import { getShop, listShops } from '@/app'
-import { assign } from '@/mock'
-
-assign()
 
 describe('getShop', () => {
   it('Should return Shop object', async () => {

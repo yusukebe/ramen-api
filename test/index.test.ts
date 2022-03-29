@@ -1,11 +1,12 @@
 import { app } from '@/index'
+import { BASE_URL } from '@/app'
 
 const yoshimurayaData = {
   id: 'yoshimuraya',
   name: '吉村家',
   photos: [
     {
-      name: 'yoshimuraya-001.jpg',
+      name: `${BASE_URL}images/yoshimuraya/yoshimuraya-001.jpg`,
     },
   ],
 }
@@ -42,5 +43,13 @@ describe('Test /shops', () => {
     expect(res.status).toBe(200)
     const data = await res.json()
     expect(data['shop']).toEqual(yoshimurayaData)
+  })
+})
+
+describe('Test /images/:shop_id/:filename', () => {
+  it('Should return the image with GET /images/yoshimuraya/yoshimuraya-001.jpg', async () => {
+    const res = await app.request('http://localhost/images/yoshimuraya/yoshimuraya-001.jpg')
+    expect(res.status).toBe(200)
+    expect(res.headers.get('Content-Type')).toBe('image/jpeg')
   })
 })
