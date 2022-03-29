@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 
-import { getShop, listShops } from './app'
+import { getShop, listShops } from '@/app'
 
 export const app = new Hono()
 
