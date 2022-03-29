@@ -1,0 +1,26 @@
+{
+  "name": "ramen-api",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest --verbose",
+    "build": "esbuild --bundle --sourcemap --minify --outdir=dist ./src/index.ts",
+    "dev": "miniflare --live-reload --debug -s ./contents",
+    "deploy": "wrangler publish"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "hono": "^0.5.6"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^3.4.0",
+    "@cloudflare/wrangler": "^1.19.11",
+    "@types/jest": "^27.4.1",
+    "esbuild": "^0.14.23",
+    "esbuild-jest": "^0.5.0",
+    "jest": "^27.5.1",
+    "jest-environment-miniflare": "^2.3.0",
+    "jest-node-exports-resolver": "^1.1.5",
+    "miniflare": "^2.3.0"
+  }
+}

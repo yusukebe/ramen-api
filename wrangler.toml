@@ -1,0 +1,15 @@
+name= "ramen-api"
+workers_dev = true
+type = "javascript"
+
+compatibility_date = "2022-03-23"
+
+[build]
+command = "yarn run build"
+
+[build.upload]
+format = "service-worker"
+
+[site]
+bucket = "./contents"
+entry-point = "."
