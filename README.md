@@ -6,7 +6,7 @@ Web API about :ramen:
 
 ## Tips
 
-### Resize & Optimzie photos
+### Resize & Optimize photos
 
 Resize:
 
