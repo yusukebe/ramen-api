@@ -1932,6 +1932,11 @@ graceful-fs@^4.2.4, graceful-fs@^4.2.9:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.9.tgz#041b05df45755e587a24942279b9d113146e1c96"
   integrity sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==
 
+graphql@^16.3.0:
+  version "16.3.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.3.0.tgz#a91e24d10babf9e60c706919bb182b53ccdffc05"
+  integrity sha512-xm+ANmA16BzCT5pLjuXySbQVFwH3oJctUVdy81w1sV0vBU0KgDdBGtxQOUd5zqOBk/JayAFeG8Dlmeq74rjm/A==
+
 has-flag@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
@@ -1985,10 +1990,10 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-hono@^0.5.7:
-  version "0.5.7"
-  resolved "https://registry.yarnpkg.com/hono/-/hono-0.5.7.tgz#aa857abe796b807e1bf16002be40b2947f8d6936"
-  integrity sha512-z5Y1Rcp94v76n1PcW38ZCTcpGXm2R9yXW6sKA3uX+0bCoJInZosBekUGw9X5kpPM2Ok7NqdU2NFpLfjUd5xU2w==
+hono@^0.5.8:
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/hono/-/hono-0.5.8.tgz#8a10d39939d66837c2c9be1e3de06fcb4edf7088"
+  integrity sha512-0LzyKvfZfcHkw3COdyjGw859wSdDCfkKTCvNdzo2+HgipKz6EvQ0NV2A+qib1wU6z3wA10LPWOllG+Otgzy2Ig==
 
 html-encoding-sniffer@^2.0.1:
   version "2.0.1"

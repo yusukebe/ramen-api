@@ -3,19 +3,19 @@ import { getContentFromKVAsset } from 'hono/utils/cloudflare'
 declare const ENV_BASE_URL: string
 export const BASE_URL = ENV_BASE_URL ?? 'http://localhost:8787/'
 
-type Parameters = {
-  page?: number
-  perPage?: number
-}
-
-type Photo = {
+export type Photo = {
   name: string
 }
 
-type Shop = {
+export type Shop = {
   id: string
   name?: string
   photos?: Photo[]
+}
+
+type Parameters = {
+  limit?: number
+  offset?: number
 }
 
 type listShopsResult = {
@@ -24,8 +24,7 @@ type listShopsResult = {
 }
 
 export const listShops = async (params: Parameters = {}): Promise<listShopsResult> => {
-  const { page = 1, perPage = 10 } = params
-  //const data = await getJSONFromKVAsset<{ [key: string]: string[] }>('shops.json')
+  const { limit = 10, offset = 0 } = params
   const buffer = await getContentFromKVAsset('shops.json')
   const data = arrayBufferToJSON(buffer)
 
@@ -33,7 +32,7 @@ export const listShops = async (params: Parameters = {}): Promise<listShopsResul
   const totalCount = shopIdsAll.length
 
   const shopIds = shopIdsAll.filter((_id: string, num: number) => {
-    if (num >= (page - 1) * perPage && num < page * perPage) return true
+    if (num >= offset && num < offset + limit) return true
   })
 
   const shops = await Promise.all(
@@ -45,10 +44,24 @@ export const listShops = async (params: Parameters = {}): Promise<listShopsResul
   return { shops, totalCount }
 }
 
+export const findIndexFromId = async (id: string): Promise<number> => {
+  const list = await listShops()
+  const shops = list.shops
+  let index = 0
+  const matchShop = shops.filter((shop, i) => {
+    if (shop && shop.id === id) {
+      index = i
+      return true
+    }
+  })
+  if (matchShop.length > 0) return index
+}
+
 export const getShop = async (id: string): Promise<Shop> => {
   const buffer = await getContentFromKVAsset(`shops/${id}/info.json`)
   const shop = arrayBufferToJSON(buffer)
-  shop.photos?.map((photo) => {
+  if (!shop) return undefined
+  shop.photos?.map((photo: Photo) => {
     photo.name = fixPhotoURL(id, photo.name)
   })
   return shop
@@ -62,5 +75,6 @@ const fixPhotoURL = (shopId: string, path: string): string => {
 export const getImage = (path: string) => {}
 
 const arrayBufferToJSON = (arrayBuffer: ArrayBuffer) => {
-  return JSON.parse(new TextDecoder().decode(arrayBuffer))
+  const text = new TextDecoder().decode(arrayBuffer)
+  if (text) return JSON.parse(text)
 }
