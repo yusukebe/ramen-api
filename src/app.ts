@@ -58,9 +58,16 @@ export const findIndexFromId = async (id: string): Promise<number> => {
 }
 
 export const getShop = async (id: string): Promise<Shop> => {
-  const buffer = await getContentFromKVAsset(`shops/${id}/info.json`)
-  const shop = arrayBufferToJSON(buffer)
-  if (!shop) return undefined
+  let shop: Shop
+  try {
+    const buffer = await getContentFromKVAsset(`shops/${id}/info.json`)
+    shop = arrayBufferToJSON(buffer)
+  } catch {
+    // Do nothing
+  }
+  if (!shop) {
+    throw new Error(`ID: '${id}' could not be found`)
+  }
   shop.photos?.map((photo: Photo) => {
     photo.name = fixPhotoURL(id, photo.name)
   })

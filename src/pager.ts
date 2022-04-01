@@ -46,11 +46,15 @@ export class Pager {
     let sliceEnd = 0
 
     if (first === null && last === null) {
-      throw Error('You must provide a `first` or `last` value to properly paginate the connection.')
+      throw new Error(
+        'You must provide a `first` or `last` value to properly paginate the connection.'
+      )
     }
 
     if (first !== null && last !== null) {
-      throw Error('Passing both `first` and `last` to paginate the connection is not supported.')
+      throw new Error(
+        'Passing both `first` and `last` to paginate the connection is not supported.'
+      )
     }
 
     if (after) {

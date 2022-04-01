@@ -73,7 +73,7 @@ var queryType = new GraphQLObjectType({
       resolve: async (
         _,
         {
-          first = 10,
+          first,
           after,
           last,
           before,
@@ -86,8 +86,6 @@ var queryType = new GraphQLObjectType({
         before = convertCursorToId(before)
 
         const pager = new Pager({ nodes: list.shops })
-
-        if (last && first) first = null
         const result = pager.paging({ first, after, last, before })
 
         const edges = result.nodes.map((node) => {
@@ -116,7 +114,8 @@ var queryType = new GraphQLObjectType({
         id: { type: GraphQLString },
       },
       resolve: async (_, { id }) => {
-        return await getShop(id)
+        const shop = await getShop(id)
+        return shop
       },
     },
   },
