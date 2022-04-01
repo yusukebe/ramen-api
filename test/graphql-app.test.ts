@@ -181,4 +181,89 @@ describe('Query shops', () => {
       hasPreviousPage: true,
     })
   })
+
+  // yoshimuraya ---> eW9zaGltdXJheWE=
+  // sugitaya ---> c3VnaXRheWE=
+  // takasagoya ---> dGFrYXNhZ295YQ==
+
+  it('With pagination - first: 1, after: "dGFrYXNhZ295YQ=="', async () => {
+    const query = {
+      query: `
+      {
+        shops(first: 1, after: "dGFrYXNhZ295YQ==") {
+            pageInfo {
+                startCursor
+                endCursor
+                hasNextPage
+                hasPreviousPage
+            }
+        }
+    }
+      `,
+    }
+    const res = await postRequest(query)
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    const shops = data['data']['shops']
+    expect(shops['pageInfo']).toEqual({
+      startCursor: null,
+      endCursor: null,
+      hasNextPage: false,
+      hasPreviousPage: true,
+    })
+  })
+
+  it('With pagination - last: 2', async () => {
+    const query = {
+      query: `
+      {
+        shops(last: 2) {
+            pageInfo {
+                startCursor
+                endCursor
+                hasNextPage
+                hasPreviousPage
+            }
+        }
+    }
+      `,
+    }
+    const res = await postRequest(query)
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    const shops = data['data']['shops']
+    expect(shops['pageInfo']).toEqual({
+      startCursor: 'dGFrYXNhZ295YQ==',
+      endCursor: 'c3VnaXRheWE=',
+      hasNextPage: true,
+      hasPreviousPage: false,
+    })
+  })
+
+  it('With pagination - last: 10, before: "c3VnaXRheWE="', async () => {
+    const query = {
+      query: `
+      {
+        shops(last:10, before: "c3VnaXRheWE=") {
+            pageInfo {
+                startCursor
+                endCursor
+                hasNextPage
+                hasPreviousPage
+            }
+        }
+    }
+      `,
+    }
+    const res = await postRequest(query)
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    const shops = data['data']['shops']
+    expect(shops['pageInfo']).toEqual({
+      startCursor: 'eW9zaGltdXJheWE=',
+      endCursor: 'eW9zaGltdXJheWE=',
+      hasNextPage: false,
+      hasPreviousPage: true,
+    })
+  })
 })

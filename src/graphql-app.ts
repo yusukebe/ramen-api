@@ -1,5 +1,6 @@
 import { encodeBase64, decodeBase64 } from 'hono/utils/crypto'
 import { getShop, listShops, findIndexFromId } from '@/app'
+import { Pager } from '@/pager'
 
 import {
   GraphQLObjectType,
@@ -78,56 +79,36 @@ var queryType = new GraphQLObjectType({
           before,
         }: { first: number; after: string; last: number; before: string }
       ) => {
-        const result = await listShops()
-        const allShops = result.shops
+        const list = await listShops()
 
-        let sliceStart: number
-        let sliceEnd: number
+        const totalCount = list.shops.length
 
-        if (after) {
-          const id = convertCursorToId(after)
-          const matchingIndex = await findIndexFromId(id)
-          if (matchingIndex !== undefined) {
-            sliceStart = matchingIndex + 1
-            sliceEnd = sliceStart + first
-          }
-        } else if (before) {
-          const id = convertCursorToId(before)
-          const matchingIndex = await findIndexFromId(id)
-          if (matchingIndex !== undefined) {
-            sliceStart = matchingIndex - last + 1
-            sliceEnd = matchingIndex
-          }
-        } else {
-          sliceStart = 0
-          sliceEnd = first
-        }
+        after = convertCursorToId(after)
+        before = convertCursorToId(before)
 
-        const edges = allShops.slice(sliceStart, sliceEnd).map((node) => {
+        const pager = new Pager({ nodes: list.shops })
+        const result = pager.paging({ first, after, last, before })
+
+        const edges = result.nodes.map((node) => {
           return {
             node,
             cursor: convertIdToCursor(node.id),
           }
         })
 
-        const startCursor = edges.length > 0 ? convertIdToCursor(edges[0].node.id) : null
-        const endCursor =
-          edges.length > 0 ? convertIdToCursor(edges[edges.length - 1].node.id) : null
-        const hasNextPage = allShops.length > sliceStart + first
-        const hasPreviousPage = 0 < sliceStart
-
         return {
-          totalCount: result.totalCount,
+          totalCount,
           edges,
           pageInfo: {
-            startCursor,
-            endCursor,
-            hasNextPage,
-            hasPreviousPage,
+            startCursor: result.startId ? convertIdToCursor(result.startId) : null,
+            endCursor: result.endId ? convertIdToCursor(result.endId) : null,
+            hasNextPage: result.hasNextPage,
+            hasPreviousPage: result.hasPreviousPage,
           },
         }
       },
     },
+
     shop: {
       type: shopType,
       args: {
