@@ -42,34 +42,43 @@ export class Pager {
     const nodes = this.nodes
 
     let resultNodes: Node[]
-    let hasNextPage: boolean
-    let hasPreviousPage: boolean
+    let sliceStart = 0
+    let sliceEnd = 0
 
-    if (last !== null) {
-      // * <--- *
-      let sliceEnd = this.nodes.length
-      if (before) {
-        const index = this.findIndexFromId(before)
-        if (index !== undefined) sliceEnd = index
-      }
-      const sliceStart = sliceEnd - last
-      resultNodes = nodes.slice(sliceStart, sliceEnd).reverse()
-      hasNextPage = 0 < sliceStart
-      hasPreviousPage = nodes.length > sliceEnd
-    } else {
-      // * ---> *
-      let sliceStart = 0
-      if (after !== null) {
-        const index = this.findIndexFromId(after)
-        if (index !== undefined) {
-          sliceStart = index + 1
-        }
-      }
-      const sliceEnd = sliceStart + first
-      resultNodes = nodes.slice(sliceStart, sliceEnd)
-      hasNextPage = nodes.length > sliceStart + first
-      hasPreviousPage = 0 < sliceStart
+    if (first === null && last === null) {
+      throw Error('You must provide a `first` or `last` value to properly paginate the connection.')
     }
+
+    if (first !== null && last !== null) {
+      throw Error('Passing both `first` and `last` to paginate the connection is not supported.')
+    }
+
+    if (after) {
+      const index = this.findIndexFromId(after)
+      if (index !== undefined) {
+        sliceStart = index + 1
+      }
+    }
+
+    if (before) {
+      const index = this.findIndexFromId(before)
+      if (index !== undefined) {
+        sliceEnd = index
+      }
+    }
+
+    if (first) {
+      sliceEnd = sliceEnd ? sliceEnd : sliceStart + first
+      resultNodes = nodes.slice(sliceStart, sliceEnd)
+    }
+    if (last) {
+      sliceEnd = sliceEnd ? sliceEnd : this.nodes.length
+      sliceStart = sliceStart ? sliceStart : sliceEnd - last
+      resultNodes = nodes.slice(sliceStart, sliceEnd)
+    }
+
+    const hasNextPage = nodes.length > sliceEnd
+    const hasPreviousPage = 0 < sliceStart
 
     const startId = resultNodes.length > 0 ? resultNodes[0].id : null
     const endId = resultNodes.length > 0 ? resultNodes[resultNodes.length - 1].id : null

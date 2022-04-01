@@ -233,10 +233,10 @@ describe('Query shops', () => {
     const data = await res.json()
     const shops = data['data']['shops']
     expect(shops['pageInfo']).toEqual({
-      startCursor: 'dGFrYXNhZ295YQ==',
-      endCursor: 'c3VnaXRheWE=',
-      hasNextPage: true,
-      hasPreviousPage: false,
+      startCursor: 'c3VnaXRheWE=',
+      endCursor: 'dGFrYXNhZ295YQ==',
+      hasNextPage: false,
+      hasPreviousPage: true,
     })
   })
 
@@ -262,8 +262,8 @@ describe('Query shops', () => {
     expect(shops['pageInfo']).toEqual({
       startCursor: 'eW9zaGltdXJheWE=',
       endCursor: 'eW9zaGltdXJheWE=',
-      hasNextPage: false,
-      hasPreviousPage: true,
+      hasNextPage: true,
+      hasPreviousPage: false,
     })
   })
 })
