@@ -15,4 +15,4 @@ bucket = "./content"
 entry-point = "."
 
 [vars]
-ENV_BASE_URL = "https://ramen-api.yusukebe.workers.dev/"
+ENV_BASE_URL = "https://ramen-api.dev/"
