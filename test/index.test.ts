@@ -21,6 +21,25 @@ describe('Test /', () => {
   })
 })
 
+describe('Test /shops/yoshimuraya', () => {
+  it('Should return 200 response', async () => {
+    const res = await app.request('http://localhost/shops/yoshimuraya')
+    expect(res.status).toBe(200)
+    expect(await res.json()).toEqual({ shop: yoshimurayaData })
+  })
+  it('Should return 404 response', async () => {
+    const res = await app.request('http://localhost/shops/yoshimura')
+    expect(res.status).toBe(404)
+    expect(await res.json()).toEqual({
+      errors: [
+        {
+          message: `The requested Ramen Shop 'yoshimura' is not found`,
+        },
+      ],
+    })
+  })
+})
+
 describe('Test /shops', () => {
   it('Should return shops with GET /shops', async () => {
     const res = await app.request('http://localhost/shops')

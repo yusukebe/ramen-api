@@ -24,6 +24,18 @@ app.get('/shops', async (c) => {
 app.get('/shops/:id', async (c) => {
   const id = c.req.param('id')
   const shop = await getShop(id)
+  if (!shop) {
+    return c.json(
+      {
+        errors: [
+          {
+            message: `The requested Ramen Shop '${id}' is not found`,
+          },
+        ],
+      },
+      404
+    )
+  }
   return c.json({ shop: shop })
 })
 
@@ -39,6 +51,19 @@ app.get('/images/:shop_id/:filename', async (c) => {
 
   c.header('Content-Type', mimeType)
   return c.body(content)
+})
+
+app.notFound((c) => {
+  return c.json(
+    {
+      errors: [
+        {
+          message: 'Not found',
+        },
+      ],
+    },
+    404
+  )
 })
 
 app.use('/graphql', graphqlServer({ schema }))

@@ -65,9 +65,7 @@ export const getShop = async (id: string): Promise<Shop> => {
   } catch {
     // Do nothing
   }
-  if (!shop) {
-    throw new Error(`ID: '${id}' could not be found`)
-  }
+  if (!shop) return
   shop.photos?.map((photo: Photo) => {
     photo.name = fixPhotoURL(id, photo.name)
   })

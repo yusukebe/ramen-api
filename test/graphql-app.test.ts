@@ -45,11 +45,40 @@ describe('Query shop', () => {
 })
 
 describe('Query shops', () => {
-  it('Should return all edges', async () => {
+  it('Return null', async () => {
     const query = {
       query: `
       {
         shops {
+            edges {
+                node {
+                    id
+                }
+                cursor
+            }
+            totalCount
+            pageInfo {
+                startCursor
+                endCursor
+                hasNextPage
+                hasPreviousPage
+            }
+        }
+    }
+      `,
+    }
+    const res = await postRequest(query)
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    const shops = data['data']['shops']
+    expect(shops).toBeNull()
+  })
+
+  it('Should return all edges', async () => {
+    const query = {
+      query: `
+      {
+        shops(first: 10) {
             edges {
                 node {
                     id
@@ -159,7 +188,7 @@ describe('Query shops', () => {
     const query = {
       query: `
       {
-        shops(after: "c3VnaXRheWE=") {
+        shops(first: 10, after: "c3VnaXRheWE=") {
             pageInfo {
                 startCursor
                 endCursor
