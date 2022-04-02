@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest --verbose",
     "build": "esbuild --bundle --sourcemap --minify --outdir=dist ./src/index.ts",
-    "dev": "miniflare --live-reload --debug -s ./contents",
+    "dev": "miniflare --live-reload --debug -s ./content",
     "deploy": "wrangler publish"
   },
   "license": "MIT",
