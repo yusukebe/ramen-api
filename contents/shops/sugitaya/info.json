@@ -1,4 +1,9 @@
 {
   "id": "sugitaya",
-  "name": "杉田家"
+  "name": "杉田家",
+  "photos": [
+    {
+      "name": "sugitaya-001.jpg"
+    }
+  ]
 }

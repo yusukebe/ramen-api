@@ -1,4 +1,9 @@
 {
   "id": "takasagoya",
-  "name": "たかさご家"
+  "name": "たかさご家",
+  "photos": [
+    {
+      "name": "takasagoya-001.jpg"
+    }
+  ]
 }
