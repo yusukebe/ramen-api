@@ -1,11 +1,14 @@
 import { Hono } from 'hono'
 import { graphqlServer } from 'hono/graphql-server'
+import { prettyJSON } from 'hono/pretty-json'
 import { getMimeType } from 'hono/utils/mime'
 import { getContentFromKVAsset } from 'hono/utils/cloudflare'
 import { getShop, listShops } from '@/app'
 import { schema } from '@/graphql-app'
 
 export const app = new Hono()
+
+app.use('*', prettyJSON())
 
 app.get('/', async (c) => {
   return c.json({ message: 'Here is Ramen API' })
