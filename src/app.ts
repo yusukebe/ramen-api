@@ -6,6 +6,8 @@ export const BASE_URL = ENV_BASE_URL ?? 'http://localhost:8787/'
 export type Photo = {
   name: string
   url: string
+  width: number
+  height: number
   authorId: string
 }
 

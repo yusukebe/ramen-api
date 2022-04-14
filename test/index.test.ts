@@ -11,6 +11,8 @@ const yoshimurayaData = {
     {
       name: 'yoshimuraya-001.jpg',
       url: `${BASE_URL}images/yoshimuraya/yoshimuraya-001.jpg`,
+      width: 1200,
+      height: 900,
       authorId: 'yusukebe',
     },
   ],

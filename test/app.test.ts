@@ -20,6 +20,8 @@ describe('listShops', () => {
       name: 'yoshimuraya-001.jpg',
       url: `${BASE_URL}images/yoshimuraya/yoshimuraya-001.jpg`,
       authorId: 'yusukebe',
+      width: 1200,
+      height: 900,
     })
     expect(result.shops[1].id).toBe('sugitaya')
     expect(result.shops[2].id).toBe('takasagoya')

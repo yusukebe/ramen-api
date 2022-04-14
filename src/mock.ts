@@ -10,6 +10,8 @@ const store: Record<string, ArrayBuffer> = {
     photos: [
       {
         name: 'yoshimuraya-001.jpg',
+        width: 1200,
+        height: 900,
         authorId: 'yusukebe',
       },
     ],

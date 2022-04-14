@@ -15,7 +15,7 @@ For example, you can use Ramen API when prototyping such as a React user interfa
 ## Information
 
 * Ramen shop infromatin and Photos are under the Creative Commons copyright license *CC/BY*.
-* If you use photos in your application publicly, you **should** show the author `id` or `name` of the photos as the credit.
+* If you use photos in your application publicly, you **should** show the author `id` or `name` of the photos as a credit.
 
 ## Basic
 
@@ -52,6 +52,8 @@ GET https://ramen-api.dev/shops
       "photos": [
         {
           "name": "yoshimuraya-001.jpg",
+          "width": 1200,
+          "height": 900,
           "author": "yusukebe",
           "url": "https://ramen-api.dev/images/yoshimuraya/yoshimuraya-001.jpg"
         }
@@ -63,6 +65,8 @@ GET https://ramen-api.dev/shops
       "photos": [
         {
           "name": "sugitaya-001.jpg",
+          "width": 1200,
+          "height": 900,
           "author": "yusukebe",
           "url": "https://ramen-api.dev/images/sugitaya/sugitaya-001.jpg"
         }
@@ -74,6 +78,8 @@ GET https://ramen-api.dev/shops
       "photos": [
         {
           "name": "takasagoya-001.jpg",
+          "width": 1200,
+          "height": 900,
           "author": "yusukebe",
           "url": "https://ramen-api.dev/images/takasagoya/takasagoya-001.jpg"
         }
@@ -99,6 +105,8 @@ GET https://ramen-api.dev/shops/yoshimuraya
     "photos": [
       {
         "name": "yoshimuraya-001.jpg",
+        "width": 1200,
+        "height": 900,
         "author": "yusukebe",
         "url": "https://ramen-api.dev/images/yoshimuraya/yoshimuraya-001.jpg"
       }
@@ -145,6 +153,12 @@ Sample response:
 
 ## GraphQL
 
+### Endpoint
+
+```sh
+https://ramen-api.dev/graphql
+```
+
 ### Schemas
 
 #### Shop
@@ -163,6 +177,8 @@ type Shop {
 type Photo {
   name: String
   url: String
+  width: Int
+  height: Int
   authorId: String
 }
 ```
@@ -188,6 +204,8 @@ query {
     name
     photos {
       name
+      width
+      height
       url
       authorId
     }
@@ -270,4 +288,4 @@ Yusuke Wada <https://github.com/yusukebe>
 
 Application souce code is distributed under MIT license.
 
-Ramen resources including the photos contrbuters added are under the [Creative Commons License BY/SA](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+Ramen resources including the photos added by the contrbuters are under the [Creative Commons License BY/SA](https://creativecommons.org/licenses/by-sa/4.0/legalcode).

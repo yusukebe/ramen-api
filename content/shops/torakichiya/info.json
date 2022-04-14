@@ -4,10 +4,14 @@
   "photos": [
     {
       "name": "torakichiya-001.jpg",
+      "width": 1200,
+      "height": 900,
       "authorId": "yusukebe"
     },
     {
       "name": "torakichiya-002.jpg",
+      "width": 1200,
+      "height": 900,
       "authorId": "yusukebe"
     }
   ]

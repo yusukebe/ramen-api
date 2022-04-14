@@ -4,18 +4,26 @@
   "photos": [
     {
       "name": "rokkakuya-totsuka-001.jpg",
+      "width": 1200,
+      "height": 900,
       "authorId": "yusukebe"
     },
     {
       "name": "rokkakuya-totsuka-002.jpg",
+      "width": 1200,
+      "height": 900,
       "authorId": "yusukebe"
     },
     {
       "name": "rokkakuya-totsuka-003.jpg",
+      "width": 1200,
+      "height": 900,
       "authorId": "yusukebe"
     },
     {
       "name": "rokkakuya-totsuka-004.jpg",
+      "width": 1200,
+      "height": 900,
       "authorId": "yusukebe"
     }
   ]

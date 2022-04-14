@@ -16,6 +16,8 @@ const photoType = new GraphQLObjectType({
   fields: {
     name: { type: GraphQLString },
     url: { type: GraphQLString },
+    width: { type: GraphQLInt },
+    height: { type: GraphQLInt },
     authorId: { type: GraphQLString },
   },
 })
