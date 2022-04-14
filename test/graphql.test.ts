@@ -1,4 +1,5 @@
 import { app } from '@/index'
+import { BASE_URL } from '@/app'
 import { assign } from '@/mock'
 
 assign()
@@ -27,8 +28,13 @@ describe('Query shop', () => {
       query: `
       query getShop($id: String!) {
         shop(id: $id) {
-            id
+          id
+          name
+          photos {
             name
+            url
+            authorId
+          }
         }
     }`,
       variables: JSON.stringify({ id: 'yoshimuraya' }),
@@ -40,6 +46,13 @@ describe('Query shop', () => {
     expect(data['data']['shop']).toEqual({
       id: 'yoshimuraya',
       name: '吉村家',
+      photos: [
+        {
+          name: 'yoshimuraya-001.jpg',
+          url: `${BASE_URL}images/yoshimuraya/yoshimuraya-001.jpg`,
+          authorId: 'yusukebe',
+        },
+      ],
     })
   })
 })
@@ -293,6 +306,31 @@ describe('Query shops', () => {
       endCursor: 'eW9zaGltdXJheWE=',
       hasNextPage: true,
       hasPreviousPage: false,
+    })
+  })
+})
+
+describe('Query author', () => {
+  it('Should return Author response', async () => {
+    const query = {
+      query: `
+      query getAuthor($id: String!) {
+        author(id: $id) {
+          id
+          name
+          url
+        }
+    }`,
+      variables: JSON.stringify({ id: 'yusukebe' }),
+    }
+    const res = await postRequest(query)
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    expect(data['data']['author']).not.toBeUndefined()
+    expect(data['data']['author']).toEqual({
+      id: 'yusukebe',
+      name: 'Yusuke Wada',
+      url: 'https://github.com/yusukebe',
     })
   })
 })

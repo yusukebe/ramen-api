@@ -9,9 +9,17 @@ const yoshimurayaData = {
   name: '吉村家',
   photos: [
     {
-      name: `${BASE_URL}images/yoshimuraya/yoshimuraya-001.jpg`,
+      name: 'yoshimuraya-001.jpg',
+      url: `${BASE_URL}images/yoshimuraya/yoshimuraya-001.jpg`,
+      authorId: 'yusukebe',
     },
   ],
+}
+
+const authorData = {
+  id: 'yusukebe',
+  name: 'Yusuke Wada',
+  url: 'https://github.com/yusukebe',
 }
 
 describe('Test /', () => {
@@ -45,7 +53,7 @@ describe('Test /shops', () => {
     const res = await app.request('http://localhost/shops')
     expect(res.status).toBe(200)
     const data = await res.json()
-    expect(data['total_count']).toBe(3)
+    expect(data['totalCount']).toBe(3)
     expect(data['shops'][0]).toEqual(yoshimurayaData)
     expect(data['shops'][1]['id']).toBe('sugitaya')
     expect(data['shops'][2]['id']).toBe('takasagoya')
@@ -55,7 +63,7 @@ describe('Test /shops', () => {
     const res = await app.request('http://localhost/shops?limit=1&offset=1')
     expect(res.status).toBe(200)
     const data = await res.json()
-    expect(data['total_count']).toBe(3)
+    expect(data['totalCount']).toBe(3)
     expect(data['shops'][0]).not.toBeUndefined()
     expect(data['shops'][1]).toBeUndefined()
   })
@@ -65,6 +73,15 @@ describe('Test /shops', () => {
     expect(res.status).toBe(200)
     const data = await res.json()
     expect(data['shop']).toEqual(yoshimurayaData)
+  })
+})
+
+describe('Test /authors/:author_id', () => {
+  it('Should return the author with GET /authors/yusukebe', async () => {
+    const res = await app.request('http://localhost/authors/yusukebe')
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    expect(data['author']).toEqual(authorData)
   })
 })
 

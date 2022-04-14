@@ -3,10 +3,12 @@
   "name": "とらきち家",
   "photos": [
     {
-      "name": "torakichiya-001.jpg"
+      "name": "torakichiya-001.jpg",
+      "author": "yusukebe"
     },
     {
-      "name": "torakichiya-002.jpg"
+      "name": "torakichiya-002.jpg",
+      "author": "yusukebe"
     }
   ]
 }

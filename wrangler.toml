@@ -1,6 +1,9 @@
 name= "ramen-api"
-workers_dev = true
+workers_dev = false
 type = "javascript"
+
+zone_id = "134f0a73529aca17bd616b96c407caac"
+routes = ["ramen-api.dev/*"]
 
 compatibility_date = "2022-03-23"
 

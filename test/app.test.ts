@@ -1,4 +1,4 @@
-import { getShop, listShops, findIndexFromId } from '@/app'
+import { getShop, listShops, findIndexFromId, getAuthor, BASE_URL } from '@/app'
 import { assign } from '@/mock'
 
 assign()
@@ -16,6 +16,11 @@ describe('listShops', () => {
     expect(result.totalCount).toBe(3)
     expect(result.shops).not.toBeFalsy()
     expect(result.shops[0].id).toBe('yoshimuraya')
+    expect(result.shops[0]['photos'][0]).toEqual({
+      name: 'yoshimuraya-001.jpg',
+      url: `${BASE_URL}images/yoshimuraya/yoshimuraya-001.jpg`,
+      authorId: 'yusukebe',
+    })
     expect(result.shops[1].id).toBe('sugitaya')
     expect(result.shops[2].id).toBe('takasagoya')
   })
@@ -43,5 +48,15 @@ describe('findIndexFromId', () => {
     expect(index).toBe(1)
     index = await findIndexFromId('abcde')
     expect(index).toBeUndefined()
+  })
+})
+
+describe('getAuthor', () => {
+  it('Should return author', async () => {
+    const author = await getAuthor('yusukebe')
+    expect(author).not.toBeFalsy()
+    expect(author.id).toBe('yusukebe')
+    expect(author.name).toBe('Yusuke Wada')
+    expect(author.url).toBe('https://github.com/yusukebe')
   })
 })

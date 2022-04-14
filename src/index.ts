@@ -3,8 +3,8 @@ import { graphqlServer } from 'hono/graphql-server'
 import { prettyJSON } from 'hono/pretty-json'
 import { getMimeType } from 'hono/utils/mime'
 import { getContentFromKVAsset } from 'hono/utils/cloudflare'
-import { getShop, listShops } from '@/app'
-import { schema } from '@/graphql-app'
+import { getShop, listShops, getAuthor } from '@/app'
+import { schema } from '@/graphql'
 
 export const app = new Hono()
 
@@ -18,10 +18,7 @@ app.get('/shops', async (c) => {
   const limit = Number(c.req.query('limit') ?? 10)
   const offset = Number(c.req.query('offset') ?? 0)
   const listResult = await listShops({ limit, offset })
-  return c.json({
-    total_count: listResult.totalCount,
-    shops: listResult.shops,
-  })
+  return c.json(listResult)
 })
 
 app.get('/shops/:id', async (c) => {
@@ -42,8 +39,26 @@ app.get('/shops/:id', async (c) => {
   return c.json({ shop: shop })
 })
 
-app.get('/images/:shop_id/:filename', async (c) => {
-  const shopId = c.req.param('shop_id')
+app.get('/authors/:id', async (c) => {
+  const id = c.req.param('id')
+  const author = await getAuthor(id)
+  if (!author) {
+    return c.json(
+      {
+        errors: [
+          {
+            message: `The requested Author '${id}' is not found`,
+          },
+        ],
+      },
+      404
+    )
+  }
+  return c.json({ author: author })
+})
+
+app.get('/images/:shopId/:filename', async (c) => {
+  const shopId = c.req.param('shopId')
   const filename = c.req.param('filename')
   const mimeType = getMimeType(filename)
   const content = await getContentFromKVAsset(`shops/${shopId}/${filename}`)

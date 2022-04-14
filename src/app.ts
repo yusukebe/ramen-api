@@ -5,12 +5,20 @@ export const BASE_URL = ENV_BASE_URL ?? 'http://localhost:8787/'
 
 export type Photo = {
   name: string
+  url: string
+  authorId: string
 }
 
 export type Shop = {
   id: string
   name?: string
   photos?: Photo[]
+}
+
+export type Author = {
+  id: string
+  name: string
+  url: string
 }
 
 type Parameters = {
@@ -67,17 +75,27 @@ export const getShop = async (id: string): Promise<Shop> => {
   }
   if (!shop) return
   shop.photos?.map((photo: Photo) => {
-    photo.name = fixPhotoURL(id, photo.name)
+    photo.url = fixPhotoURL(id, photo.name)
   })
   return shop
+}
+
+export const getAuthor = async (id: string): Promise<Author> => {
+  let author: Author
+  try {
+    const buffer = await getContentFromKVAsset(`authors/${id}/info.json`)
+    author = arrayBufferToJSON(buffer)
+  } catch {
+    // Do nothing
+  }
+  if (!author) return
+  return author
 }
 
 const fixPhotoURL = (shopId: string, path: string): string => {
   if (path.match(/^https?:\/\/.+/)) return path
   return `${BASE_URL}images/${shopId}/${path}`
 }
-
-export const getImage = (path: string) => {}
 
 const arrayBufferToJSON = (arrayBuffer: ArrayBuffer) => {
   const text = new TextDecoder().decode(arrayBuffer)

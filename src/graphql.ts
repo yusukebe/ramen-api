@@ -1,5 +1,5 @@
 import { encodeBase64, decodeBase64 } from 'hono/utils/crypto'
-import { getShop, listShops, findIndexFromId } from '@/app'
+import { getShop, listShops, getAuthor } from '@/app'
 import { Pager } from '@/pager'
 
 import {
@@ -15,6 +15,17 @@ const photoType = new GraphQLObjectType({
   name: 'Photo',
   fields: {
     name: { type: GraphQLString },
+    url: { type: GraphQLString },
+    authorId: { type: GraphQLString },
+  },
+})
+
+const authorType = new GraphQLObjectType({
+  name: 'Author',
+  fields: {
+    id: { type: GraphQLString },
+    name: { type: GraphQLString },
+    url: { type: GraphQLString },
   },
 })
 
@@ -116,6 +127,17 @@ var queryType = new GraphQLObjectType({
       resolve: async (_, { id }) => {
         const shop = await getShop(id)
         return shop
+      },
+    },
+
+    author: {
+      type: authorType,
+      args: {
+        id: { type: GraphQLString },
+      },
+      resolve: async (_, { id }) => {
+        const author = await getAuthor(id)
+        return author
       },
     },
   },

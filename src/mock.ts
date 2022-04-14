@@ -3,13 +3,14 @@ const objectToBuffer = (data: object) => {
   return new TextEncoder().encode(string)
 }
 
-const store: { [key: string]: ArrayBuffer } = {
+const store: Record<string, ArrayBuffer> = {
   'shops/yoshimuraya/info.abc.json': objectToBuffer({
     id: 'yoshimuraya',
     name: '吉村家',
     photos: [
       {
         name: 'yoshimuraya-001.jpg',
+        authorId: 'yusukebe',
       },
     ],
   }),
@@ -24,7 +25,12 @@ const store: { [key: string]: ArrayBuffer } = {
   'shops.abc.json': objectToBuffer({
     shopIds: ['yoshimuraya', 'sugitaya', 'takasagoya'],
   }),
-  'shops/yoshimuraya/yoshimuraya-001.abc.jpg': objectToBuffer({}), // <-- Blank object for mocking
+  'shops/yoshimuraya/yoshimuraya-001.abc.jpg': objectToBuffer({}), // <-- Blank object for mocking,
+  'authors/yusukebe/info.abc.json': objectToBuffer({
+    id: 'yusukebe',
+    name: 'Yusuke Wada',
+    url: 'https://github.com/yusukebe',
+  }),
 }
 const manifest = JSON.stringify({
   'shops/yoshimuraya/yoshimuraya-001.jpg': 'shops/yoshimuraya/yoshimuraya-001.abc.jpg',
@@ -32,6 +38,7 @@ const manifest = JSON.stringify({
   'shops/sugitaya/info.json': 'shops/sugitaya/info.abc.json',
   'shops/takasagoya/info.json': 'shops/takasagoya/info.abc.json',
   'shops.json': 'shops.abc.json',
+  'authors/yusukebe/info.json': 'authors/yusukebe/info.abc.json',
 })
 
 export const assign = () => {
