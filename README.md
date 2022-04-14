@@ -51,6 +51,8 @@ GET https://ramen-api.dev/shops
       "name": "吉村家",
       "photos": [
         {
+          "name": "yoshimuraya-001.jpg",
+          "author": "yusukebe",
           "url": "https://ramen-api.dev/images/yoshimuraya/yoshimuraya-001.jpg"
         }
       ]
@@ -60,6 +62,8 @@ GET https://ramen-api.dev/shops
       "name": "杉田家",
       "photos": [
         {
+          "name": "sugitaya-001.jpg",
+          "author": "yusukebe",
           "url": "https://ramen-api.dev/images/sugitaya/sugitaya-001.jpg"
         }
       ]
@@ -69,10 +73,12 @@ GET https://ramen-api.dev/shops
       "name": "たかさご家",
       "photos": [
         {
+          "name": "takasagoya-001.jpg",
+          "author": "yusukebe",
           "url": "https://ramen-api.dev/images/takasagoya/takasagoya-001.jpg"
         }
       ]
-    }
+    },
   ]
 }
 ```
