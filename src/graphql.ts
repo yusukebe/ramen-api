@@ -95,8 +95,8 @@ var queryType = new GraphQLObjectType({
         const list = await listShops()
         const totalCount = list.shops.length
 
-        after = convertCursorToId(after)
-        before = convertCursorToId(before)
+        after = after ? convertCursorToId(after) : null
+        before = before ? convertCursorToId(before) : null
 
         const pager = new Pager({ nodes: list.shops })
         const result = pager.paging({ first, after, last, before })
