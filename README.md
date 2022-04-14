@@ -274,6 +274,12 @@ Resize:
 sips -Z 1200 yoshimuraya-001.jpg
 ```
 
+Get the image size:
+
+```sh
+sips -g pixelHeight -g pixelWidth yoshimuraya-001.jpg
+```
+
 Remove Exif information and optimize the image:
 
 ```sh
