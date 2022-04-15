@@ -62,7 +62,7 @@ describe('Test /shops', () => {
   })
 
   it('Should return shops with GET /shops?page=1&per_page=1', async () => {
-    const res = await app.request('http://localhost/shops?limit=1&offset=1')
+    const res = await app.request('http://localhost/shops?page=1&per_page=1')
     expect(res.status).toBe(200)
     const data = await res.json()
     expect(data['totalCount']).toBe(3)

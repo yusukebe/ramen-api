@@ -33,6 +33,40 @@ type listShopsResult = {
   totalCount: number
 }
 
+type withPageResult = {
+  nextPage: number | null
+  prevPage: number | null
+  lastPage: number
+}
+
+type ParametersWithPager = {
+  page: number
+  per_page: number
+}
+
+export const listShopsWithPager = async (
+  params: ParametersWithPager
+): Promise<listShopsResult & withPageResult> => {
+  let { page = 1, per_page = 10 } = params
+  if (per_page > 100) per_page = 100
+  const limit = per_page
+  const offset = (page - 1) * per_page
+  const result = await listShops({ limit, offset })
+  const totalCount = result.totalCount
+  const lastPage =
+    totalCount % per_page == 0 ? totalCount / per_page : Math.floor(totalCount / per_page) + 1
+  const nextPage = lastPage > page ? page + 1 : null
+  const prevPage = page > 1 ? page - 1 : null
+
+  return {
+    shops: result.shops,
+    totalCount,
+    nextPage,
+    prevPage,
+    lastPage,
+  }
+}
+
 export const listShops = async (params: Parameters = {}): Promise<listShopsResult> => {
   const { limit = 10, offset = 0 } = params
   const buffer = await getContentFromKVAsset('shops.json')
@@ -77,7 +111,7 @@ export const getShop = async (id: string): Promise<Shop> => {
   }
   if (!shop) return
   shop.photos?.map((photo: Photo) => {
-    photo.url = fixPhotoURL(id, photo.name)
+    photo.url = fixPhotoURL({ shopId: id, path: photo.name })
   })
   return shop
 }
@@ -94,7 +128,7 @@ export const getAuthor = async (id: string): Promise<Author> => {
   return author
 }
 
-const fixPhotoURL = (shopId: string, path: string): string => {
+const fixPhotoURL = ({ shopId, path }: { shopId: string; path: string }): string => {
   if (path.match(/^https?:\/\/.+/)) return path
   return `${BASE_URL}images/${shopId}/${path}`
 }

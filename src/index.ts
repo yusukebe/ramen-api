@@ -5,7 +5,7 @@ import { graphqlServer } from 'hono/graphql-server'
 import { prettyJSON } from 'hono/pretty-json'
 import { getMimeType } from 'hono/utils/mime'
 import { getContentFromKVAsset } from 'hono/utils/cloudflare'
-import { getShop, listShops, getAuthor } from '@/app'
+import { getShop, listShops, getAuthor, listShopsWithPager } from '@/app'
 import { schema } from '@/graphql'
 
 export const app = new Hono()
@@ -19,9 +19,9 @@ app.get('/', async (c) => {
 })
 
 app.get('/shops', async (c) => {
-  const limit = Number(c.req.query('limit') ?? 10)
-  const offset = Number(c.req.query('offset') ?? 0)
-  const listResult = await listShops({ limit, offset })
+  const page = Number(c.req.query('page') ?? 1)
+  const per_page = Number(c.req.query('per_page') ?? 10)
+  const listResult = await listShopsWithPager({ page, per_page })
   return c.json(listResult)
 })
 

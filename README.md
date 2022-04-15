@@ -8,28 +8,28 @@ You can try Ramen API with this code.
 
 ```js
 fetch('https://ramen-api.dev/shops/yoshimuraya')
-  .then(res => res.json())
-  .then(json => console.log(json.shop.name)) // => 吉村家
+  .then((res) => res.json())
+  .then((json) => console.log(json.shop.name)) // => 吉村家
 ```
 
 This repository manages the application source code and the content including photos.
 
-You might want to say *why Ramen?* And, I will say. ***:ramen: is super delicious!! :yum:***
+You might want to say _why Ramen?_ And, I will say. **_:ramen: is super delicious!! :yum:_**
 
 ## Features
 
-* :star2: Support REST API and GraphQL.
-* :framed_picture: We can get an information of Ramen shops and the rich photos.
-* :free: Completely free.
-* :technologist: You can contribute by adding Ramen content.
+- :star2: Support REST API and GraphQL.
+- :framed_picture: We can get an information of Ramen shops and the rich photos.
+- :free: Completely free.
+- :technologist: You can contribute by adding Ramen content.
 
 ## Information
 
-* **Currently, Ramen API is a beta version**.
-* The information of a Ramen shop and photos are under the [Creative Commons copyright license *CC/BY*](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
-* If you use photos in your application publicly, you **should** show the author `id` or `name` of the photos as a credit.
-* Authentication is not required.
-* There is no rate-limitation.
+- **Currently, Ramen API is a beta version**.
+- The information of a Ramen shop and photos are under the [Creative Commons copyright license _CC/BY_](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+- If you use photos in your application publicly, you **should** show the author `id` or `name` of the photos as a credit.
+- Authentication is not required.
+- There is no rate-limitation.
 
 ## Base URL
 
@@ -41,24 +41,23 @@ https://ramen-api.dev
 
 ### Global parameters
 
-* `pretty` - Flag of JSON pretty printing.
+- `pretty` - Flag of JSON pretty printing.
 
 ### GET `/shops`
 
 #### Parameters
 
-* `limit` - default is `10`.
-* `offset` - default is `0`.
+- `page` - default is `1`.
+- `per_page` - default is `10`. Maximum value is `100`.
 
 #### Examples
 
 ```http
-GET /shops
+GET /shops?pretty&page=1&per_page=3
 ```
 
 ```json
 {
-  "totalCount": 3,
   "shops": [
     {
       "id": "yoshimuraya",
@@ -68,7 +67,7 @@ GET /shops
           "name": "yoshimuraya-001.jpg",
           "width": 1200,
           "height": 900,
-          "author": "yusukebe",
+          "authorId": "yusukebe",
           "url": "https://ramen-api.dev/images/yoshimuraya/yoshimuraya-001.jpg"
         }
       ]
@@ -81,7 +80,7 @@ GET /shops
           "name": "sugitaya-001.jpg",
           "width": 1200,
           "height": 900,
-          "author": "yusukebe",
+          "authorId": "yusukebe",
           "url": "https://ramen-api.dev/images/sugitaya/sugitaya-001.jpg"
         }
       ]
@@ -94,12 +93,16 @@ GET /shops
           "name": "takasagoya-001.jpg",
           "width": 1200,
           "height": 900,
-          "author": "yusukebe",
+          "authorId": "yusukebe",
           "url": "https://ramen-api.dev/images/takasagoya/takasagoya-001.jpg"
         }
       ]
-    },
-  ]
+    }
+  ],
+  "totalCount": 7,
+  "nextPage": 2,
+  "prevPage": null,
+  "lastPage": 3
 }
 ```
 
@@ -233,7 +236,7 @@ query {
 
 ```graphql
 query {
-  shops(first:1, after: "eW9zaGltdXJheWE=") {
+  shops(first: 1, after: "eW9zaGltdXJheWE=") {
     edges {
       node {
         id
@@ -255,7 +258,7 @@ Or you can set `last` and `before` args.
 
 ```graphql
 query {
-  shops(last:1, before: "eW9zaGltdXJheWE=") {
+  shops(last: 1, before: "eW9zaGltdXJheWE=") {
     pageInfo {
       startCursor
       endCursor
@@ -306,8 +309,8 @@ At last, edit `./content/shops.json` to add the shop id.
 
 ### Notices
 
-* Do not upload a big size photo. Should be **under 400KB**.
-* An information about the shop and photos that you have been uploaded will be licensed by [Creative Commons copyright license *CC/BY*](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+- Do not upload a big size photo. Should be **under 400KB**.
+- An information about the shop and photos that you have been uploaded will be licensed by [Creative Commons copyright license _CC/BY_](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
 
 ## Tips
 
@@ -341,4 +344,4 @@ Yusuke Wada <https://github.com/yusukebe>
 
 Application source code is distributed under the MIT license.
 
-Ramen resources including the photos are distributed under the [Creative Commons copyright license *CC/BY*](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+Ramen resources including the photos are distributed under the [Creative Commons copyright license _CC/BY_](https://creativecommons.org/licenses/by-sa/4.0/legalcode).

@@ -1,4 +1,4 @@
-import { getShop, listShops, findIndexFromId, getAuthor, BASE_URL } from '@/app'
+import { getShop, listShops, findIndexFromId, getAuthor, BASE_URL, listShopsWithPager } from '@/app'
 import { assign } from '@/mock'
 
 assign()
@@ -39,6 +39,28 @@ describe('listShops', () => {
     expect(result.totalCount).toBe(3)
     expect(result.shops[0].id).toBe('sugitaya')
     expect(result.shops[1]).toBeUndefined()
+  })
+})
+
+describe('listShopsWithPager', () => {
+  it('Return objects with pagination - per_page:1, page: 1', async () => {
+    const result = await listShopsWithPager({ per_page: 1, page: 1 })
+    expect(result.totalCount).toBe(3)
+    expect(result.shops[0]).not.toBeUndefined()
+    expect(result.shops[1]).toBeUndefined()
+    expect(result.nextPage).toBe(2)
+    expect(result.prevPage).toBe(null)
+    expect(result.lastPage).toBe(3)
+  })
+
+  it('Return objects with pagination - per_page: 2, page: 2', async () => {
+    const result = await listShopsWithPager({ per_page: 2, page: 2 })
+    expect(result.totalCount).toBe(3)
+    expect(result.shops[0]).not.toBeUndefined()
+    expect(result.shops[1]).toBeUndefined()
+    expect(result.nextPage).toBe(null)
+    expect(result.prevPage).toBe(1)
+    expect(result.lastPage).toBe(2)
   })
 })
 
