@@ -1,16 +1,23 @@
 name: deploy
 on:
   push:
-    branches:
-      - master
+    branches: [master]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy
 
     steps:
       - uses: actions/checkout@v2
-      - name: Publish
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: yarn install --frozen-lockfile
+      - run: npm run build
+      - run: npm run test
+      - run: npm run validate
+      - name: publish
         uses: cloudflare/wrangler-action@1.3.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
