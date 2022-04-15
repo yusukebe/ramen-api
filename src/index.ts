@@ -20,8 +20,8 @@ app.get('/', async (c) => {
 
 app.get('/shops', async (c) => {
   const page = Number(c.req.query('page') ?? 1)
-  const per_page = Number(c.req.query('per_page') ?? 10)
-  const listResult = await listShopsWithPager({ page, per_page })
+  const perPage = Number(c.req.query('perPage') ?? 10)
+  const listResult = await listShopsWithPager({ page, perPage })
   return c.json(listResult)
 })
 

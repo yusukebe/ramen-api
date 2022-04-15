@@ -43,24 +43,28 @@ describe('listShops', () => {
 })
 
 describe('listShopsWithPager', () => {
-  it('Return objects with pagination - per_page:1, page: 1', async () => {
-    const result = await listShopsWithPager({ per_page: 1, page: 1 })
+  it('Return objects with pagination - perPage:1, page: 1', async () => {
+    const result = await listShopsWithPager({ perPage: 1, page: 1 })
     expect(result.totalCount).toBe(3)
     expect(result.shops[0]).not.toBeUndefined()
     expect(result.shops[1]).toBeUndefined()
-    expect(result.nextPage).toBe(2)
-    expect(result.prevPage).toBe(null)
-    expect(result.lastPage).toBe(3)
+    expect(result.pageInfo.currentPage).toBe(1)
+    expect(result.pageInfo.perPage).toBe(1)
+    expect(result.pageInfo.nextPage).toBe(2)
+    expect(result.pageInfo.prevPage).toBe(null)
+    expect(result.pageInfo.lastPage).toBe(3)
   })
 
-  it('Return objects with pagination - per_page: 2, page: 2', async () => {
-    const result = await listShopsWithPager({ per_page: 2, page: 2 })
+  it('Return objects with pagination - perPage: 2, page: 2', async () => {
+    const result = await listShopsWithPager({ perPage: 2, page: 2 })
     expect(result.totalCount).toBe(3)
     expect(result.shops[0]).not.toBeUndefined()
     expect(result.shops[1]).toBeUndefined()
-    expect(result.nextPage).toBe(null)
-    expect(result.prevPage).toBe(1)
-    expect(result.lastPage).toBe(2)
+    expect(result.pageInfo.currentPage).toBe(2)
+    expect(result.pageInfo.perPage).toBe(2)
+    expect(result.pageInfo.nextPage).toBe(null)
+    expect(result.pageInfo.prevPage).toBe(1)
+    expect(result.pageInfo.lastPage).toBe(2)
   })
 })
 

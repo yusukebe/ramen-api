@@ -61,8 +61,8 @@ describe('Test /shops', () => {
     expect(data['shops'][2]['id']).toBe('takasagoya')
   })
 
-  it('Should return shops with GET /shops?page=1&per_page=1', async () => {
-    const res = await app.request('http://localhost/shops?page=1&per_page=1')
+  it('Should return shops with GET /shops?page=1&perPage=1', async () => {
+    const res = await app.request('http://localhost/shops?page=1&perPage=1')
     expect(res.status).toBe(200)
     const data = await res.json()
     expect(data['totalCount']).toBe(3)

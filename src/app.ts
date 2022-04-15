@@ -33,37 +33,49 @@ type listShopsResult = {
   totalCount: number
 }
 
-type withPageResult = {
+type listShopsWithPagerResult = {
+  shops: Shop[]
+  totalCount: number
+  pageInfo: pageInfo
+}
+
+type pageInfo = {
   nextPage: number | null
   prevPage: number | null
   lastPage: number
+  currentPage: number
+  perPage: number
 }
 
 type ParametersWithPager = {
   page: number
-  per_page: number
+  perPage: number
 }
 
 export const listShopsWithPager = async (
   params: ParametersWithPager
-): Promise<listShopsResult & withPageResult> => {
-  let { page = 1, per_page = 10 } = params
-  if (per_page > 100) per_page = 100
-  const limit = per_page
-  const offset = (page - 1) * per_page
+): Promise<listShopsWithPagerResult> => {
+  let { page = 1, perPage = 10 } = params
+  if (perPage > 100) perPage = 100
+  const limit = perPage
+  const offset = (page - 1) * perPage
   const result = await listShops({ limit, offset })
   const totalCount = result.totalCount
   const lastPage =
-    totalCount % per_page == 0 ? totalCount / per_page : Math.floor(totalCount / per_page) + 1
+    totalCount % perPage == 0 ? totalCount / perPage : Math.floor(totalCount / perPage) + 1
   const nextPage = lastPage > page ? page + 1 : null
   const prevPage = page > 1 ? page - 1 : null
 
   return {
     shops: result.shops,
     totalCount,
-    nextPage,
-    prevPage,
-    lastPage,
+    pageInfo: {
+      nextPage,
+      prevPage,
+      lastPage,
+      perPage,
+      currentPage: page,
+    },
   }
 }
 

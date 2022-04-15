@@ -48,12 +48,12 @@ https://ramen-api.dev
 #### Parameters
 
 - `page` - default is `1`.
-- `per_page` - default is `10`. Maximum value is `100`.
+- `perPage` - default is `10`. Maximum value is `100`.
 
 #### Examples
 
 ```http
-GET /shops?pretty&page=1&per_page=3
+GET /shops?pretty&page=1&perPage=3
 ```
 
 ```json
@@ -100,9 +100,13 @@ GET /shops?pretty&page=1&per_page=3
     }
   ],
   "totalCount": 7,
-  "nextPage": 2,
-  "prevPage": null,
-  "lastPage": 3
+  "pageInfo": {
+    "nextPage": 2,
+    "prevPage": null,
+    "lastPage": 3,
+    "perPage": 3,
+    "currentPage": 1
+  }
 }
 ```
 
