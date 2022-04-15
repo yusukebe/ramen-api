@@ -332,7 +332,7 @@ At the end, edit `./content/shops.json` to add the shop id at the last line.
 
 ### Notices
 
-- Do not upload a big size photo. Should be **under 400KB**.
+- Do not upload a big size photo. Should be **under 300KB**.
 - An information about the shop and photos that you have been uploaded will be licensed by [Creative Commons copyright license _CC/BY_](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
 
 ## Tips
@@ -342,7 +342,7 @@ At the end, edit `./content/shops.json` to add the shop id at the last line.
 Resize:
 
 ```sh
-sips -Z 1200 yoshimuraya-001.jpg
+sips -Z 800 yoshimuraya-001.jpg
 ```
 
 Get the image size:
