@@ -2,7 +2,7 @@
 
 **Ramen API** is a free Web API about :ramen:.
 This API is designed for the purpose of testing your software application which is accessing Web APIs.
-For example, you can use Ramen API when you are prototyping such as a React, Vue, and Angular interface.
+For example, you can use Ramen API when you are prototyping such as a React, Vue, and Angular web pages.
 
 You can try Ramen API with this code.
 
@@ -12,7 +12,7 @@ fetch('https://ramen-api.dev/shops/yoshimuraya')
   .then((json) => console.log(json.shop.name)) // => 吉村家
 ```
 
-This repository manages the application source code and the content including photos.
+This repository manages the source code and the content including photos.
 
 You might want to say _why Ramen?_ And, I will say. **_:ramen: is super delicious!! :yum:_**
 
@@ -25,7 +25,8 @@ You might want to say _why Ramen?_ And, I will say. **_:ramen: is super deliciou
 
 ## Information
 
-- **Currently, Ramen API is a beta version**.
+- **Currently, Ramen API is a beta version**. There's a possibility that API may be changed.
+- You **should** show the credit writing like "_powered by Ramen API_" on your page and link to this repository.
 - The information of a Ramen shop and photos are under the [Creative Commons copyright license _CC/BY_](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
 - If you use photos in your application publicly, you **should** show the author `id` or `name` of the photos as a credit.
 - Authentication is not required.
