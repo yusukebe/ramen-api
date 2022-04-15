@@ -1,33 +1,45 @@
 # Ramen API :ramen:
 
-**Ramen API** is a public Web API anyone can access.
-For a purpose of testing your application accessing Web APIs.
-For example, you can use Ramen API when prototyping such as a React user interface.
+**Ramen API** is a free fake Web API with :ramen: anyone can access.
+This is designed for the purpose of testing your web application to access Web APIs.
+For example, you can use Ramen API when prototyping such as a React/Vue/Angular user interface.
+
+You can try Ramen API with this code.
+
+```js
+fetch('https://ramen-api.dev/shops/yoshimuraya')
+  .then(res => res.json())
+  .then(json => console.log(json.shop.name)) // => 吉村家
+```
+
+Why Ramen? :ramen: is super delicious :yum:
 
 ## Features
 
-* Support REST API and GraphQL.
-* We can get Japanese Ramen shop information and the photos.
-* Completely free.
-* You can contribute for adding Ramens.
-* And... Ramen :ramen: is awesome!!!
+* :star2: Support REST API and GraphQL.
+* :framed_picture: We can get an information of Ramen shops and the photos.
+* :free: Completely free.
+* :technologist: You can contribute by adding Ramen content.
 
 ## Information
 
-* Ramen shop infromatin and Photos are under the Creative Commons copyright license *CC/BY*.
+* **Currently, Ramen API is a beta version**.
+* The information of a Ramen shop and Photos are under the [Creative Commons copyright license *CC/BY*](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
 * If you use photos in your application publicly, you **should** show the author `id` or `name` of the photos as a credit.
-
-## Basic
-
-* Base URL is *\<<https://ramen-api.dev>\>*.
 * Authentication is not required.
 * There is no rate limitation.
+
+## Base URL
+
+```
+https://ramen-api.dev
+```
 
 ## REST API
 
 ### Global parameters
 
-* `pretty` - Flag of JSON pretty printting.
+* `pretty` - Flag of JSON pretty printing.
 
 ### GET `/shops`
 
@@ -38,8 +50,8 @@ For example, you can use Ramen API when prototyping such as a React user interfa
 
 #### Examples
 
-```text
-GET https://ramen-api.dev/shops
+```http
+GET /shops
 ```
 
 ```json
@@ -93,8 +105,8 @@ GET https://ramen-api.dev/shops
 
 #### Examples
 
-```text
-GET https://ramen-api.dev/shops/yoshimuraya
+```http
+GET /shops/yoshimuraya
 ```
 
 ```json
@@ -119,8 +131,8 @@ GET https://ramen-api.dev/shops/yoshimuraya
 
 #### Examples
 
-```text
-GET https://ramen-api.dev/authors/yusukebe
+```http
+GET /authors/yusukebe
 ```
 
 ```json
@@ -133,7 +145,7 @@ GET https://ramen-api.dev/authors/yusukebe
 }
 ```
 
-## Error
+## Errors
 
 ### Not Found
 
@@ -152,6 +164,8 @@ Sample response:
 ```
 
 ## GraphQL
+
+Ramen API supports a GraphQL.
 
 ### Endpoint
 
@@ -264,6 +278,35 @@ query {
 
 ## Contribution
 
+You can contribute a Ramen content to this project not only by writing code.
+
+### Adding a new shop
+
+If this is first time, you should write lines about you.
+
+```sh
+mkdir ./content/authors/{authorId}
+touch ./content/authors/{authorId}/info.json
+// edit info.json
+```
+
+Write an information of the Ramen shop you want to add.
+
+```sh
+mkdir ./content/shops/{shopId}
+touch ./content/shops/{shopId}/info.json
+// edit info.json
+```
+
+Add your Ramen photos to an appropriate path such as `./content/shops/{shopId}/{photoName}`.
+
+At last, edit `./content/shops.json` to add the shop id.
+
+### Notices
+
+* Do not upload a big size photo. Should be **under 400KB**.
+* An information about the shop and photos you uploaded will be licensed by [Creative Commons copyright license *CC/BY*](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+
 ## Tips
 
 ### Resize & Optimize photos
@@ -280,7 +323,7 @@ Get the image size:
 sips -g pixelHeight -g pixelWidth yoshimuraya-001.jpg
 ```
 
-Remove Exif information and optimize the image:
+Remove Exif and optimize the image:
 
 ```sh
 jpegtran -copy none -optimize -outfile yoshimuraya-001.jpg yoshimuraya-001.jpg
@@ -290,8 +333,10 @@ jpegtran -copy none -optimize -outfile yoshimuraya-001.jpg yoshimuraya-001.jpg
 
 Yusuke Wada <https://github.com/yusukebe>
 
+:heart: :ramen:
+
 ## License
 
-Application souce code is distributed under MIT license.
+Application source code is distributed under the MIT license.
 
-Ramen resources including the photos added by the contrbuters are under the [Creative Commons License BY/SA](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+Ramen resources including the photos are distributed under the [Creative Commons copyright license *CC/BY*](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
