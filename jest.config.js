@@ -1,5 +1,5 @@
 module.exports = {
-  testMatch: ['**/test/**/*.+(ts|tsx)', '**/src/**/(*.)+(spec|test).+(ts|tsx)'],
+  testMatch: ['**/test/**/*.+(ts|tsx)', '**/validation/**/*.+(ts|tsx)'],
   transform: {
     '^.+\\.(ts|tsx)$': 'esbuild-jest',
   },

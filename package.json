@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest --verbose",
+    "test": "jest ./test/* --verbose",
+    "validate": "jest ./validation/* --verbose",
     "build": "esbuild --bundle --sourcemap --minify --outdir=dist ./src/index.ts",
     "dev": "miniflare --live-reload --debug -s ./content",
     "deploy": "wrangler publish"

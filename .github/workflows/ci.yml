@@ -1,4 +1,4 @@
-name: test
+name: ci
 on:
   push:
     branches: [master]
@@ -22,3 +22,4 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: npm run build
       - run: npm run test
+      - run: npm run validate

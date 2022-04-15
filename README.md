@@ -296,7 +296,13 @@ If this is first time, you should write about you.
 ```sh
 mkdir ./content/authors/{authorId}
 touch ./content/authors/{authorId}/info.json
-// edit info.json
+# edit info.json
+#
+# {
+#   "id": "yusukebe", <-- /^[0-9a-zA-Z\-\_]+$/
+#   "name": "Yusuke Wada",
+#   "url": "https://github.com/yusukebe" <-- /^https:\/\/.+$/
+# }
 ```
 
 Write an information of the Ramen shop which you want to add.
@@ -304,12 +310,25 @@ Write an information of the Ramen shop which you want to add.
 ```sh
 mkdir ./content/shops/{shopId}
 touch ./content/shops/{shopId}/info.json
-// edit info.json
+# edit info.json
+#
+# {
+#  "id": "yoshimuraya", <-- /^[0-9a-z\-]+$/
+#  "name": "吉村家",
+#  "photos": [
+#    {
+#      "name": "yoshimuraya-001.jpg", <-- /^[0-9a-z\-\.]+\.(jpg|jpeg|png|gif)$/
+#      "width": 1200, <-- number
+#      "height": 900, <-- number
+#      "authorId": "yusukebe" <-- /^[0-9a-zA-Z\-\_]+$/
+#    }
+#  ]
+# }
 ```
 
 Add your Ramen photos to an appropriate path such as `./content/shops/{shopId}/{photoName}`.
 
-At last, edit `./content/shops.json` to add the shop id.
+At the end, edit `./content/shops.json` to add the shop id at the last line.
 
 ### Notices
 
@@ -337,6 +356,10 @@ Remove Exif and optimize the image:
 ```sh
 jpegtran -copy none -optimize -outfile yoshimuraya-001.jpg yoshimuraya-001.jpg
 ```
+
+## Projects using Ramen API
+
+- [yusukebe/ramen-api-example](https://github.com/yusukebe/ramen-api-example) - An example web pages with React and Cloudflare Workers.
 
 ## Author
 
