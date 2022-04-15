@@ -1,8 +1,8 @@
 # Ramen API :ramen:
 
-**Ramen API** is a free Web API with :ramen: anyone can access.
-This is designed for the purpose of testing your web application to access Web APIs.
-For example, you can use Ramen API when prototyping such as a React/Vue/Angular user interface.
+**Ramen API** is a free Web API about :ramen:.
+This API is designed for the purpose of testing your software application which is accessing Web APIs.
+For example, you can use Ramen API when you are prototyping such as a React, Vue, and Angular interface.
 
 You can try Ramen API with this code.
 
@@ -12,22 +12,24 @@ fetch('https://ramen-api.dev/shops/yoshimuraya')
   .then(json => console.log(json.shop.name)) // => 吉村家
 ```
 
-Why Ramen? :ramen: is super delicious :yum:
+This repository manages the application source code and the content including photos.
+
+You might want to say *why Ramen?* And, I will say. ***:ramen: is super delicious!! :yum:***
 
 ## Features
 
 * :star2: Support REST API and GraphQL.
-* :framed_picture: We can get an information of Ramen shops and the photos.
+* :framed_picture: We can get an information of Ramen shops and the rich photos.
 * :free: Completely free.
 * :technologist: You can contribute by adding Ramen content.
 
 ## Information
 
 * **Currently, Ramen API is a beta version**.
-* The information of a Ramen shop and Photos are under the [Creative Commons copyright license *CC/BY*](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+* The information of a Ramen shop and photos are under the [Creative Commons copyright license *CC/BY*](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
 * If you use photos in your application publicly, you **should** show the author `id` or `name` of the photos as a credit.
 * Authentication is not required.
-* There is no rate limitation.
+* There is no rate-limitation.
 
 ## Base URL
 
@@ -278,11 +280,11 @@ query {
 
 ## Contribution
 
-You can contribute a Ramen content to this project not only by writing code.
+You can contribute to Ramen API by adding Ramen content to this project. Not only by writing code.
 
 ### Adding a new shop
 
-If this is first time, you should write lines about you.
+If this is first time, you should write about you.
 
 ```sh
 mkdir ./content/authors/{authorId}
@@ -290,7 +292,7 @@ touch ./content/authors/{authorId}/info.json
 // edit info.json
 ```
 
-Write an information of the Ramen shop you want to add.
+Write an information of the Ramen shop which you want to add.
 
 ```sh
 mkdir ./content/shops/{shopId}
@@ -305,7 +307,7 @@ At last, edit `./content/shops.json` to add the shop id.
 ### Notices
 
 * Do not upload a big size photo. Should be **under 400KB**.
-* An information about the shop and photos you uploaded will be licensed by [Creative Commons copyright license *CC/BY*](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+* An information about the shop and photos that you have been uploaded will be licensed by [Creative Commons copyright license *CC/BY*](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
 
 ## Tips
 
