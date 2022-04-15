@@ -1,0 +1,18 @@
+{
+  "id": "seiuan",
+  "name": "静雨庵",
+  "photos": [
+    {
+      "name": "seiuan-001.jpg",
+      "width": 1200,
+      "height": 900,
+      "authorId": "yusukebe"
+    },
+    {
+      "name": "seiuan-002.jpg",
+      "width": 1200,
+      "height": 900,
+      "authorId": "yusukebe"
+    }
+  ]
+}
