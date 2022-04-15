@@ -1,6 +1,6 @@
 # Ramen API :ramen:
 
-**Ramen API** is a free fake Web API with :ramen: anyone can access.
+**Ramen API** is a free Web API with :ramen: anyone can access.
 This is designed for the purpose of testing your web application to access Web APIs.
 For example, you can use Ramen API when prototyping such as a React/Vue/Angular user interface.
 
