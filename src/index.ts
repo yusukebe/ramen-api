@@ -5,7 +5,8 @@ import { graphqlServer } from 'hono/graphql-server'
 import { prettyJSON } from 'hono/pretty-json'
 import { getMimeType } from 'hono/utils/mime'
 import { getContentFromKVAsset } from 'hono/utils/cloudflare'
-import { getShop, listShops, getAuthor, listShopsWithPager } from '@/app'
+import { getShop, getAuthor, listShopsWithPager } from '@/app'
+import { createErrorMessage } from '@/error'
 import { schema } from '@/graphql'
 
 export const app = new Hono()
@@ -15,7 +16,9 @@ app.use('*', prettyJSON())
 app.use('*', cors())
 
 app.get('/', async (c) => {
-  return c.json({ message: 'Here is Ramen API' })
+  return c.json({
+    message: 'Here is Ramen API. <https://github.com/yusukebe/ramen-api>',
+  })
 })
 
 app.get('/shops', async (c) => {
@@ -30,13 +33,7 @@ app.get('/shops/:id', async (c) => {
   const shop = await getShop(id)
   if (!shop) {
     return c.json(
-      {
-        errors: [
-          {
-            message: `The requested Ramen Shop '${id}' is not found`,
-          },
-        ],
-      },
+      createErrorMessage(`The requested Ramen Shop '${id}' is not found`),
       404
     )
   }
@@ -48,13 +45,7 @@ app.get('/authors/:id', async (c) => {
   const author = await getAuthor(id)
   if (!author) {
     return c.json(
-      {
-        errors: [
-          {
-            message: `The requested Author '${id}' is not found`,
-          },
-        ],
-      },
+      createErrorMessage(`The requested Author '${id}' is not found`),
       404
     )
   }
@@ -74,16 +65,12 @@ app.get('/images/:shopId/:filename', async (c) => {
 })
 
 app.notFound((c) => {
-  return c.json(
-    {
-      errors: [
-        {
-          message: 'Not found',
-        },
-      ],
-    },
-    404
-  )
+  return c.json(createErrorMessage('Not Found'), 404)
+})
+
+app.onError((e, c) => {
+  console.log(`${e}`)
+  return c.json(createErrorMessage('Internal Server Error'), 500)
 })
 
 app.use('/graphql', graphqlServer({ schema }))
