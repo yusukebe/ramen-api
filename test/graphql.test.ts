@@ -35,10 +35,14 @@ describe('Query shop', () => {
             url
             width
             height
-            authorId
+            author {
+              id
+              name
+              url
+            }
           }
         }
-    }`,
+      }`,
       variables: JSON.stringify({ id: 'yoshimuraya' }),
     }
     const res = await postRequest(query)
@@ -54,7 +58,11 @@ describe('Query shop', () => {
           url: `${BASE_URL}images/yoshimuraya/yoshimuraya-001.jpg`,
           width: 1200,
           height: 900,
-          authorId: 'yusukebe',
+          author: {
+            id: 'yusukebe',
+            name: 'Yusuke Wada',
+            url: 'https://github.com/yusukebe',
+          },
         },
       ],
     })
@@ -99,6 +107,11 @@ describe('Query shops', () => {
             edges {
                 node {
                     id
+                    photos {
+                      author {
+                        id
+                      }
+                    }
                 }
                 cursor
             }
@@ -122,18 +135,27 @@ describe('Query shops', () => {
       {
         node: {
           id: 'yoshimuraya',
+          photos: [
+            {
+              author: {
+                id: 'yusukebe',
+              },
+            },
+          ],
         },
         cursor: 'eW9zaGltdXJheWE=',
       },
       {
         node: {
           id: 'sugitaya',
+          photos: null,
         },
         cursor: 'c3VnaXRheWE=',
       },
       {
         node: {
           id: 'takasagoya',
+          photos: null,
         },
         cursor: 'dGFrYXNhZ295YQ==',
       },

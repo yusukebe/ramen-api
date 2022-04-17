@@ -1,5 +1,5 @@
 import { encodeBase64, decodeBase64 } from 'hono/utils/crypto'
-import { getShop, listShops, getAuthor } from '@/app'
+import { getShop, listShops, getAuthor, Photo, Author, Shop } from '@/app'
 import { Pager } from '@/pager'
 
 import {
@@ -11,6 +11,15 @@ import {
   GraphQLInt,
 } from 'graphql'
 
+const authorType = new GraphQLObjectType({
+  name: 'Author',
+  fields: {
+    id: { type: GraphQLString },
+    name: { type: GraphQLString },
+    url: { type: GraphQLString },
+  },
+})
+
 const photoType = new GraphQLObjectType({
   name: 'Photo',
   fields: {
@@ -18,16 +27,7 @@ const photoType = new GraphQLObjectType({
     url: { type: GraphQLString },
     width: { type: GraphQLInt },
     height: { type: GraphQLInt },
-    authorId: { type: GraphQLString },
-  },
-})
-
-const authorType = new GraphQLObjectType({
-  name: 'Author',
-  fields: {
-    id: { type: GraphQLString },
-    name: { type: GraphQLString },
-    url: { type: GraphQLString },
+    author: { type: authorType },
   },
 })
 
@@ -93,6 +93,9 @@ var queryType = new GraphQLObjectType({
         }: { first: number; after: string; last: number; before: string }
       ) => {
         const list = await listShops()
+        for (let i = 0; i < list.shops.length; i++) {
+          list.shops[0] = await setShopPhotoAuthor(list.shops[0])
+        }
         const totalCount = list.shops.length
 
         after = after ? convertCursorToId(after) : null
@@ -112,7 +115,9 @@ var queryType = new GraphQLObjectType({
           totalCount,
           edges,
           pageInfo: {
-            startCursor: result.startId ? convertIdToCursor(result.startId) : null,
+            startCursor: result.startId
+              ? convertIdToCursor(result.startId)
+              : null,
             endCursor: result.endId ? convertIdToCursor(result.endId) : null,
             hasNextPage: result.hasNextPage,
             hasPreviousPage: result.hasPreviousPage,
@@ -127,7 +132,8 @@ var queryType = new GraphQLObjectType({
         id: { type: GraphQLString },
       },
       resolve: async (_, { id }) => {
-        const shop = await getShop(id)
+        let shop = await getShop(id)
+        shop = await setShopPhotoAuthor(shop)
         return shop
       },
     },
@@ -144,6 +150,17 @@ var queryType = new GraphQLObjectType({
     },
   },
 })
+
+const setShopPhotoAuthor = async (shop: Shop): Promise<Shop> => {
+  for (let i = 0; i < shop.photos.length; i++) {
+    const authorId = shop.photos[i].authorId
+    if (authorId) {
+      shop.photos[i].author = await getAuthor(authorId)
+      delete shop.photos[i].authorId
+    }
+  }
+  return shop
+}
 
 export const convertIdToCursor = (id: string): string => {
   return encodeBase64(id)

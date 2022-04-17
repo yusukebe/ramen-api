@@ -8,7 +8,8 @@ export type Photo = {
   url: string
   width: number
   height: number
-  authorId: string
+  authorId?: string
+  author?: Author
 }
 
 export type Shop = {
@@ -62,7 +63,9 @@ export const listShopsWithPager = async (
   const result = await listShops({ limit, offset })
   const totalCount = result.totalCount
   const lastPage =
-    totalCount % perPage == 0 ? totalCount / perPage : Math.floor(totalCount / perPage) + 1
+    totalCount % perPage == 0
+      ? totalCount / perPage
+      : Math.floor(totalCount / perPage) + 1
   const nextPage = lastPage > page ? page + 1 : null
   const prevPage = page > 1 ? page - 1 : null
 
@@ -79,7 +82,9 @@ export const listShopsWithPager = async (
   }
 }
 
-export const listShops = async (params: Parameters = {}): Promise<listShopsResult> => {
+export const listShops = async (
+  params: Parameters = {}
+): Promise<listShopsResult> => {
   const { limit = 10, offset = 0 } = params
   const buffer = await getContentFromKVAsset('shops.json')
   const data = arrayBufferToJSON(buffer)
@@ -140,7 +145,13 @@ export const getAuthor = async (id: string): Promise<Author> => {
   return author
 }
 
-const fixPhotoURL = ({ shopId, path }: { shopId: string; path: string }): string => {
+const fixPhotoURL = ({
+  shopId,
+  path,
+}: {
+  shopId: string
+  path: string
+}): string => {
   if (path.match(/^https?:\/\/.+/)) return path
   return `${BASE_URL}images/${shopId}/${path}`
 }
