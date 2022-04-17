@@ -1,0 +1,12 @@
+{
+  "id": "hanada",
+  "name": "麺処 花田",
+  "photos": [
+    {
+      "name": "hanada-001.jpg",
+      "width": 800,
+      "height": 450,
+      "authorId": "yusukebe"
+    }
+  ]
+}
