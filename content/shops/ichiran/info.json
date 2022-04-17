@@ -1,0 +1,12 @@
+{
+  "id": "ichiran",
+  "name": "一蘭",
+  "photos": [
+    {
+      "name": "ichiran-001.jpg",
+      "width": 800,
+      "height": 800,
+      "authorId": "yusukebe"
+    }
+  ]
+}
