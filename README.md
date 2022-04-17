@@ -40,6 +40,8 @@ https://ramen-api.dev
 
 ## REST API
 
+![SS](https://user-images.githubusercontent.com/10682/163718724-1dbe9ea5-6dda-47ae-962b-1657e157c64a.png)
+
 ### Global parameters
 
 - `pretty` - Flag of JSON pretty printing.
@@ -176,6 +178,8 @@ Sample response:
 ## GraphQL
 
 Ramen API supports a GraphQL.
+
+![SS](https://user-images.githubusercontent.com/10682/163718911-13195ea5-c7f5-423a-bd02-fb2823f30a61.png)
 
 ### Endpoint
 
