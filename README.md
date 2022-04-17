@@ -1,8 +1,8 @@
 # Ramen API :ramen:
 
 **Ramen API** is a free Web API about :ramen:.
-This API is designed for the purpose of testing your software application which is accessing Web APIs.
-For example, you can use Ramen API when you are prototyping such as a React, Vue, and Angular web pages.
+This API is designed for the purpose of testing a software application which is accessing Web APIs.
+For example, you can use Ramen API for prototyping your React, Vue, or Angular web pages.
 
 You can try Ramen API with this code.
 
@@ -19,16 +19,16 @@ You might want to say _why Ramen?_ And, I will say. **_:ramen: is super deliciou
 ## Features
 
 - :star2: Support REST API and GraphQL.
-- :framed_picture: We can get an information of Ramen shops and the rich photos.
+- :framed_picture: We can get an information of Ramen shops and their rich photos.
 - :free: Completely free.
 - :technologist: You can contribute by adding Ramen content.
 
 ## Information
 
 - **Currently, Ramen API is a beta version**. There's a possibility that API may be changed.
-- You **should** show the credit writing like "_powered by Ramen API_" on your page and link to this repository.
-- The information of a Ramen shop and photos are under the [Creative Commons copyright license _CC/BY_](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
-- If you use photos in your application publicly, you **should** show the author `id` or `name` of the photos as a credit.
+- You **should** show the credit like "_powered by Ramen API_" on your page and link to this GitHub repository.
+- The information of Ramen shops and photos are distributed under the [Creative Commons copyright license _CC/BY_](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+- If you want to use photos in your application publicly, you **should** show the author `id` or `name` of the photos as the credit.
 - Authentication is not required.
 - There is no rate-limitation.
 
@@ -288,7 +288,7 @@ query {
 
 ## Contribution
 
-You can contribute to Ramen API by adding Ramen content to this project. Not only by writing code.
+You can contribute by adding Ramen content to this project. Not only by writing code.
 
 ### Adding a new shop
 
