@@ -1,12 +1,12 @@
 {
-  "id": "dontokoiya",
-  "name": "どんとこい家",
+  "id": "gyoku-jrkawasakistation",
+  "name": "玉 JR川崎タワー店",
   "photos": [
     {
-      "name": "dontokoiya-001.jpg",
+      "name": "gyoku-jrkawasakistation.jpg",
       "width": 800,
-      "height": 600,
-      "authorId": "yusukebe"
+      "height": 400,
+      "authorId": "ymdksk"
     }
   ]
 }
