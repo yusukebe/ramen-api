@@ -296,44 +296,84 @@ You can contribute by adding Ramen content to this project. Not only by writing 
 
 ### Adding a new shop
 
+#### 1. Fork & `clone`
+
+Fork this repository and `clone` it.
+
+#### 2. Edit the author information
+
 If this is first time, you should write about you.
 
 ```sh
 mkdir ./content/authors/{authorId}
 touch ./content/authors/{authorId}/info.json
-# edit info.json
-#
-# {
-#   "id": "yusukebe", <-- /^[0-9a-zA-Z\-\_]+$/
-#   "name": "Yusuke Wada",
-#   "url": "https://github.com/yusukebe" <-- /^https:\/\/.+$/
-# }
 ```
 
-Write an information of the Ramen shop which you want to add.
+Edit `./content/authors/{authorId}/info.json` like this:
+
+```javascript
+{
+  "id": "yusukebe", // <-- must be /^[0-9a-zA-Z\-\_]+$/
+  "name": "Yusuke Wada",
+  "url": "https://github.com/yusukebe" // <-- must be /^https:\/\/.+$/
+}
+```
+
+#### 3. Edit about the Ramen shop
+
+Write the information of the Ramen shop which you want to add.
 
 ```sh
 mkdir ./content/shops/{shopId}
 touch ./content/shops/{shopId}/info.json
-# edit info.json
-#
-# {
-#  "id": "yoshimuraya", <-- /^[0-9a-z\-]+$/
-#  "name": "吉村家",
-#  "photos": [
-#    {
-#      "name": "yoshimuraya-001.jpg", <-- /^[0-9a-z\-\.]+\.(jpg|jpeg|png|gif)$/
-#      "width": 1200, <-- number
-#      "height": 900, <-- number
-#      "authorId": "yusukebe" <-- /^[0-9a-zA-Z\-\_]+$/
-#    }
-#  ]
-# }
 ```
+
+Edit `./content/shops/{shopId}/info.json` like this:
+
+```javascript
+{
+  "id": "yoshimuraya", // <-- must be /^[0-9a-z\-]+$/
+  "name": "吉村家",
+  "photos": [
+    {
+      "name": "yoshimuraya-001.jpg", // <-- must be /^[0-9a-z\-\.]+\.(jpg|jpeg|png|gif)$/
+      "width": 1200, // <-- must be number
+      "height": 900, // <-- must be number
+      "authorId": "yusukebe" // <-- must be /^[0-9a-zA-Z\-\_]+$/
+    }
+  ]
+}
+```
+
+#### 4. Add Photo
 
 Add your Ramen photos to an appropriate path such as `./content/shops/{shopId}/{photoName}`.
 
+```sh
+cp IMG_001.JPG ./content/shops/{shopId}/{photoName}
+```
+
+#### 5. Add `shopId` to `shops.json`
+
 At the end, edit `./content/shops.json` to add the shop id at the last line.
+
+```javascript
+{
+  "shopIds": [
+    "yoshimuraya",
+    "sugitaya",
+    "takasagoya",
+    "jyoujyouya",
+    "torakichiya",
+    "rasuta",
+    "new-shop-id" // <--- add the id at the last line
+  ]
+}
+```
+
+#### 6. Pull Request
+
+Create Pull Request to this repository.
 
 ### Notices
 

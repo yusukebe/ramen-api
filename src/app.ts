@@ -123,8 +123,8 @@ export const getShop = async (id: string): Promise<Shop> => {
   try {
     const buffer = await getContentFromKVAsset(`shops/${id}/info.json`)
     shop = arrayBufferToJSON(buffer)
-  } catch {
-    // Do nothing
+  } catch (e) {
+    throw new Error(`"shops/${id}/info.json" is not found: ${e}`)
   }
   if (!shop) return
   shop.photos?.map((photo: Photo) => {
@@ -138,8 +138,8 @@ export const getAuthor = async (id: string): Promise<Author> => {
   try {
     const buffer = await getContentFromKVAsset(`authors/${id}/info.json`)
     author = arrayBufferToJSON(buffer)
-  } catch {
-    // Do nothing
+  } catch (e) {
+    throw new Error(`"authors/${id}/info.json" is not found: ${e}`)
   }
   if (!author) return
   return author
