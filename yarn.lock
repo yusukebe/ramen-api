@@ -1990,10 +1990,10 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-hono@^0.5.10:
-  version "0.5.10"
-  resolved "https://registry.yarnpkg.com/hono/-/hono-0.5.10.tgz#f04f36322fca4dc46455e955e2b0663eb0e36821"
-  integrity sha512-7w79FIW0/Xh0kJkYnZ8n0T3reKdssZkb8b9SkIsB8lqzmk5RicxDzcTCp25i1uwiv7wyIl0HKldUl/lhT9FKIg==
+hono@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/hono/-/hono-1.0.0.tgz#e978e127f2ef700c0de81036734be77fe4df12f9"
+  integrity sha512-voNo2e2/JB5uFS5vpzN3shIx6CMXzdty0baenPU2LY75BiqdAWxbewOxnVHdwbHkHelyvOliFD/NlN+tlQ1WOQ==
 
 html-encoding-sniffer@^2.0.1:
   version "2.0.1"
