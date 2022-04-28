@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "graphql": "^16.3.0",
-    "hono": "^1.0.0"
+    "hono": "^1.1.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.4.0",
