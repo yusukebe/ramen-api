@@ -1,21 +1,17 @@
 name= "ramen-api"
 workers_dev = false
-type = "javascript"
 
-zone_id = "134f0a73529aca17bd616b96c407caac"
 routes = ["ramen-api.dev/*"]
 
 compatibility_date = "2022-03-23"
 
+main = "./dist/index.js"
+
 [build]
 command = "yarn run build"
 
-[build.upload]
-format = "service-worker"
-
 [site]
 bucket = "./content"
-entry-point = "."
 
 [vars]
 ENV_BASE_URL = "https://ramen-api.dev/"
