@@ -56,7 +56,7 @@ app.get('/images/:shopId/:filename', async (c) => {
   const shopId = c.req.param('shopId')
   const filename = c.req.param('filename')
   const mimeType = getMimeType(filename)
-  const content = await getContentFromKVAsset(`images/${shopId}/${filename}`)
+  const content = await getContentFromKVAsset(`shops/${shopId}/${filename}`)
 
   if (!content) return c.notFound()
 

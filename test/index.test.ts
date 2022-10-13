@@ -84,8 +84,8 @@ describe('Test /authors/:author_id', () => {
   })
 })
 
-describe('Test /images/:shop_id/:filename', () => {
-  it('Should return the image with GET /images/yoshimuraya/yoshimuraya-001.jpg', async () => {
+describe('Test /shops/:shop_id/:filename', () => {
+  it('Should return the image with GET /shops/yoshimuraya/yoshimuraya-001.jpg', async () => {
     const res = await app.request(
       'http://localhost/images/yoshimuraya/yoshimuraya-001.jpg'
     )
