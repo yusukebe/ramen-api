@@ -157,6 +157,10 @@ const fixPhotoURL = ({
 }
 
 const arrayBufferToJSON = (arrayBuffer: ArrayBuffer) => {
-  const text = new TextDecoder().decode(arrayBuffer)
-  if (text) return JSON.parse(text)
+  if (arrayBuffer instanceof ArrayBuffer) {
+    const text = new TextDecoder().decode(arrayBuffer)
+    if (text) return JSON.parse(text)
+  } else {
+    return arrayBuffer
+  }
 }

@@ -1,8 +1,5 @@
 import { app } from '@/index'
 import { BASE_URL } from '@/app'
-import { assign } from '@/mock'
-
-assign()
 
 describe('Test /graphql', () => {
   it('Should return 400 response', async () => {

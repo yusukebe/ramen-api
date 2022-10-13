@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { poweredBy } from 'hono/powered-by'
 import { cors } from 'hono/cors'
-import { graphqlServer } from 'hono/graphql-server'
+import { graphqlServer } from '@honojs/graphql-server'
 import { prettyJSON } from 'hono/pretty-json'
 import { getMimeType } from 'hono/utils/mime'
 import { getContentFromKVAsset } from 'hono/utils/cloudflare'
@@ -56,7 +56,7 @@ app.get('/images/:shopId/:filename', async (c) => {
   const shopId = c.req.param('shopId')
   const filename = c.req.param('filename')
   const mimeType = getMimeType(filename)
-  const content = await getContentFromKVAsset(`shops/${shopId}/${filename}`)
+  const content = await getContentFromKVAsset(`images/${shopId}/${filename}`)
 
   if (!content) return c.notFound()
 

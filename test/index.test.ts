@@ -1,8 +1,5 @@
 import { app } from '@/index'
 import { BASE_URL } from '@/app'
-import { assign } from '@/mock'
-
-assign()
 
 const yoshimurayaData = {
   id: 'yoshimuraya',
@@ -89,7 +86,9 @@ describe('Test /authors/:author_id', () => {
 
 describe('Test /images/:shop_id/:filename', () => {
   it('Should return the image with GET /images/yoshimuraya/yoshimuraya-001.jpg', async () => {
-    const res = await app.request('http://localhost/images/yoshimuraya/yoshimuraya-001.jpg')
+    const res = await app.request(
+      'http://localhost/images/yoshimuraya/yoshimuraya-001.jpg'
+    )
     expect(res.status).toBe(200)
     expect(res.headers.get('Content-Type')).toBe('image/jpeg')
   })

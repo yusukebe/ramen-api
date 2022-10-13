@@ -1,7 +1,11 @@
-import { getShop, listShops, findIndexFromId, getAuthor, BASE_URL, listShopsWithPager } from '@/app'
-import { assign } from '@/mock'
-
-assign()
+import {
+  getShop,
+  listShops,
+  findIndexFromId,
+  getAuthor,
+  BASE_URL,
+  listShopsWithPager,
+} from '@/app'
 
 describe('getShop', () => {
   it('Should return Shop object', async () => {
