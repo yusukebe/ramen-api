@@ -1,7 +1,21 @@
-import { getContentFromKVAsset } from 'hono/utils/cloudflare'
+import type { KVNamespace } from '@cloudflare/workers-types'
+import type { Context } from 'hono'
+import { getContentFromKVAsset } from './workers-utils'
 
-declare const ENV_BASE_URL: string
-export const BASE_URL = ENV_BASE_URL ?? 'http://localhost:8787/'
+export const BASE_URL = 'http://localhost/'
+
+export type Env = {
+  Variables: {
+    BASE_URL: string
+  }
+  Bindings: {
+    __STATIC_CONTENT: KVNamespace
+  }
+}
+
+export type Options = {
+  c: Context<Env>
+}
 
 export type Photo = {
   name: string
@@ -54,13 +68,14 @@ type ParametersWithPager = {
 }
 
 export const listShopsWithPager = async (
-  params: ParametersWithPager
+  params: ParametersWithPager,
+  options: Options
 ): Promise<listShopsWithPagerResult> => {
   let { page = 1, perPage = 10 } = params
   if (perPage > 100) perPage = 100
   const limit = perPage
   const offset = (page - 1) * perPage
-  const result = await listShops({ limit, offset })
+  const result = await listShops({ limit, offset }, options)
   const totalCount = result.totalCount
   const lastPage =
     totalCount % perPage == 0
@@ -83,10 +98,14 @@ export const listShopsWithPager = async (
 }
 
 export const listShops = async (
-  params: Parameters = {}
+  params: Parameters = {},
+  options: Options
 ): Promise<listShopsResult> => {
   const { limit = 10, offset = 0 } = params
-  const buffer = await getContentFromKVAsset('shops.json')
+  const c = options.c
+  const buffer = await getContentFromKVAsset('shops.json', {
+    namespace: c.env ? c.env.__STATIC_CONTENT : undefined,
+  })
   const data = arrayBufferToJSON(buffer)
 
   const shopIdsAll = data['shopIds']
@@ -98,15 +117,18 @@ export const listShops = async (
 
   const shops = await Promise.all(
     shopIds.map(async (id: string) => {
-      const shop = await getShop(id)
+      const shop = await getShop(id, options)
       return shop
     })
   )
   return { shops, totalCount }
 }
 
-export const findIndexFromId = async (id: string): Promise<number> => {
-  const list = await listShops()
+export const findIndexFromId = async (
+  id: string,
+  options: Options
+): Promise<number> => {
+  const list = await listShops({}, options)
   const shops = list.shops
   let index = 0
   const matchShop = shops.filter((shop, i) => {
@@ -118,17 +140,20 @@ export const findIndexFromId = async (id: string): Promise<number> => {
   if (matchShop.length > 0) return index
 }
 
-export const getShop = async (id: string): Promise<Shop> => {
+export const getShop = async (id: string, options: Options): Promise<Shop> => {
   let shop: Shop
   try {
-    const buffer = await getContentFromKVAsset(`shops/${id}/info.json`)
+    const c = options.c
+    const buffer = await getContentFromKVAsset(`shops/${id}/info.json`, {
+      namespace: c.env ? c.env.__STATIC_CONTENT : undefined,
+    })
     shop = arrayBufferToJSON(buffer)
   } catch (e) {
     throw new Error(`"shops/${id}/info.json" is not found: ${e}`)
   }
   if (!shop) return
   shop.photos?.map((photo: Photo) => {
-    photo.url = fixPhotoURL({ shopId: id, path: photo.name })
+    photo.url = fixPhotoURL({ shopId: id, path: photo.name }, options)
   })
   return shop
 }
@@ -145,15 +170,18 @@ export const getAuthor = async (id: string): Promise<Author> => {
   return author
 }
 
-const fixPhotoURL = ({
-  shopId,
-  path,
-}: {
-  shopId: string
-  path: string
-}): string => {
+const fixPhotoURL = (
+  {
+    shopId,
+    path,
+  }: {
+    shopId: string
+    path: string
+  },
+  options: Options
+): string => {
   if (path.match(/^https?:\/\/.+/)) return path
-  return `${BASE_URL}images/${shopId}/${path}`
+  return `${options.c.var.BASE_URL}images/${shopId}/${path}`
 }
 
 const arrayBufferToJSON = (arrayBuffer: ArrayBuffer) => {

@@ -1,19 +1,35 @@
+import type { KVNamespace } from '@cloudflare/workers-types'
+import { graphqlServer } from '@hono/graphql-server'
 import { Hono } from 'hono'
-import { poweredBy } from 'hono/powered-by'
+import { cache } from 'hono/cache'
 import { cors } from 'hono/cors'
-import { graphqlServer } from '@honojs/graphql-server'
+import { poweredBy } from 'hono/powered-by'
 import { prettyJSON } from 'hono/pretty-json'
 import { getMimeType } from 'hono/utils/mime'
-import { getContentFromKVAsset } from 'hono/utils/cloudflare'
+import { getContentFromKVAsset } from './workers-utils'
 import { getShop, getAuthor, listShopsWithPager } from '@/app'
 import { createErrorMessage } from '@/error'
-import { schema } from '@/graphql'
+import { getSchema } from '@/graphql'
 
-export const app = new Hono()
+export const app = new Hono<{
+  Variables: {
+    BASE_URL: string
+  }
+  Bindings: {
+    __STATIC_CONTENT: KVNamespace
+  }
+}>()
 
 app.use('*', poweredBy())
 app.use('*', prettyJSON())
 app.use('*', cors())
+
+app.use('*', async (c, next) => {
+  const url = new URL(c.req.url)
+  const baseURL = `${url.protocol}//${url.hostname}/`
+  c.set('BASE_URL', baseURL)
+  await next()
+})
 
 app.get('/', async (c) => {
   return c.json({
@@ -24,13 +40,18 @@ app.get('/', async (c) => {
 app.get('/shops', async (c) => {
   const page = Number(c.req.query('page') ?? 1)
   const perPage = Number(c.req.query('perPage') ?? 10)
-  const listResult = await listShopsWithPager({ page, perPage })
+  const listResult = await listShopsWithPager(
+    { page, perPage },
+    {
+      c,
+    }
+  )
   return c.json(listResult)
 })
 
 app.get('/shops/:id', async (c) => {
   const id = c.req.param('id')
-  const shop = await getShop(id)
+  const shop = await getShop(id, { c })
   if (!shop) {
     return c.json(
       createErrorMessage(`The requested Ramen Shop '${id}' is not found`),
@@ -52,17 +73,25 @@ app.get('/authors/:id', async (c) => {
   return c.json({ author: author })
 })
 
-app.get('/images/:shopId/:filename', async (c) => {
-  const shopId = c.req.param('shopId')
-  const filename = c.req.param('filename')
-  const mimeType = getMimeType(filename)
-  const content = await getContentFromKVAsset(`shops/${shopId}/${filename}`)
+app.get(
+  '/images/:shopId/:filename',
+  cache({
+    cacheName: 'ramen-api-image-cache',
+  }),
+  async (c) => {
+    const shopId = c.req.param('shopId')
+    const filename = c.req.param('filename')
+    const mimeType = getMimeType(filename)
+    const content = await getContentFromKVAsset(`shops/${shopId}/${filename}`, {
+      namespace: c.env ? c.env.__STATIC_CONTENT : undefined,
+    })
 
-  if (!content) return c.notFound()
+    if (!content) return c.notFound()
 
-  c.header('Content-Type', mimeType)
-  return c.body(content)
-})
+    c.header('Content-Type', mimeType)
+    return c.body(content)
+  }
+)
 
 app.notFound((c) => {
   return c.json(createErrorMessage('Not Found'), 404)
@@ -73,6 +102,12 @@ app.onError((e, c) => {
   return c.json(createErrorMessage('Internal Server Error'), 500)
 })
 
-app.use('/graphql', graphqlServer({ schema }))
+app.use('/graphql', (c) => {
+  return graphqlServer({
+    schema: getSchema({
+      c,
+    }),
+  })(c)
+})
 
-app.fire()
+export default app

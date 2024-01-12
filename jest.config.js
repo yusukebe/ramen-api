@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   testMatch: ['**/test/**/*.+(ts|tsx)', '**/validation/**/*.+(ts|tsx)'],
   transform: {
     '^.+\\.(ts|tsx)$': 'esbuild-jest',
@@ -9,5 +9,6 @@ module.exports = {
   testEnvironment: 'miniflare',
   testEnvironmentOptions: {
     sitePath: './mock',
+    module: true,
   },
 }

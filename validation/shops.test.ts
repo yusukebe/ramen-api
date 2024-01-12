@@ -1,9 +1,21 @@
-import { listShops, getAuthor, listShopsWithPager } from '@/app'
+import type { Context } from 'hono'
+import type { Env } from '@/app'
+import { getAuthor, listShopsWithPager } from '@/app'
+
+const BASE_URL = 'https://ramen-api.dev/'
+const options = {
+  c: {
+    env: {},
+    var: {
+      BASE_URL,
+    },
+  } as Context<Env>,
+}
 
 describe('Validate shops', () => {
   it('Should return all shops correctly', async () => {
     let page = 1
-    let result = await listShopsWithPager({ page, perPage: 10 })
+    let result = await listShopsWithPager({ page, perPage: 10 }, options)
     expect(result.totalCount).not.toBeFalsy()
     while (result.pageInfo.nextPage) {
       expect(result.shops).not.toBeFalsy()
@@ -25,7 +37,7 @@ describe('Validate shops', () => {
         })
       })
       page++
-      result = await listShopsWithPager({ page, perPage: 10 })
+      result = await listShopsWithPager({ page, perPage: 10 }, options)
     }
   })
 })

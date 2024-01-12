@@ -1,5 +1,5 @@
-import { app } from '@/index'
 import { BASE_URL } from '@/app'
+import { app } from '@/index'
 
 const yoshimurayaData = {
   id: 'yoshimuraya',
@@ -40,7 +40,8 @@ describe('Test /shops/yoshimuraya', () => {
     expect(await res.json()).toEqual({
       errors: [
         {
-          message: `The requested Ramen Shop 'yoshimura' is not found`,
+          // eslint-disable-next-line quotes
+          message: "The requested Ramen Shop 'yoshimura' is not found",
         },
       ],
     })

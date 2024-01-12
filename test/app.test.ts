@@ -1,22 +1,33 @@
+import type { Context } from 'hono'
+import type { Env } from '@/app'
 import {
   getShop,
   listShops,
   findIndexFromId,
   getAuthor,
-  BASE_URL,
   listShopsWithPager,
+  BASE_URL,
 } from '@/app'
+
+const options = {
+  c: {
+    env: {},
+    var: {
+      BASE_URL,
+    },
+  } as Context<Env>,
+}
 
 describe('getShop', () => {
   it('Should return Shop object', async () => {
-    const shop = getShop('yoshimuraya')
+    const shop = getShop('yoshimuraya', options)
     expect(shop).not.toBeFalsy()
   })
 })
 
 describe('listShops', () => {
   it('Should return listShopsResult objects', async () => {
-    const result = await listShops()
+    const result = await listShops({}, options)
     expect(result.totalCount).toBe(3)
     expect(result.shops).not.toBeFalsy()
     expect(result.shops[0].id).toBe('yoshimuraya')
@@ -32,14 +43,14 @@ describe('listShops', () => {
   })
 
   it('Return objects with limit option', async () => {
-    const result = await listShops({ limit: 1 })
+    const result = await listShops({ limit: 1 }, options)
     expect(result.totalCount).toBe(3)
     expect(result.shops[0].id).toBe('yoshimuraya')
     expect(result.shops[1]).toBeUndefined()
   })
 
   it('Return objects with limit and offset options', async () => {
-    const result = await listShops({ limit: 1, offset: 1 })
+    const result = await listShops({ limit: 1, offset: 1 }, options)
     expect(result.totalCount).toBe(3)
     expect(result.shops[0].id).toBe('sugitaya')
     expect(result.shops[1]).toBeUndefined()
@@ -48,7 +59,7 @@ describe('listShops', () => {
 
 describe('listShopsWithPager', () => {
   it('Return objects with pagination - perPage:1, page: 1', async () => {
-    const result = await listShopsWithPager({ perPage: 1, page: 1 })
+    const result = await listShopsWithPager({ perPage: 1, page: 1 }, options)
     expect(result.totalCount).toBe(3)
     expect(result.shops[0]).not.toBeUndefined()
     expect(result.shops[1]).toBeUndefined()
@@ -60,7 +71,7 @@ describe('listShopsWithPager', () => {
   })
 
   it('Return objects with pagination - perPage: 2, page: 2', async () => {
-    const result = await listShopsWithPager({ perPage: 2, page: 2 })
+    const result = await listShopsWithPager({ perPage: 2, page: 2 }, options)
     expect(result.totalCount).toBe(3)
     expect(result.shops[0]).not.toBeUndefined()
     expect(result.shops[1]).toBeUndefined()
@@ -74,11 +85,11 @@ describe('listShopsWithPager', () => {
 
 describe('findIndexFromId', () => {
   it('Should return index', async () => {
-    let index = await findIndexFromId('yoshimuraya')
+    let index = await findIndexFromId('yoshimuraya', options)
     expect(index).toBe(0)
-    index = await findIndexFromId('sugitaya')
+    index = await findIndexFromId('sugitaya', options)
     expect(index).toBe(1)
-    index = await findIndexFromId('abcde')
+    index = await findIndexFromId('abcde', options)
     expect(index).toBeUndefined()
   })
 })

@@ -2,28 +2,35 @@
   "name": "ramen-api",
   "version": "0.0.1",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "test": "jest --verbose",
     "validate": "jest ./validation/* --verbose",
-    "build": "esbuild --bundle --sourcemap --minify --outdir=dist ./src/index.ts",
-    "dev": "miniflare --live-reload --debug -s ./content",
-    "deploy": "wrangler publish"
+    "dev": "wrangler dev --live-reload src/index.ts",
+    "deploy": "wrangler deploy --minify src/index.ts",
+    "tail": "wrangler tail"
   },
   "license": "MIT",
   "dependencies": {
-    "@honojs/graphql-server": "^0.1.0",
+    "@hono/graphql-server": "^0.4.1",
     "graphql": "^16.6.0",
-    "hono": "^2.2.5"
+    "hono": "^3.12.3"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^3.16.0",
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "@hono/eslint-config": "^0.0.3",
     "@jest/expect": "^29.1.2",
     "@types/jest": "^29.1.2",
     "esbuild": "^0.15.10",
     "esbuild-jest": "^0.5.0",
+    "eslint": "^8.56.0",
     "jest": "^29.1.2",
-    "jest-environment-miniflare": "^2.10.0",
+    "jest-environment-miniflare": "^2.14.1",
     "miniflare": "^2.10.0",
-    "wrangler": "^2.1.11"
+    "typescript": "^5.3.3",
+    "wrangler": "^3.22.4"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

@@ -5,7 +5,13 @@ type Node = {
 }
 
 describe('Pager - findIndexFromId', () => {
-  const nodes: Node[] = [{ id: 'a' }, { id: 'b' }, { id: 'c' }, { id: 'd' }, { id: 'e' }]
+  const nodes: Node[] = [
+    { id: 'a' },
+    { id: 'b' },
+    { id: 'c' },
+    { id: 'd' },
+    { id: 'e' },
+  ]
   const pager = new Pager({ nodes })
   it('findIndexFromId("b")', () => {
     const index = pager.findIndexFromId('b')
@@ -19,11 +25,22 @@ describe('Pager - findIndexFromId', () => {
 })
 
 describe('Pager - first/after', () => {
-  const nodes: Node[] = [{ id: 'a' }, { id: 'b' }, { id: 'c' }, { id: 'd' }, { id: 'e' }]
+  const nodes: Node[] = [
+    { id: 'a' },
+    { id: 'b' },
+    { id: 'c' },
+    { id: 'd' },
+    { id: 'e' },
+  ]
   const pager = new Pager({ nodes })
 
   it('first: 3', () => {
-    const pagingResult = pager.paging({ first: 3, after: null, last: null, before: null })
+    const pagingResult = pager.paging({
+      first: 3,
+      after: null,
+      last: null,
+      before: null,
+    })
     expect(pagingResult.startId).toBe('a')
     expect(pagingResult.endId).toBe('c')
     expect(pagingResult.hasNextPage).toBe(true)
@@ -31,7 +48,12 @@ describe('Pager - first/after', () => {
   })
 
   it('first: 3, after: b', () => {
-    const pagingResult = pager.paging({ first: 3, after: 'b', last: null, before: null })
+    const pagingResult = pager.paging({
+      first: 3,
+      after: 'b',
+      last: null,
+      before: null,
+    })
     expect(pagingResult.startId).toBe('c')
     expect(pagingResult.endId).toBe('e')
     expect(pagingResult.hasNextPage).toBe(false)
@@ -39,7 +61,12 @@ describe('Pager - first/after', () => {
   })
 
   it('first: 3, after: c', () => {
-    const pagingResult = pager.paging({ first: 3, after: 'c', last: null, before: null })
+    const pagingResult = pager.paging({
+      first: 3,
+      after: 'c',
+      last: null,
+      before: null,
+    })
     expect(pagingResult.startId).toBe('d')
     expect(pagingResult.endId).toBe('e')
     expect(pagingResult.hasNextPage).toBe(false)
@@ -48,11 +75,22 @@ describe('Pager - first/after', () => {
 })
 
 describe('Pager - last/before', () => {
-  const nodes: Node[] = [{ id: 'a' }, { id: 'b' }, { id: 'c' }, { id: 'd' }, { id: 'e' }]
+  const nodes: Node[] = [
+    { id: 'a' },
+    { id: 'b' },
+    { id: 'c' },
+    { id: 'd' },
+    { id: 'e' },
+  ]
   const pager = new Pager({ nodes })
 
   it('last: 3', () => {
-    const pagingResult = pager.paging({ first: null, after: null, last: 3, before: null })
+    const pagingResult = pager.paging({
+      first: null,
+      after: null,
+      last: 3,
+      before: null,
+    })
     expect(pagingResult.startId).toBe('c')
     expect(pagingResult.endId).toBe('e')
     expect(pagingResult.hasNextPage).toBe(false)
@@ -60,7 +98,12 @@ describe('Pager - last/before', () => {
   })
 
   it('last: 3, before: e', () => {
-    const pagingResult = pager.paging({ first: null, after: null, last: 3, before: 'e' })
+    const pagingResult = pager.paging({
+      first: null,
+      after: null,
+      last: 3,
+      before: 'e',
+    })
     expect(pagingResult.startId).toBe('b')
     expect(pagingResult.endId).toBe('d')
     expect(pagingResult.hasNextPage).toBe(true)
@@ -68,7 +111,12 @@ describe('Pager - last/before', () => {
   })
 
   it('last: 3, before: d', () => {
-    const pagingResult = pager.paging({ first: null, after: null, last: 3, before: 'd' })
+    const pagingResult = pager.paging({
+      first: null,
+      after: null,
+      last: 3,
+      before: 'd',
+    })
     expect(pagingResult.startId).toBe('a')
     expect(pagingResult.endId).toBe('c')
     expect(pagingResult.hasNextPage).toBe(true)
@@ -77,11 +125,22 @@ describe('Pager - last/before', () => {
 })
 
 describe('Pager - first/after && before', () => {
-  const nodes: Node[] = [{ id: 'a' }, { id: 'b' }, { id: 'c' }, { id: 'd' }, { id: 'e' }]
+  const nodes: Node[] = [
+    { id: 'a' },
+    { id: 'b' },
+    { id: 'c' },
+    { id: 'd' },
+    { id: 'e' },
+  ]
   const pager = new Pager({ nodes })
 
   it('first: 3, after: b, before: e', () => {
-    const pagingResult = pager.paging({ first: 3, after: 'b', last: null, before: 'e' })
+    const pagingResult = pager.paging({
+      first: 3,
+      after: 'b',
+      last: null,
+      before: 'e',
+    })
     expect(pagingResult.startId).toBe('c')
     expect(pagingResult.endId).toBe('d')
     expect(pagingResult.hasNextPage).toBe(true)

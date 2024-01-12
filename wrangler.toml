@@ -1,14 +1,11 @@
 name= "ramen-api"
 workers_dev = false
 
+main = "src/index.ts"
+
 routes = ["ramen-api.dev/*"]
 
-compatibility_date = "2022-03-23"
-
-main = "./dist/index.js"
-
-[build]
-command = "yarn run build"
+compatibility_date = "2023-03-01"
 
 [site]
 bucket = "./content"

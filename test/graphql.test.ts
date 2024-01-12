@@ -1,5 +1,5 @@
-import { app } from '@/index'
 import { BASE_URL } from '@/app'
+import { app } from '@/index'
 
 describe('Test /graphql', () => {
   it('Should return 400 response', async () => {
