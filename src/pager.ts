@@ -85,7 +85,8 @@ export class Pager {
     const hasPreviousPage = 0 < sliceStart
 
     const startId = resultNodes.length > 0 ? resultNodes[0].id : null
-    const endId = resultNodes.length > 0 ? resultNodes[resultNodes.length - 1].id : null
+    const endId =
+      resultNodes.length > 0 ? resultNodes[resultNodes.length - 1].id : null
 
     return {
       nodes: resultNodes,
