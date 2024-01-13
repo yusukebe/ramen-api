@@ -38,6 +38,31 @@ You might want to say _why Ramen?_ And, I will say. **_:ramen: is super deliciou
 https://ramen-api.dev
 ```
 
+## TypeScript Types
+
+```ts
+type Photo = {
+  name: string
+  url: string
+  width: number
+  height: number
+  authorId?: string
+  author?: Author
+}
+
+type Shop = {
+  id: string
+  name?: string
+  photos?: Photo[]
+}
+
+type Author = {
+  id: string
+  name: string
+  url: string
+}
+```
+
 ## REST API
 
 ![SS](https://user-images.githubusercontent.com/10682/163718724-1dbe9ea5-6dda-47ae-962b-1657e157c64a.png)
