@@ -75,9 +75,15 @@ app.get('/authors/:id', async (c) => {
 
 app.get(
   '/images/:shopId/:filename',
-  cache({
-    cacheName: 'ramen-api-image-cache',
-  }),
+  async (c, next) => {
+    if (globalThis.process && process.env.NODE_ENV === 'test') {
+      await next()
+    } else {
+      return cache({
+        cacheName: 'ramen-api-image-cache',
+      })(c, next)
+    }
+  },
   async (c) => {
     const shopId = c.req.param('shopId')
     const filename = c.req.param('filename')
