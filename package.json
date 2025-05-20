@@ -14,7 +14,7 @@
   "dependencies": {
     "@hono/graphql-server": "^0.4.1",
     "graphql": "^16.6.0",
-    "hono": "^3.12.3"
+    "hono": "^4.7.10"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231218.0",
@@ -28,7 +28,7 @@
     "jest-environment-miniflare": "^2.14.1",
     "miniflare": "^2.10.0",
     "typescript": "^5.3.3",
-    "wrangler": "^3.22.4"
+    "wrangler": "3"
   },
   "engines": {
     "node": ">=18"

@@ -4,3 +4,4 @@ worker
 package-lock.json
 yarn-error.log
 .cargo-ok
+.wrangler
