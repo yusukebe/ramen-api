@@ -13,8 +13,11 @@
   "license": "MIT",
   "dependencies": {
     "@hono/graphql-server": "^0.4.1",
+    "@modelcontextprotocol/sdk": "^1.11.4",
+    "fetch-to-node": "^2.1.0",
     "graphql": "^16.6.0",
-    "hono": "^4.7.10"
+    "hono": "^4.7.10",
+    "zod": "^3.25.7"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231218.0",

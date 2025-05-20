@@ -6,6 +6,7 @@ import { cors } from 'hono/cors'
 import { poweredBy } from 'hono/powered-by'
 import { prettyJSON } from 'hono/pretty-json'
 import { getMimeType } from 'hono/utils/mime'
+import mcpApp from './mcp'
 import { getContentFromKVAsset } from './workers-utils'
 import { getShop, getAuthor, listShopsWithPager } from '@/app'
 import { createErrorMessage } from '@/error'
@@ -115,5 +116,7 @@ app.use('/graphql', (c) => {
     }),
   })(c)
 })
+
+app.route('/mcp', mcpApp)
 
 export default app

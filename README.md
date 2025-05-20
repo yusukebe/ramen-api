@@ -18,7 +18,7 @@ You might want to say _why Ramen?_ And, I will say. **_:ramen: is super deliciou
 
 ## Features
 
-- :star2: Support REST API and GraphQL.
+- :star2: Support REST API, GraphQL, and remote MCP.
 - :framed_picture: We can get an information of Ramen shops and their rich photos.
 - :free: Completely free.
 - :technologist: You can contribute by adding Ramen content.
@@ -313,6 +313,16 @@ query {
     url
   }
 }
+```
+
+## Remote MCP
+
+Ramen API supports a remote MCP.
+
+### Streamable HTTP endpoint
+
+```sh
+https://ramen-api.dev/mcp
 ```
 
 ## Contribution
