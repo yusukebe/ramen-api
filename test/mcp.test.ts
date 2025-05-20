@@ -167,8 +167,8 @@ describe('Test /mcp', () => {
 
     const shop = JSON.parse(content.text)
     expect(shop).toHaveProperty('id', 'yoshimuraya')
-    expect(shop).toHaveProperty('name') // 店名が存在することを確認
-    expect(shop).toHaveProperty('photos') // 写真データが存在することを確認
+    expect(shop).toHaveProperty('name')
+    expect(shop).toHaveProperty('photos')
     expect(Array.isArray(shop.photos)).toBe(true)
   })
 })
