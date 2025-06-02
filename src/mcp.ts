@@ -5,7 +5,7 @@ import type { Context } from 'hono'
 import { Hono } from 'hono'
 import { z } from 'zod'
 import type { Env } from './app'
-import { getShop, listShopsWithPager } from './app'
+import { getShop, getShopPhotosWithData, listShopsWithPager } from './app'
 
 export const getMcpServer = async (c: Context<Env>) => {
   const server = new McpServer({
@@ -46,6 +46,21 @@ export const getMcpServer = async (c: Context<Env>) => {
             text: JSON.stringify(shop),
           },
         ],
+      }
+    }
+  )
+  server.tool(
+    'get_photos_with_data',
+    'Get ramen photos with base64 data',
+    { shopId: z.string() },
+    async ({ shopId }) => {
+      const photos = await getShopPhotosWithData(shopId, { c })
+      return {
+        content: photos.map((photo) => ({
+          type: 'image',
+          data: photo.base64,
+          mimeType: 'image/jpeg',
+        })),
       }
     }
   )

@@ -171,6 +171,42 @@ describe('Test /mcp', () => {
     expect(shop).toHaveProperty('photos')
     expect(Array.isArray(shop.photos)).toBe(true)
   })
+
+  it('Should execute get_photos_with_data tool and return image data', async () => {
+    const res = await app.request('/mcp', {
+      method: 'POST',
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        id: 5,
+        method: 'tools/call',
+        params: {
+          name: 'get_photos_with_data',
+          arguments: {
+            shopId: 'yoshimuraya',
+          },
+        },
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json, text/event-stream',
+      },
+    })
+
+    const messages = await parseSSEJSONResponse(res)
+    const result = messages.find((m) => m.id === 5)
+
+    expect(res.status).toBe(200)
+    expect(result).toHaveProperty('result')
+    expect(result.result).toHaveProperty('content')
+    expect(Array.isArray(result.result.content)).toBe(true)
+    expect(result.result.content.length).toBe(1)
+
+    const content = result.result.content[0]
+    expect(content).toHaveProperty('type', 'image')
+    expect(content).toHaveProperty('data')
+    expect(content).toHaveProperty('mimeType', 'image/jpeg')
+    expect(typeof content.data).toBe('string')
+  })
 })
 
 export async function parseSSEJSONResponse(res: Response) {
