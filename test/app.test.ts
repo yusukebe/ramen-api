@@ -6,6 +6,7 @@ import {
   findIndexFromId,
   getAuthor,
   listShopsWithPager,
+  getShopPhotosWithData,
   BASE_URL,
 } from '@/app'
 
@@ -101,5 +102,22 @@ describe('getAuthor', () => {
     expect(author.id).toBe('yusukebe')
     expect(author.name).toBe('Yusuke Wada')
     expect(author.url).toBe('https://github.com/yusukebe')
+  })
+})
+
+describe('getShopPhotosWithData', () => {
+  it('Should return photos with base64 data', async () => {
+    const photos = await getShopPhotosWithData('yoshimuraya', options)
+    expect(photos).not.toBeFalsy()
+    expect(photos.length).toBe(1)
+    expect(photos[0].name).toBe('yoshimuraya-001.jpg')
+    expect(photos[0].url).toBe(
+      `${BASE_URL}images/yoshimuraya/yoshimuraya-001.jpg`
+    )
+    expect(photos[0].base64).toBeDefined()
+    expect(typeof photos[0].base64).toBe('string')
+    expect(photos[0].width).toBe(1200)
+    expect(photos[0].height).toBe(900)
+    expect(photos[0].authorId).toBe('yusukebe')
   })
 })

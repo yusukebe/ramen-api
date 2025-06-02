@@ -26,6 +26,10 @@ export type Photo = {
   author?: Author
 }
 
+export type PhotoWithData = Photo & {
+  base64: string
+}
+
 export type Shop = {
   id: string
   name?: string
@@ -191,4 +195,45 @@ const arrayBufferToJSON = (arrayBuffer: ArrayBuffer) => {
   } else {
     return arrayBuffer
   }
+}
+
+export const getShopPhotosWithData = async (
+  shopId: string,
+  options: Options
+): Promise<PhotoWithData[]> => {
+  const shop = await getShop(shopId, options)
+
+  const photos = await Promise.all(
+    shop.photos?.map(async (photo): Promise<PhotoWithData | null> => {
+      try {
+        const buffer = await getContentFromKVAsset(
+          `shops/${shopId}/${photo.name}`,
+          {
+            namespace: options.c.env
+              ? options.c.env.__STATIC_CONTENT
+              : undefined,
+          }
+        )
+        const base64 = arrayBufferToBase64(buffer)
+        return {
+          ...photo,
+          base64,
+        }
+      } catch (e) {
+        console.error(`Failed to load image ${photo.name}:`, e)
+        return null
+      }
+    }) || []
+  )
+
+  return photos.filter(Boolean)
+}
+
+export const arrayBufferToBase64 = (arrayBuffer: ArrayBuffer): string => {
+  const bytes = new Uint8Array(arrayBuffer)
+  let binary = ''
+  for (let i = 0; i < bytes.byteLength; i++) {
+    binary += String.fromCharCode(bytes[i])
+  }
+  return btoa(binary)
 }
