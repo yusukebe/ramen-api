@@ -1,14 +1,12 @@
-import type { KVNamespace } from '@cloudflare/workers-types'
 import { graphqlServer } from '@hono/graphql-server'
 import { Hono } from 'hono'
 import { cache } from 'hono/cache'
 import { cors } from 'hono/cors'
+import { showRoutes } from 'hono/dev'
 import { poweredBy } from 'hono/powered-by'
 import { prettyJSON } from 'hono/pretty-json'
-import { getMimeType } from 'hono/utils/mime'
 import mcpApp from './mcp'
-import { getContentFromKVAsset } from './workers-utils'
-import { getShop, getAuthor, listShopsWithPager } from '@/app'
+import { getShop, getAuthor, listShopsWithPager, getShopImage } from '@/app'
 import { createErrorMessage } from '@/error'
 import { getSchema } from '@/graphql'
 
@@ -17,13 +15,16 @@ export const app = new Hono<{
     BASE_URL: string
   }
   Bindings: {
-    __STATIC_CONTENT: KVNamespace
+    ASSETS?: Fetcher
+    MCP_OBJECT?: DurableObjectNamespace
   }
 }>()
 
 app.use('*', poweredBy())
 app.use('*', prettyJSON())
 app.use('*', cors())
+
+app.get('/content/*', (c) => c.notFound())
 
 app.use('*', async (c, next) => {
   const url = new URL(c.req.url)
@@ -52,19 +53,26 @@ app.get('/shops', async (c) => {
 
 app.get('/shops/:id', async (c) => {
   const id = c.req.param('id')
-  const shop = await getShop(id, { c })
-  if (!shop) {
+  try {
+    const shop = await getShop(id, { c })
+    if (!shop) {
+      return c.json(
+        createErrorMessage(`The requested Ramen Shop '${id}' is not found`),
+        404
+      )
+    }
+    return c.json({ shop: shop })
+  } catch (e) {
     return c.json(
       createErrorMessage(`The requested Ramen Shop '${id}' is not found`),
       404
     )
   }
-  return c.json({ shop: shop })
 })
 
 app.get('/authors/:id', async (c) => {
   const id = c.req.param('id')
-  const author = await getAuthor(id)
+  const author = await getAuthor(id, { c })
   if (!author) {
     return c.json(
       createErrorMessage(`The requested Author '${id}' is not found`),
@@ -88,15 +96,13 @@ app.get(
   async (c) => {
     const shopId = c.req.param('shopId')
     const filename = c.req.param('filename')
-    const mimeType = getMimeType(filename)
-    const content = await getContentFromKVAsset(`shops/${shopId}/${filename}`, {
-      namespace: c.env ? c.env.__STATIC_CONTENT : undefined,
-    })
-
-    if (!content) return c.notFound()
-
-    c.header('Content-Type', mimeType)
-    return c.body(content)
+    const response = await getShopImage(
+      shopId,
+      filename,
+      c.env.ASSETS,
+      c.req.url
+    )
+    return response
   }
 )
 
@@ -109,12 +115,12 @@ app.onError((e, c) => {
   return c.json(createErrorMessage('Internal Server Error'), 500)
 })
 
-app.use('/graphql', (c) => {
+app.use('/graphql', (c, next) => {
   return graphqlServer({
     schema: getSchema({
       c,
     }),
-  })(c)
+  })(c, next)
 })
 
 app.route('/mcp', mcpApp)

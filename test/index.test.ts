@@ -1,5 +1,16 @@
+import { env } from 'cloudflare:test'
+import mockApp from './mockApp'
 import { BASE_URL } from '@/app'
 import { app } from '@/index'
+
+const createMockAssets = () => ({
+  fetch: mockApp.request,
+})
+
+const mockEnv = {
+  ...env,
+  ASSETS: createMockAssets(),
+}
 
 const yoshimurayaData = {
   id: 'yoshimuraya',
@@ -23,19 +34,22 @@ const authorData = {
 
 describe('Test /', () => {
   it('Should return 200 response', async () => {
-    const res = await app.request('http://localhost/')
+    const req = new Request('http://localhost/')
+    const res = await app.request(req, undefined, mockEnv)
     expect(res.status).toBe(200)
   })
 })
 
 describe('Test /shops/yoshimuraya', () => {
   it('Should return 200 response', async () => {
-    const res = await app.request('http://localhost/shops/yoshimuraya')
+    const req = new Request('http://localhost/shops/yoshimuraya')
+    const res = await app.request(req, undefined, mockEnv)
     expect(res.status).toBe(200)
     expect(await res.json()).toEqual({ shop: yoshimurayaData })
   })
   it('Should return 404 response', async () => {
-    const res = await app.request('http://localhost/shops/yoshimura')
+    const req = new Request('http://localhost/shops/yoshimura')
+    const res = await app.request(req, undefined, mockEnv)
     expect(res.status).toBe(404)
     expect(await res.json()).toEqual({
       errors: [
@@ -50,7 +64,8 @@ describe('Test /shops/yoshimuraya', () => {
 
 describe('Test /shops', () => {
   it('Should return shops with GET /shops', async () => {
-    const res = await app.request('http://localhost/shops')
+    const req = new Request('http://localhost/shops')
+    const res = await app.request(req, undefined, mockEnv)
     expect(res.status).toBe(200)
     const data = await res.json()
     expect(data['totalCount']).toBe(3)
@@ -60,7 +75,8 @@ describe('Test /shops', () => {
   })
 
   it('Should return shops with GET /shops?page=1&perPage=1', async () => {
-    const res = await app.request('http://localhost/shops?page=1&perPage=1')
+    const req = new Request('http://localhost/shops?page=1&perPage=1')
+    const res = await app.request(req, undefined, mockEnv)
     expect(res.status).toBe(200)
     const data = await res.json()
     expect(data['totalCount']).toBe(3)
@@ -69,7 +85,8 @@ describe('Test /shops', () => {
   })
 
   it('Should return shop with GET /shops/1', async () => {
-    const res = await app.request('http://localhost/shops/yoshimuraya')
+    const req = new Request('http://localhost/shops/yoshimuraya')
+    const res = await app.request(req, undefined, mockEnv)
     expect(res.status).toBe(200)
     const data = await res.json()
     expect(data['shop']).toEqual(yoshimurayaData)
@@ -78,7 +95,8 @@ describe('Test /shops', () => {
 
 describe('Test /authors/:author_id', () => {
   it('Should return the author with GET /authors/yusukebe', async () => {
-    const res = await app.request('http://localhost/authors/yusukebe')
+    const req = new Request('http://localhost/authors/yusukebe')
+    const res = await app.request(req, undefined, mockEnv)
     expect(res.status).toBe(200)
     const data = await res.json()
     expect(data['author']).toEqual(authorData)
@@ -88,7 +106,9 @@ describe('Test /authors/:author_id', () => {
 describe('Test /shops/:shop_id/:filename', () => {
   it('Should return the image with GET /shops/yoshimuraya/yoshimuraya-001.jpg', async () => {
     const res = await app.request(
-      'http://localhost/images/yoshimuraya/yoshimuraya-001.jpg'
+      'http://localhost/images/yoshimuraya/yoshimuraya-001.jpg',
+      undefined,
+      mockEnv
     )
     expect(res.status).toBe(200)
     expect(res.headers.get('Content-Type')).toBe('image/jpeg')

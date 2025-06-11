@@ -1,3 +1,4 @@
+import mockApp from './mockApp'
 import { BASE_URL } from '@/app'
 import { app } from '@/index'
 
@@ -16,7 +17,11 @@ const postRequest = async (data: object): Promise<Response> => {
     },
     body: JSON.stringify(data),
   })
-  return await app.request(req)
+  return await app.request(req, undefined, {
+    ASSETS: {
+      fetch: mockApp.request,
+    },
+  })
 }
 
 describe('Query shop', () => {
@@ -145,14 +150,26 @@ describe('Query shops', () => {
       {
         node: {
           id: 'sugitaya',
-          photos: null,
+          photos: [
+            {
+              author: {
+                id: 'yusukebe',
+              },
+            },
+          ],
         },
         cursor: 'c3VnaXRheWE=',
       },
       {
         node: {
           id: 'takasagoya',
-          photos: null,
+          photos: [
+            {
+              author: {
+                id: 'yusukebe',
+              },
+            },
+          ],
         },
         cursor: 'dGFrYXNhZ295YQ==',
       },

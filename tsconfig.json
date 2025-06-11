@@ -3,10 +3,25 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "baseUrl": ".",
+    "lib": [
+      "ESNext"
+    ],
+    "types": [
+      "vite/client",
+      "vitest/globals",
+      "node",
+      "@cloudflare/vitest-pool-workers"
+    ],
     "paths": {
       "@/*": [
         "./src/*"
       ]
-    }
-  }
+    },
+  },
+  "include": [
+    "./src/**/*",
+    "./test/**/*",
+    "./validation/**/*",
+    "./worker-configuration.d.ts"
+  ]
 }
