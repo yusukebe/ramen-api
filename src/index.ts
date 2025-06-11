@@ -125,6 +125,4 @@ app.use('/graphql', (c, next) => {
 
 app.route('/mcp', mcpApp)
 
-showRoutes(app)
-
 export default app
