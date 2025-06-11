@@ -16,7 +16,6 @@ export const app = new Hono<{
   }
   Bindings: {
     ASSETS?: Fetcher
-    MCP_OBJECT?: DurableObjectNamespace
   }
 }>()
 

@@ -15,8 +15,6 @@ export type Env = {
   }
   Bindings: {
     ASSETS?: Fetcher
-    __STATIC_CONTENT?: KVNamespace
-    MCP_OBJECT?: DurableObjectNamespace
   }
 }
 
