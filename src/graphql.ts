@@ -93,7 +93,7 @@ const getQueryType = (options: Options) => {
         ) => {
           const list = await listShops({}, options)
           for (let i = 0; i < list.shops.length; i++) {
-            list.shops[0] = await setShopPhotoAuthor(list.shops[0])
+            list.shops[i] = await setShopPhotoAuthor(list.shops[i], options)
           }
           const totalCount = list.shops.length
 
@@ -132,7 +132,7 @@ const getQueryType = (options: Options) => {
         },
         resolve: async (_, { id }) => {
           let shop = await getShop(id, options)
-          shop = await setShopPhotoAuthor(shop)
+          shop = await setShopPhotoAuthor(shop, options)
           return shop
         },
       },
@@ -143,7 +143,7 @@ const getQueryType = (options: Options) => {
           id: { type: GraphQLString },
         },
         resolve: async (_, { id }) => {
-          const author = await getAuthor(id)
+          const author = await getAuthor(id, options)
           return author
         },
       },
@@ -152,11 +152,11 @@ const getQueryType = (options: Options) => {
   return queryType
 }
 
-const setShopPhotoAuthor = async (shop: Shop): Promise<Shop> => {
+const setShopPhotoAuthor = async (shop: Shop, options: Options): Promise<Shop> => {
   for (let i = 0; i < shop.photos.length; i++) {
     const authorId = shop.photos[i].authorId
     if (authorId) {
-      shop.photos[i].author = await getAuthor(authorId)
+      shop.photos[i].author = await getAuthor(authorId, options)
       delete shop.photos[i].authorId
     }
   }

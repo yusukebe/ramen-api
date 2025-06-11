@@ -1,4 +1,5 @@
-import type { Context } from 'hono'
+import { type Context } from 'hono'
+import mockApp from './mockApp'
 import type { Env } from '@/app'
 import {
   getShop,
@@ -7,12 +8,22 @@ import {
   getAuthor,
   listShopsWithPager,
   getShopPhotosWithData,
+  getShopImage,
   BASE_URL,
 } from '@/app'
 
+const createMockAssets = () => ({
+  fetch: mockApp.request,
+})
+
 const options = {
   c: {
-    env: {},
+    env: {
+      ASSETS: createMockAssets(),
+    },
+    req: {
+      url: 'http://localhost',
+    },
     var: {
       BASE_URL,
     },
@@ -97,7 +108,7 @@ describe('findIndexFromId', () => {
 
 describe('getAuthor', () => {
   it('Should return author', async () => {
-    const author = await getAuthor('yusukebe')
+    const author = await getAuthor('yusukebe', options)
     expect(author).not.toBeFalsy()
     expect(author.id).toBe('yusukebe')
     expect(author.name).toBe('Yusuke Wada')
@@ -119,5 +130,19 @@ describe('getShopPhotosWithData', () => {
     expect(photos[0].width).toBe(1200)
     expect(photos[0].height).toBe(900)
     expect(photos[0].authorId).toBe('yusukebe')
+  })
+})
+
+describe('getShopImage', () => {
+  it('Should return image response with correct Content-Type', async () => {
+    const response = await getShopImage(
+      'yoshimuraya',
+      'yoshimuraya-001.jpg',
+      options.c.env.ASSETS,
+      'http://localhost'
+    )
+    expect(response).not.toBeFalsy()
+    expect(response.status).toBe(200)
+    expect(response.headers.get('Content-Type')).toBe('image/jpeg')
   })
 })

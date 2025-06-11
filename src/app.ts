@@ -1,6 +1,11 @@
-import type { KVNamespace } from '@cloudflare/workers-types'
 import type { Context } from 'hono'
-import { getContentFromKVAsset } from './workers-utils'
+import { getMimeType } from 'hono/utils/mime'
+import {
+  getShopsData,
+  getShopInfo,
+  getAuthorInfo,
+  getShopImageResponse,
+} from './data'
 
 export const BASE_URL = 'http://localhost/'
 
@@ -9,7 +14,9 @@ export type Env = {
     BASE_URL: string
   }
   Bindings: {
-    __STATIC_CONTENT: KVNamespace
+    ASSETS?: Fetcher
+    __STATIC_CONTENT?: KVNamespace
+    MCP_OBJECT?: DurableObjectNamespace
   }
 }
 
@@ -52,7 +59,7 @@ type listShopsResult = {
   totalCount: number
 }
 
-type listShopsWithPagerResult = {
+export type listShopsWithPagerResult = {
   shops: Shop[]
   totalCount: number
   pageInfo: pageInfo
@@ -106,11 +113,7 @@ export const listShops = async (
   options: Options
 ): Promise<listShopsResult> => {
   const { limit = 10, offset = 0 } = params
-  const c = options.c
-  const buffer = await getContentFromKVAsset('shops.json', {
-    namespace: c.env ? c.env.__STATIC_CONTENT : undefined,
-  })
-  const data = arrayBufferToJSON(buffer)
+  const data = await getShopsData(options.c.env.ASSETS, options.c.req.url)
 
   const shopIdsAll = data['shopIds']
   const totalCount = shopIdsAll.length
@@ -147,14 +150,12 @@ export const findIndexFromId = async (
 export const getShop = async (id: string, options: Options): Promise<Shop> => {
   let shop: Shop
   try {
-    const c = options.c
-    const buffer = await getContentFromKVAsset(`shops/${id}/info.json`, {
-      namespace: c.env ? c.env.__STATIC_CONTENT : undefined,
-    })
-    shop = arrayBufferToJSON(buffer)
-  } catch (e) {
-    throw new Error(`"shops/${id}/info.json" is not found: ${e}`)
-  }
+    shop = (await getShopInfo(
+      id,
+      options.c.env.ASSETS,
+      options.c.req.url
+    )) as Shop
+  } catch {} // Do nothing
   if (!shop) return
   shop.photos?.map((photo: Photo) => {
     photo.url = fixPhotoURL({ shopId: id, path: photo.name }, options)
@@ -162,14 +163,18 @@ export const getShop = async (id: string, options: Options): Promise<Shop> => {
   return shop
 }
 
-export const getAuthor = async (id: string): Promise<Author> => {
+export const getAuthor = async (
+  id: string,
+  options?: Options
+): Promise<Author> => {
   let author: Author
   try {
-    const buffer = await getContentFromKVAsset(`authors/${id}/info.json`)
-    author = arrayBufferToJSON(buffer)
-  } catch (e) {
-    throw new Error(`"authors/${id}/info.json" is not found: ${e}`)
-  }
+    author = (await getAuthorInfo(
+      id,
+      options?.c.env?.ASSETS,
+      options?.c.req?.url
+    )) as Author
+  } catch {} // Do nothing
   if (!author) return
   return author
 }
@@ -188,45 +193,35 @@ const fixPhotoURL = (
   return `${options.c.var.BASE_URL}images/${shopId}/${path}`
 }
 
-const arrayBufferToJSON = (arrayBuffer: ArrayBuffer) => {
-  if (arrayBuffer instanceof ArrayBuffer) {
-    const text = new TextDecoder().decode(arrayBuffer)
-    if (text) return JSON.parse(text)
-  } else {
-    return arrayBuffer
-  }
-}
-
 export const getShopPhotosWithData = async (
   shopId: string,
   options: Options
 ): Promise<PhotoWithData[]> => {
   const shop = await getShop(shopId, options)
+  if (!shop || !shop.photos) return []
 
-  const photos = await Promise.all(
-    shop.photos?.map(async (photo): Promise<PhotoWithData | null> => {
-      try {
-        const buffer = await getContentFromKVAsset(
-          `shops/${shopId}/${photo.name}`,
-          {
-            namespace: options.c.env
-              ? options.c.env.__STATIC_CONTENT
-              : undefined,
-          }
-        )
-        const base64 = arrayBufferToBase64(buffer)
-        return {
+  const photos: PhotoWithData[] = []
+
+  for (const photo of shop.photos) {
+    try {
+      const response = await getShopImageResponse(
+        shopId,
+        photo.name,
+        options.c.env.ASSETS,
+        options.c.var.BASE_URL
+      )
+      if (response.ok) {
+        const arrayBuffer = await response.arrayBuffer()
+        const base64 = arrayBufferToBase64(arrayBuffer)
+        photos.push({
           ...photo,
           base64,
-        }
-      } catch (e) {
-        console.error(`Failed to load image ${photo.name}:`, e)
-        return null
+        })
       }
-    }) || []
-  )
+    } catch {} // Do nothing
+  }
 
-  return photos.filter(Boolean)
+  return photos
 }
 
 export const arrayBufferToBase64 = (arrayBuffer: ArrayBuffer): string => {
@@ -236,4 +231,25 @@ export const arrayBufferToBase64 = (arrayBuffer: ArrayBuffer): string => {
     binary += String.fromCharCode(bytes[i])
   }
   return btoa(binary)
+}
+
+export const getShopImage = async (
+  shopId: string,
+  filename: string,
+  assets: Fetcher,
+  baseUrl: string
+): Promise<Response> => {
+  const mimeType = getMimeType(filename)
+  const response = await getShopImageResponse(shopId, filename, assets, baseUrl)
+
+  if (response.ok) {
+    const content = await response.arrayBuffer()
+    return new Response(content, {
+      headers: {
+        'Content-Type': mimeType || 'application/octet-stream',
+      },
+    })
+  }
+
+  return new Response(null, { status: 404 })
 }

@@ -1,27 +1,40 @@
+import mockApp from './mockApp'
 import { app } from '@/index'
+
+const createMockAssets = () => ({
+  fetch: mockApp.request,
+})
+
+const mockEnv = {
+  ASSETS: createMockAssets(),
+}
 
 describe('Test /mcp', () => {
   it('Should return initialize response', async () => {
-    const res = await app.request('/mcp', {
-      method: 'POST',
-      body: JSON.stringify({
-        jsonrpc: '2.0',
-        id: 1,
-        method: 'initialize',
-        params: {
-          protocolVersion: '2024-11-05',
-          clientInfo: {
-            name: 'test-client',
-            version: '0.0.0',
+    const res = await app.request(
+      '/mcp',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: 1,
+          method: 'initialize',
+          params: {
+            protocolVersion: '2024-11-05',
+            clientInfo: {
+              name: 'test-client',
+              version: '0.0.0',
+            },
+            capabilities: { tools: true },
           },
-          capabilities: { tools: true },
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json, text/event-stream',
         },
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json, text/event-stream',
       },
-    })
+      mockEnv
+    )
 
     const messages = await parseSSEJSONResponse(res)
     const result = messages.find((m) => m.id === 1)
@@ -31,19 +44,23 @@ describe('Test /mcp', () => {
   })
 
   it('Should return a list of tools with correct properties', async () => {
-    const res = await app.request('/mcp', {
-      method: 'POST',
-      body: JSON.stringify({
-        jsonrpc: '2.0',
-        id: 2,
-        method: 'tools/list',
-        params: {},
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json, text/event-stream',
+    const res = await app.request(
+      '/mcp',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: 2,
+          method: 'tools/list',
+          params: {},
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json, text/event-stream',
+        },
       },
-    })
+      mockEnv
+    )
 
     const messages = await parseSSEJSONResponse(res)
     const result = messages.find((m) => m.id === 2)
@@ -94,25 +111,29 @@ describe('Test /mcp', () => {
   })
 
   it('Should execute get_shops tool and return a list of shops', async () => {
-    const res = await app.request('/mcp', {
-      method: 'POST',
-      body: JSON.stringify({
-        jsonrpc: '2.0',
-        id: 3,
-        method: 'tools/call',
-        params: {
-          name: 'get_shops',
-          arguments: {
-            perPage: 5,
-            page: 1,
+    const res = await app.request(
+      '/mcp',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: 3,
+          method: 'tools/call',
+          params: {
+            name: 'get_shops',
+            arguments: {
+              perPage: 5,
+              page: 1,
+            },
           },
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json, text/event-stream',
         },
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json, text/event-stream',
       },
-    })
+      mockEnv
+    )
 
     const messages = await parseSSEJSONResponse(res)
     const result = messages.find((m) => m.id === 3)
@@ -133,24 +154,28 @@ describe('Test /mcp', () => {
   })
 
   it('Should execute get_shop tool and return shop details', async () => {
-    const res = await app.request('/mcp', {
-      method: 'POST',
-      body: JSON.stringify({
-        jsonrpc: '2.0',
-        id: 4,
-        method: 'tools/call',
-        params: {
-          name: 'get_shop',
-          arguments: {
-            shopId: 'yoshimuraya',
+    const res = await app.request(
+      '/mcp',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: 4,
+          method: 'tools/call',
+          params: {
+            name: 'get_shop',
+            arguments: {
+              shopId: 'yoshimuraya',
+            },
           },
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json, text/event-stream',
         },
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json, text/event-stream',
       },
-    })
+      mockEnv
+    )
 
     const messages = await parseSSEJSONResponse(res)
     const result = messages.find((m) => m.id === 4)
@@ -173,24 +198,28 @@ describe('Test /mcp', () => {
   })
 
   it('Should execute get_photos_with_data tool and return image data', async () => {
-    const res = await app.request('/mcp', {
-      method: 'POST',
-      body: JSON.stringify({
-        jsonrpc: '2.0',
-        id: 5,
-        method: 'tools/call',
-        params: {
-          name: 'get_photos_with_data',
-          arguments: {
-            shopId: 'yoshimuraya',
+    const res = await app.request(
+      '/mcp',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: 5,
+          method: 'tools/call',
+          params: {
+            name: 'get_photos_with_data',
+            arguments: {
+              shopId: 'yoshimuraya',
+            },
           },
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json, text/event-stream',
         },
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json, text/event-stream',
       },
-    })
+      mockEnv
+    )
 
     const messages = await parseSSEJSONResponse(res)
     const result = messages.find((m) => m.id === 5)

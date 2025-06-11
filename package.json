@@ -4,36 +4,35 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "test": "jest --verbose",
-    "validate": "jest ./validation/* --verbose",
-    "dev": "wrangler dev --live-reload src/index.ts",
-    "deploy": "wrangler deploy --minify src/index.ts",
-    "tail": "wrangler tail"
+    "test": "vitest",
+    "validate": "vitest run --config vitest.validation.config.ts ./validation/*",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "tail": "wrangler tail",
+    "cf-typegen": "wrangler types"
   },
   "license": "MIT",
   "dependencies": {
     "@hono/graphql-server": "^0.4.1",
-    "@modelcontextprotocol/sdk": "^1.11.4",
+    "@modelcontextprotocol/sdk": "^1.12.1",
     "fetch-to-node": "^2.1.0",
     "graphql": "^16.6.0",
-    "hono": "^4.7.10",
+    "hono": "^4.7.11",
     "zod": "^3.25.7"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20231218.0",
+    "@cloudflare/vitest-pool-workers": "^0.8.36",
     "@hono/eslint-config": "^0.0.3",
-    "@jest/expect": "^29.1.2",
-    "@types/jest": "^29.1.2",
-    "esbuild": "^0.15.10",
-    "esbuild-jest": "^0.5.0",
+    "@types/node": "^22.15.30",
     "eslint": "^8.56.0",
-    "jest": "^29.1.2",
-    "jest-environment-miniflare": "^2.14.1",
-    "miniflare": "^2.10.0",
     "typescript": "^5.3.3",
-    "wrangler": "3"
+    "vitest": "~3.1.0",
+    "wrangler": "^4.19.1"
   },
   "engines": {
     "node": ">=18"
+  },
+  "resolutions": {
+    "graphql": "^16.6.0"
   }
 }
