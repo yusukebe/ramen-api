@@ -1,6 +1,5 @@
+import { StreamableHTTPTransport } from '@hono/mcp'
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js'
-import { toFetchResponse, toReqRes } from 'fetch-to-node'
 import type { Context } from 'hono'
 import { Hono } from 'hono'
 import { z } from 'zod'
@@ -70,19 +69,10 @@ export const getMcpServer = async (c: Context<Env>) => {
 const app = new Hono<Env>()
 
 app.post('/', async (c) => {
-  const { req, res } = toReqRes(c.req.raw)
   const mcpServer = await getMcpServer(c)
-  const transport: StreamableHTTPServerTransport =
-    new StreamableHTTPServerTransport({
-      sessionIdGenerator: undefined,
-    })
+  const transport = new StreamableHTTPTransport()
   await mcpServer.connect(transport)
-  await transport.handleRequest(req, res, await c.req.json())
-  res.on('close', () => {
-    transport.close()
-    mcpServer.close()
-  })
-  return toFetchResponse(res)
+  return transport.handleRequest(c)
 })
 
 app.on(['GET', 'DELETE'], '/', (c) => {
