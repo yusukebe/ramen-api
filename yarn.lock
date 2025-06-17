@@ -378,6 +378,11 @@
   dependencies:
     graphql "^16.5.0"
 
+"@hono/mcp@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@hono/mcp/-/mcp-0.1.0.tgz#be5b1af6d0a271b669cf477cede0e5448bf78117"
+  integrity sha512-IELNnKF5tjbUm+wthfToZrNxZIjs1RWLiwCx8N+m8xfJcL6hfcpj/21Gsw8HL88lbnCh191mbFwYvXnx856QZg==
+
 "@humanwhocodes/config-array@^0.11.13":
   version "0.11.14"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.11.14.tgz"
@@ -1764,11 +1769,6 @@ fdir@^6.4.4:
   version "6.4.5"
   resolved "https://registry.npmjs.org/fdir/-/fdir-6.4.5.tgz"
   integrity sha512-4BG7puHpVsIYxZUbiUE3RqGloLaSSwzYie5jvasC4LWuBWzZawynvYouhjbQKw2JuIGYdm0DzIxl8iVidKlUEw==
-
-fetch-to-node@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/fetch-to-node/-/fetch-to-node-2.1.0.tgz#e779d699f80aea0b1b34fd057737d151cb1dc19e"
-  integrity sha512-Wq05j6LE1GrWpT2t1YbCkyFY6xKRJq3hx/oRJdWEJpZlik3g25MmdJS6RFm49iiMJw6zpZuBOrgihOgy2jGyAA==
 
 file-entry-cache@^6.0.1:
   version "6.0.1"
