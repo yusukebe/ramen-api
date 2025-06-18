@@ -2,6 +2,7 @@ import { StreamableHTTPTransport } from '@hono/mcp'
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import type { Context } from 'hono'
 import { Hono } from 'hono'
+import { HTTPException } from 'hono/http-exception'
 import { z } from 'zod'
 import type { Env } from './app'
 import { getShop, getShopPhotosWithData, listShopsWithPager } from './app'
@@ -73,6 +74,26 @@ app.all('/', async (c) => {
   const transport = new StreamableHTTPTransport()
   await mcpServer.connect(transport)
   return transport.handleRequest(c)
+})
+
+app.onError((err, c) => {
+  console.log(err.message)
+
+  if (err instanceof HTTPException && err.res) {
+    return err.res
+  }
+
+  return c.json(
+    {
+      jsonrpc: '2.0',
+      error: {
+        code: -32603,
+        message: 'Internal server error',
+      },
+      id: null,
+    },
+    500
+  )
 })
 
 export default app
