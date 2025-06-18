@@ -237,8 +237,6 @@ describe('Test /mcp', () => {
     expect(typeof content.data).toBe('string')
   })
 
-
-
   it('Should throw an error for get_shops tool', async () => {
     const res = await app.request(
       '/mcp',
