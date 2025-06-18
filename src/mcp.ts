@@ -68,40 +68,11 @@ export const getMcpServer = async (c: Context<Env>) => {
 
 const app = new Hono<Env>()
 
-app.post('/', async (c) => {
+app.all('/', async (c) => {
   const mcpServer = await getMcpServer(c)
   const transport = new StreamableHTTPTransport()
   await mcpServer.connect(transport)
   return transport.handleRequest(c)
-})
-
-app.on(['GET', 'DELETE'], '/', (c) => {
-  return c.json(
-    {
-      jsonrpc: '2.0',
-      error: {
-        code: -32000,
-        message: 'Method not allowed.',
-      },
-      id: null,
-    },
-    405
-  )
-})
-
-app.onError((e, c) => {
-  console.error(e.message)
-  return c.json(
-    {
-      jsonrpc: '2.0',
-      error: {
-        code: -32603,
-        message: 'Internal server error',
-      },
-      id: null,
-    },
-    500
-  )
 })
 
 export default app
