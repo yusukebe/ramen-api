@@ -236,6 +236,37 @@ describe('Test /mcp', () => {
     expect(content).toHaveProperty('mimeType', 'image/jpeg')
     expect(typeof content.data).toBe('string')
   })
+
+  it('Should throw an error for get_shops tool', async () => {
+    const res = await app.request(
+      '/mcp',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: 6,
+          method: 'tools/call',
+          params: {
+            name: 'get_shops',
+            arguments: {},
+          },
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json, text/event-stream',
+        },
+      },
+      mockEnv
+    )
+
+    const messages = await parseSSEJSONResponse(res)
+    const result = messages.find((m) => m.id === 6)
+
+    expect(res.status).toBe(200)
+    expect(result).toHaveProperty('error')
+    expect(result.error.code).toBe(-32602)
+    expect(result.error.message).toContain('Invalid arguments for tool get_shops')
+  })
 })
 
 export async function parseSSEJSONResponse(res: Response) {
