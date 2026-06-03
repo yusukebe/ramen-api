@@ -19,3 +19,8 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          # wrangler-action defaults to its own bundled wrangler (3.90.0),
+          # which predates wrangler.jsonc support and fails with
+          # "Missing entry-point". Pin to the project's wrangler version.
+          wranglerVersion: '4.19.1'
+          packageManager: bun
