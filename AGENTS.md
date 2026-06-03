@@ -21,7 +21,11 @@ This is the main way people contribute. Add one shop end to end.
 2. **Author** — if `content/authors/{authorId}/info.json` is missing, create it:
 
    ```json
-   { "id": "{authorId}", "name": "{name}", "url": "https://github.com/{authorId}" }
+   {
+     "id": "{authorId}",
+     "name": "{name}",
+     "url": "https://github.com/{authorId}"
+   }
    ```
 
 3. **Photo** — must be **under 300KB**, EXIF-stripped, longest side ~800px, named `{shopId}-001.jpg` (`-002`, … for more). Use the helper (macOS `sips` + `jpegtran`):
@@ -43,7 +47,12 @@ This is the main way people contribute. Add one shop end to end.
      "name": "{name}",
      "prefecture": "{prefecture}",
      "photos": [
-       { "name": "{shopId}-001.jpg", "width": 800, "height": 600, "authorId": "{authorId}" }
+       {
+         "name": "{shopId}-001.jpg",
+         "width": 800,
+         "height": 600,
+         "authorId": "{authorId}"
+       }
      ]
    }
    ```
@@ -54,13 +63,13 @@ This is the main way people contribute. Add one shop end to end.
 
 ### Validation rules
 
-| field | rule |
-| --- | --- |
-| `id` | `^[0-9a-z\-]+$` |
-| `photos[].name` | `^[0-9a-z\-\.]+\.(jpg\|jpeg\|png\|gif)$` |
-| `photos[].width` / `height` | numbers (the real pixel size) |
-| `photos[].authorId` | `^[0-9a-zA-Z\-\_]+$`, must resolve to an author |
-| `prefecture` | optional; if present must end with 都/道/府/県 |
+| field                       | rule                                            |
+| --------------------------- | ----------------------------------------------- |
+| `id`                        | `^[0-9a-z\-]+$`                                 |
+| `photos[].name`             | `^[0-9a-z\-\.]+\.(jpg\|jpeg\|png\|gif)$`        |
+| `photos[].width` / `height` | numbers (the real pixel size)                   |
+| `photos[].authorId`         | `^[0-9a-zA-Z\-\_]+$`, must resolve to an author |
+| `prefecture`                | optional; if present must end with 都/道/府/県  |
 
 ### Conventions / gotchas
 
