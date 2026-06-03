@@ -12,6 +12,7 @@
     "cf-typegen": "wrangler types"
   },
   "license": "MIT",
+  "packageManager": "bun@1.3.9",
   "dependencies": {
     "@hono/graphql-server": "^0.4.1",
     "@hono/mcp": "^0.1.0",

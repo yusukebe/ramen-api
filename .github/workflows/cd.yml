@@ -9,13 +9,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: yarn install --frozen-lockfile
-      - run: yarn test
-      - run: yarn validate
+      - name: Use Bun
+        uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun run test
+      - run: bun run validate
       - name: deploy
         uses: cloudflare/wrangler-action@v3
         with:
