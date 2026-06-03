@@ -26,6 +26,11 @@ describe('Validate shops with SELF and REST API', () => {
         expect(shop.name).not.toBeFalsy()
         expect(Array.isArray(shop.photos)).toBe(true)
 
+        // prefecture is optional, but when present it must be a 都道府県 name
+        if (shop.prefecture !== undefined) {
+          expect(shop.prefecture).toMatch(/^.+[都道府県]$/)
+        }
+
         // Validate each photo
         for (const photo of shop.photos) {
           expect(photo.name).toMatch(/^[0-9a-z\-\.]+\.(jpg|jpeg|png|gif)$/)

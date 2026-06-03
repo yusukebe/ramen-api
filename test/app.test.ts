@@ -67,6 +67,20 @@ describe('listShops', () => {
     expect(result.shops[0].id).toBe('sugitaya')
     expect(result.shops[1]).toBeUndefined()
   })
+
+  it('Return only shops matching the prefecture option', async () => {
+    const result = await listShops({ prefecture: '神奈川県' }, options)
+    expect(result.totalCount).toBe(3)
+    expect(result.shops.every((shop) => shop.prefecture === '神奈川県')).toBe(
+      true
+    )
+  })
+
+  it('Return empty result for an unmatched prefecture', async () => {
+    const result = await listShops({ prefecture: '東京都' }, options)
+    expect(result.totalCount).toBe(0)
+    expect(result.shops.length).toBe(0)
+  })
 })
 
 describe('listShopsWithPager', () => {

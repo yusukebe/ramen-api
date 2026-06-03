@@ -53,6 +53,7 @@ type Photo = {
 type Shop = {
   id: string
   name?: string
+  prefecture?: string
   photos?: Photo[]
 }
 
@@ -77,11 +78,18 @@ type Author = {
 
 - `page` - default is `1`.
 - `perPage` - default is `10`. Maximum value is `100`.
+- `prefecture` - filter shops by prefecture, e.g. `神奈川県`. Optional.
 
 #### Examples
 
 ```http
 GET /shops?pretty&page=1&perPage=3
+```
+
+You can filter shops by prefecture:
+
+```http
+GET /shops?pretty&prefecture=神奈川県
 ```
 
 ```json
@@ -90,6 +98,7 @@ GET /shops?pretty&page=1&perPage=3
     {
       "id": "yoshimuraya",
       "name": "吉村家",
+      "prefecture": "神奈川県",
       "photos": [
         {
           "name": "yoshimuraya-001.jpg",
@@ -103,6 +112,7 @@ GET /shops?pretty&page=1&perPage=3
     {
       "id": "sugitaya",
       "name": "杉田家",
+      "prefecture": "神奈川県",
       "photos": [
         {
           "name": "sugitaya-001.jpg",
@@ -116,6 +126,7 @@ GET /shops?pretty&page=1&perPage=3
     {
       "id": "takasagoya",
       "name": "たかさご家",
+      "prefecture": "神奈川県",
       "photos": [
         {
           "name": "takasagoya-001.jpg",
@@ -151,6 +162,7 @@ GET /shops/yoshimuraya
   "shop": {
     "id": "yoshimuraya",
     "name": "吉村家",
+    "prefecture": "神奈川県",
     "photos": [
       {
         "name": "yoshimuraya-001.jpg",
@@ -220,6 +232,7 @@ https://ramen-api.dev/graphql
 type Shop {
   id: String
   name: String
+  prefecture: String
   photos: [Photo]
 }
 ```
@@ -369,6 +382,7 @@ Edit `./content/shops/{shopId}/info.json` like this:
 {
   "id": "yoshimuraya", // <-- must be /^[0-9a-z\-]+$/
   "name": "吉村家",
+  "prefecture": "神奈川県", // <-- optional. a prefecture name ending with 都道府県
   "photos": [
     {
       "name": "yoshimuraya-001.jpg", // <-- must be /^[0-9a-z\-\.]+\.(jpg|jpeg|png|gif)$/
