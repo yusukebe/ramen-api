@@ -34,6 +34,7 @@ const shopType = new GraphQLObjectType({
   fields: {
     id: { type: GraphQLString },
     name: { type: GraphQLString },
+    prefecture: { type: GraphQLString },
     photos: {
       type: new GraphQLList(photoType),
     },

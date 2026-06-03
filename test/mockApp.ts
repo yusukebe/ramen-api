@@ -12,6 +12,7 @@ app.get('/shops/yoshimuraya/info.json', (c) => {
   return c.json({
     id: 'yoshimuraya',
     name: '吉村家',
+    prefecture: '神奈川県',
     photos: [
       {
         name: 'yoshimuraya-001.jpg',
@@ -27,6 +28,7 @@ app.get('/shops/sugitaya/info.json', (c) => {
   return c.json({
     id: 'sugitaya',
     name: '杉田家',
+    prefecture: '神奈川県',
     photos: [
       {
         name: 'sugitaya-001.jpg',
@@ -42,6 +44,7 @@ app.get('/shops/takasagoya/info.json', (c) => {
   return c.json({
     id: 'takasagoya',
     name: 'たかさご家',
+    prefecture: '神奈川県',
     photos: [
       {
         name: 'takasagoya-001.jpg',

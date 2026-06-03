@@ -15,6 +15,7 @@ const mockEnv = {
 const yoshimurayaData = {
   id: 'yoshimuraya',
   name: '吉村家',
+  prefecture: '神奈川県',
   photos: [
     {
       name: 'yoshimuraya-001.jpg',
@@ -82,6 +83,31 @@ describe('Test /shops', () => {
     expect(data['totalCount']).toBe(3)
     expect(data['shops'][0]).not.toBeUndefined()
     expect(data['shops'][1]).toBeUndefined()
+  })
+
+  it('Should filter shops with GET /shops?prefecture=神奈川県', async () => {
+    const req = new Request(
+      `http://localhost/shops?prefecture=${encodeURIComponent('神奈川県')}`
+    )
+    const res = await app.request(req, undefined, mockEnv)
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    expect(data['totalCount']).toBe(3)
+    expect(data['shops'].length).toBe(3)
+    expect(
+      data['shops'].every((shop) => shop.prefecture === '神奈川県')
+    ).toBe(true)
+  })
+
+  it('Should return no shops for an unmatched prefecture', async () => {
+    const req = new Request(
+      `http://localhost/shops?prefecture=${encodeURIComponent('東京都')}`
+    )
+    const res = await app.request(req, undefined, mockEnv)
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    expect(data['totalCount']).toBe(0)
+    expect(data['shops'].length).toBe(0)
   })
 
   it('Should return shop with GET /shops/1', async () => {

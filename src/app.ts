@@ -38,6 +38,7 @@ export type PhotoWithData = Photo & {
 export type Shop = {
   id: string
   name?: string
+  prefecture?: string
   photos?: Photo[]
 }
 
@@ -50,6 +51,7 @@ export type Author = {
 type Parameters = {
   limit?: number
   offset?: number
+  prefecture?: string
 }
 
 type listShopsResult = {
@@ -74,6 +76,7 @@ type pageInfo = {
 type ParametersWithPager = {
   page: number
   perPage: number
+  prefecture?: string
 }
 
 export const listShopsWithPager = async (
@@ -84,7 +87,10 @@ export const listShopsWithPager = async (
   if (perPage > 100) perPage = 100
   const limit = perPage
   const offset = (page - 1) * perPage
-  const result = await listShops({ limit, offset }, options)
+  const result = await listShops(
+    { limit, offset, prefecture: params.prefecture },
+    options
+  )
   const totalCount = result.totalCount
   const lastPage =
     totalCount % perPage == 0
@@ -110,10 +116,25 @@ export const listShops = async (
   params: Parameters = {},
   options: Options
 ): Promise<listShopsResult> => {
-  const { limit = 10, offset = 0 } = params
+  const { limit = 10, offset = 0, prefecture } = params
   const data = await getShopsData(options.c.env.ASSETS, options.c.req.url)
 
-  const shopIdsAll = data['shopIds']
+  const shopIdsAll: string[] = data['shopIds']
+
+  // When filtering by prefecture, all shops must be fetched first so that
+  // pagination is applied to the filtered subset.
+  if (prefecture) {
+    const allShops = await Promise.all(
+      shopIdsAll.map((id) => getShop(id, options))
+    )
+    const matched = allShops.filter(
+      (shop) => shop && shop.prefecture === prefecture
+    )
+    const totalCount = matched.length
+    const shops = matched.slice(offset, offset + limit)
+    return { shops, totalCount }
+  }
+
   const totalCount = shopIdsAll.length
 
   const shopIds = shopIdsAll.filter((_id: string, num: number) => {

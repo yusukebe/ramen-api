@@ -41,8 +41,9 @@ app.get('/', async (c) => {
 app.get('/shops', async (c) => {
   const page = Number(c.req.query('page') ?? 1)
   const perPage = Number(c.req.query('perPage') ?? 10)
+  const prefecture = c.req.query('prefecture')
   const listResult = await listShopsWithPager(
-    { page, perPage },
+    { page, perPage, prefecture },
     {
       c,
     }
