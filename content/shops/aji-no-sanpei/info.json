@@ -1,0 +1,13 @@
+{
+  "id": "aji-no-sanpei",
+  "name": "味の三平",
+  "prefecture": "北海道",
+  "photos": [
+    {
+      "name": "aji-no-sanpei-001.jpg",
+      "width": 800,
+      "height": 600,
+      "authorId": "yusukebe"
+    }
+  ]
+}
