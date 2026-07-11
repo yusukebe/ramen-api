@@ -245,7 +245,7 @@ type Photo {
   url: String
   width: Int
   height: Int
-  authorId: String
+  author: Author
 }
 ```
 
@@ -273,7 +273,11 @@ query {
       width
       height
       url
-      authorId
+      author {
+        id
+        name
+        url
+      }
     }
   }
 }
