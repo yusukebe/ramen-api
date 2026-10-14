@@ -1,0 +1,13 @@
+{
+  "id": "taichi-shoten",
+  "name": "太一商店",
+  "prefecture": "大分県",
+  "photos": [
+    {
+      "name": "taichi-shoten-001.jpg",
+      "width": 800,
+      "height": 600,
+      "authorId": "takumiyamamoto0924"
+    }
+  ]
+}
