@@ -1,0 +1,29 @@
+README.md
+  s_17674a5275795e::t_2075dc36f9b982 462
+content/authors/devedevedei-lang/info.json
+  s_17674a5275795e::t_4b1c5d1ade938f 1-5
+content/shops.json
+  s_17674a5275795e::t_08d840909e7576 48-50
+content/shops/kashimaya-koganecho/info.json
+  s_17674a5275795e::t_abe5a1eeec07c9 1-13
+content/shops/kawamura-kushiro/info.json
+  s_17674a5275795e::t_a54f940bd4fd9f 1-13
+content/shops/sendai-akebonocho/info.json
+  s_17674a5275795e::t_bff8142b3f2a8c 1-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "b1b56ac1481426949bff1e50dd57d036d38a0509",
+  "prompts": {},
+  "sessions": {
+    "s_17674a5275795e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c9a9b67d-d2e7-41d6-a724-511828a29e8a",
+        "model": "unknown"
+      },
+      "human_author": "Yusuke Wada <yusuke@kamawada.com>"
+    }
+  }
+}
