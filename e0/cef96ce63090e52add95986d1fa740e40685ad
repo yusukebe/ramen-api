@@ -1,0 +1,33 @@
+README.md
+  s_17674a5275795e::t_4484a1420308df 462
+content/authors/L4Ph/info.json
+  s_17674a5275795e::t_ffd0c4cf7bc5c1 1-5
+content/authors/devedevedei-lang/info.json
+  s_17674a5275795e::t_bbdcebfe7ab040 1-5
+content/shops.json
+  s_17674a5275795e::t_9956b3bdc7d1fb 48-51
+content/shops/11ku-tantanmen/info.json
+  s_17674a5275795e::t_edc6b5f78c10a9 1-13
+content/shops/kashimaya-koganecho/info.json
+  s_17674a5275795e::t_9063917e5d2496 1-13
+content/shops/kawamura-kushiro/info.json
+  s_17674a5275795e::t_098443a9acace0 1-13
+content/shops/sendai-akebonocho/info.json
+  s_17674a5275795e::t_a51c1547b44e37 1-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "e0cef96ce63090e52add95986d1fa740e40685ad",
+  "prompts": {},
+  "sessions": {
+    "s_17674a5275795e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c9a9b67d-d2e7-41d6-a724-511828a29e8a",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Yusuke Wada <yusuke@kamawada.com>"
+    }
+  }
+}
