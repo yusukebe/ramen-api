@@ -459,6 +459,7 @@ jpegtran -copy none -optimize -outfile yoshimuraya-001.jpg yoshimuraya-001.jpg
 
 - [yusukebe/ramen-api-example](https://github.com/yusukebe/ramen-api-example) - An example web pages with React and Cloudflare Workers.
 - [sinyo-matu/ramen-sasshi](https://github.com/sinyo-matu/ramen-sasshi) - A web site created with Fresh2 hosted by Deno Deploy
+- [heki-dm/ramen-api-bruno](https://github.com/heki-dm/ramen-api-bruno) - A Bruno collection for trying REST API and GraphQL of Ramen API.
 
 ## Author
 
