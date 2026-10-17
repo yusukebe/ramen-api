@@ -406,25 +406,7 @@ Add your Ramen photos to an appropriate path such as `./content/shops/{shopId}/{
 cp IMG_001.JPG ./content/shops/{shopId}/{photoName}
 ```
 
-#### 5. Add `shopId` to `shops.json`
-
-At the end, edit `./content/shops.json` to add the shop id at the last line.
-
-```javascript
-{
-  "shopIds": [
-    "yoshimuraya",
-    "sugitaya",
-    "takasagoya",
-    "jyoujyouya",
-    "torakichiya",
-    "rasuta",
-    "new-shop-id" // <--- add the id at the last line
-  ]
-}
-```
-
-#### 6. Pull Request
+#### 5. Pull Request
 
 Create Pull Request to this repository.
 
