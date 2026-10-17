@@ -1,0 +1,13 @@
+{
+  "id": "kikunoya",
+  "name": "菊の屋",
+  "prefecture": "大分県",
+  "photos": [
+    {
+      "name": "kikunoya-001.jpg",
+      "width": 800,
+      "height": 600,
+      "authorId": "takumiyamamoto0924"
+    }
+  ]
+}
