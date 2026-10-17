@@ -5,3 +5,4 @@ package-lock.json
 yarn-error.log
 .cargo-ok
 .wrangler
+content/shops.json
