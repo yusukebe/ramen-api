@@ -21,6 +21,12 @@ export const app = new Hono<{
 
 app.use('*', poweredBy())
 app.use('*', prettyJSON())
+app.use('*', async (c, next) => {
+  await next()
+  if (c.res.headers.get('Content-Type') === 'application/json') {
+    c.res.headers.set('Content-Type', 'application/json; charset=UTF-8')
+  }
+})
 app.use('*', cors())
 
 app.get('/content/*', (c) => c.notFound())
