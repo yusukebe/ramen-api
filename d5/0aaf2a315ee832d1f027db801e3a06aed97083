@@ -1,0 +1,31 @@
+.github/workflows/cd.yml
+  s_17674a5275795e::t_b5d38be902ddbf 12-13,19
+.github/workflows/ci.yml
+  s_17674a5275795e::t_a7802e9d95b17f 12-13
+.gitignore
+  s_17674a5275795e::t_607f37c7ea89ef 7-8
+AGENTS.md
+  s_17674a5275795e::t_d8edb95445449f 12,19,60,75
+README.md
+  s_17674a5275795e::t_1b7269e77225af 409
+package.json
+  s_17674a5275795e::t_635ed733d2833f 8-11
+tools/generate-shops.ts
+  s_17674a5275795e::t_717cb53ad98fbf 1-55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "d50aaf2a315ee832d1f027db801e3a06aed97083",
+  "prompts": {},
+  "sessions": {
+    "s_17674a5275795e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c9a9b67d-d2e7-41d6-a724-511828a29e8a",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Yusuke Wada <yusuke@kamawada.com>"
+    }
+  }
+}
