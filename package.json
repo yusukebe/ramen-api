@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
-    "validate": "vitest run --config vitest.validation.config.ts",
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify",
+    "generate": "bun tools/generate-shops.ts",
+    "validate": "bun run generate && vitest run --config vitest.validation.config.ts",
+    "dev": "bun run generate && wrangler dev",
+    "deploy": "bun run generate && wrangler deploy --minify",
     "tail": "wrangler tail",
     "cf-typegen": "wrangler types"
   },

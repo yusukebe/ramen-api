@@ -9,11 +9,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Use Bun
         uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - run: bun run test
       - run: bun run validate
+      - run: bun run generate
       - name: deploy
         uses: cloudflare/wrangler-action@v3
         with:
