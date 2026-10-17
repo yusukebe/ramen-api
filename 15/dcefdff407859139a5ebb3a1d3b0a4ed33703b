@@ -1,0 +1,23 @@
+content/shops.json
+  s_17674a5275795e::t_5d7b6019feb754 53
+content/shops/menya-sign/info.json
+  s_17674a5275795e::t_61b5803368e5d6 1-13
+validation/shops.test.ts
+  s_17674a5275795e::t_ebdbea3737f462 1,3,7-24,63-71
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "15dcefdff407859139a5ebb3a1d3b0a4ed33703b",
+  "prompts": {},
+  "sessions": {
+    "s_17674a5275795e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c9a9b67d-d2e7-41d6-a724-511828a29e8a",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Yusuke Wada <yusuke@kamawada.com>"
+    }
+  }
+}
