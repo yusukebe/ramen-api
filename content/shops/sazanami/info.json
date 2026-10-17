@@ -1,0 +1,13 @@
+{
+  "id": "sazanami",
+  "name": "麺匠 さざ波",
+  "prefecture": "東京都",
+  "photos": [
+    {
+      "name": "sazanami-001.jpg",
+      "width": 800,
+      "height": 622,
+      "authorId": "kumaa-n"
+    }
+  ]
+}
