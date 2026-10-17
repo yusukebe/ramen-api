@@ -1,0 +1,13 @@
+{
+  "id": "ramen-torio",
+  "name": "ラーメン トリオ",
+  "prefecture": "神奈川県",
+  "photos": [
+    {
+      "name": "ramen-torio-001.jpg",
+      "width": 600,
+      "height": 800,
+      "authorId": "nackyAir"
+    }
+  ]
+}
