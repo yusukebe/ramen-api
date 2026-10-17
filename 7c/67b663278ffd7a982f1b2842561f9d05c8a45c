@@ -1,0 +1,53 @@
+.github/workflows/cd.yml
+  s_17674a5275795e::t_cb1f31a5887d76 12-13,19
+.github/workflows/ci.yml
+  s_17674a5275795e::t_010ea92e7218ae 12-13
+.gitignore
+  s_17674a5275795e::t_d7f65796891117 7-8
+AGENTS.md
+  s_17674a5275795e::t_2448edb0dc6e1d 12,19,60,75
+README.md
+  s_17674a5275795e::t_bb1095ea80f1bb 409,444
+content/authors/L4Ph/info.json
+  s_17674a5275795e::t_345ae8ea129d40 1-5
+content/authors/jammaru/info.json
+  s_17674a5275795e::t_305bc47fadb3dc 1-5
+content/authors/kaaariyaaa/info.json
+  s_17674a5275795e::t_09bf7ca5db736a 1-5
+content/shops/11ku-tantanmen/info.json
+  s_17674a5275795e::t_101e1ad9a7c74d 1-13
+content/shops/menya-ryo/info.json
+  s_17674a5275795e::t_06b1500cc9941c 1-13
+content/shops/menya-sign/info.json
+  s_17674a5275795e::t_ebcc7305067418 1-13
+content/shops/nishicho-taiki-honten/info.json
+  s_17674a5275795e::t_3decda3c1c297c 1-13
+package.json
+  s_17674a5275795e::t_0ab46ea88c5bd2 8-11
+src/index.ts
+  s_17674a5275795e::t_4fb8c9e85715b6 24-29
+test/index.test.ts
+  s_17674a5275795e::t_a1af9bf5ff6fcc 51-56
+tools/generate-shops.ts
+  s_17674a5275795e::t_48e2865dde0603 1-55
+tools/legacy-shops-order.json
+  s_17674a5275795e::t_76352f8a9983be 50-54
+validation/shops.test.ts
+  s_17674a5275795e::t_2e8b46bae7cf3f 1,3,7-24,63-71
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "7c67b663278ffd7a982f1b2842561f9d05c8a45c",
+  "prompts": {},
+  "sessions": {
+    "s_17674a5275795e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c9a9b67d-d2e7-41d6-a724-511828a29e8a",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Yusuke Wada <yusuke@kamawada.com>"
+    }
+  }
+}
