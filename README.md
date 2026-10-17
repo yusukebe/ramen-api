@@ -406,25 +406,7 @@ Add your Ramen photos to an appropriate path such as `./content/shops/{shopId}/{
 cp IMG_001.JPG ./content/shops/{shopId}/{photoName}
 ```
 
-#### 5. Add `shopId` to `shops.json`
-
-At the end, edit `./content/shops.json` to add the shop id at the last line.
-
-```javascript
-{
-  "shopIds": [
-    "yoshimuraya",
-    "sugitaya",
-    "takasagoya",
-    "jyoujyouya",
-    "torakichiya",
-    "rasuta",
-    "new-shop-id" // <--- add the id at the last line
-  ]
-}
-```
-
-#### 6. Pull Request
+#### 5. Pull Request
 
 Create Pull Request to this repository.
 
@@ -459,6 +441,7 @@ jpegtran -copy none -optimize -outfile yoshimuraya-001.jpg yoshimuraya-001.jpg
 
 - [yusukebe/ramen-api-example](https://github.com/yusukebe/ramen-api-example) - An example web pages with React and Cloudflare Workers.
 - [sinyo-matu/ramen-sasshi](https://github.com/sinyo-matu/ramen-sasshi) - A web site created with Fresh2 hosted by Deno Deploy
+- [heki-dm/ramen-api-bruno](https://github.com/heki-dm/ramen-api-bruno) - A Bruno collection for trying REST API and GraphQL of Ramen API.
 
 ## Author
 
