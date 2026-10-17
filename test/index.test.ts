@@ -48,6 +48,12 @@ describe('Test /shops/yoshimuraya', () => {
     expect(res.status).toBe(200)
     expect(await res.json()).toEqual({ shop: yoshimurayaData })
   })
+  it('Should return JSON with charset=UTF-8 with ?pretty', async () => {
+    const req = new Request('http://localhost/shops/yoshimuraya?pretty')
+    const res = await app.request(req, undefined, mockEnv)
+    expect(res.headers.get('Content-Type')).toBe('application/json; charset=UTF-8')
+    expect(await res.json()).toEqual({ shop: yoshimurayaData })
+  })
   it('Should return 404 response', async () => {
     const req = new Request('http://localhost/shops/yoshimura')
     const res = await app.request(req, undefined, mockEnv)
