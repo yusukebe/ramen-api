@@ -1,7 +1,26 @@
-import { SELF } from 'cloudflare:test'
+import { SELF, env } from 'cloudflare:test'
 import type { Author, listShopsWithPagerResult } from '@/app'
+import { getShopsData } from '@/data'
 
 const BASE_URL = 'https://ramen-api.dev'
+
+describe('Validate shops.json', async () => {
+  const { shopIds } = (await getShopsData(env.ASSETS, BASE_URL)) as {
+    shopIds: string[]
+  }
+
+  it('Should not contain duplicate shop ids', () => {
+    const duplicates = shopIds.filter((id, i) => shopIds.indexOf(id) !== i)
+    expect(duplicates, 'duplicate ids in content/shops.json').toEqual([])
+  })
+
+  it('Should have info.json for every shop id', async () => {
+    for (const id of shopIds) {
+      const res = await SELF.fetch(`${BASE_URL}/shops/${id}`)
+      expect(res.status, `content/shops/${id}/info.json is not found`).toBe(200)
+    }
+  })
+})
 
 describe('Validate shops with SELF and REST API', () => {
   it('Should validate all shops via REST API', async () => {
@@ -40,6 +59,15 @@ describe('Validate shops with SELF and REST API', () => {
           expect(typeof photo.height).toBe('number')
           expect(typeof photo.width).toBe('number')
           expect(photo.authorId).toMatch(/^[0-9a-zA-Z\-\_]+$/)
+
+          // Validate the photo file exists
+          const photoResponse = await SELF.fetch(photo.url)
+          expect(
+            photoResponse.status,
+            `content/shops/${shop.id}/${photo.name} is not found`
+          ).toBe(200)
+          expect(photoResponse.headers.get('Content-Type')).toMatch(/^image\//)
+          await photoResponse.arrayBuffer()
 
           // Validate author via REST API
           const authorResponse = await SELF.fetch(
