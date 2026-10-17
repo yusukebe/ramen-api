@@ -1,0 +1,19 @@
+{
+	"id": "ikkousha",
+	"name": "一幸舎",
+  "prefecture": "福岡県",
+	"photos": [
+		{
+			"name": "ikkousha-1.jpg",
+			"width": 800,
+			"height": 600,
+			"authorId": "nematatu"
+		},
+		{
+			"name": "ikkousha-2.jpg",
+			"width": 800,
+			"height": 533,
+			"authorId": "nematatu"
+		}
+	]
+}
