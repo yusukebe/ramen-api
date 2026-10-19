@@ -1,0 +1,13 @@
+{
+  "id": "yokocho-ramen",
+  "name": "横丁ラーメン",
+  "prefecture": "北海道",
+  "photos": [
+    {
+      "name": "yokocho-ramen-001.jpg",
+      "width": 800,
+      "height": 600,
+      "authorId": "otnc"
+    }
+  ]
+}
