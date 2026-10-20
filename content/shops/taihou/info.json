@@ -1,0 +1,13 @@
+{
+  "id": "taihou",
+  "name": "大鵬",
+  "prefecture": "北海道",
+  "photos": [
+    {
+      "name": "taihou-001.jpg",
+      "width": 800,
+      "height": 600,
+      "authorId": "otnc"
+    }
+  ]
+}
