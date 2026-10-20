@@ -1,0 +1,36 @@
+{
+  "id": "kirameki-no-tori",
+  "name": "キラメキノトリ",
+  "photos": [
+    {
+      "name": "kirameki-no-tori-001.jpg",
+      "width": 1200,
+      "height": 900,
+      "authorId": "ogatomo21"
+    },
+    {
+      "name": "kirameki-no-tori-002.jpg",
+      "width": 1200,
+      "height": 900,
+      "authorId": "ogatomo21"
+    },
+    {
+      "name": "kirameki-no-tori-003.jpg",
+      "width": 1200,
+      "height": 900,
+      "authorId": "ogatomo21"
+    },
+    {
+      "name": "kirameki-no-tori-004.jpg",
+      "width": 1200,
+      "height": 900,
+      "authorId": "ogatomo21"
+    },
+    {
+      "name": "kirameki-no-tori-005.jpg",
+      "width": 1200,
+      "height": 900,
+      "authorId": "ogatomo21"
+    }
+  ]
+}
