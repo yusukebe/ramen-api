@@ -1,0 +1,19 @@
+{
+  "id": "shukichiya",
+  "name": "秀吉家",
+  "prefecture": "滋賀県",
+  "photos": [
+    {
+      "name": "shukichiya-001.jpg",
+      "width": 800,
+      "height": 600,
+      "authorId": "Naughty8020"
+    },
+    {
+      "name": "shukichiya-002.jpg",
+      "width": 800,
+      "height": 600,
+      "authorId": "Naughty8020"
+    }
+  ]
+}
