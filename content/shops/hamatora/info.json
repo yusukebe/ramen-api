@@ -1,0 +1,13 @@
+{
+  "id": "hamatora",
+  "name": "麺場 浜虎",
+  "prefecture": "神奈川県",
+  "photos": [
+    {
+      "name": "hamatora-001.jpg",
+      "width": 600,
+      "height": 800,
+      "authorId": "MacoTasu"
+    }
+  ]
+}
