@@ -1,0 +1,13 @@
+{
+    "id": "sumire",
+    "name": "すみれ",
+    "prefecture": "北海道",
+    "photos": [
+        {
+            "name": "sumire-001.jpg",
+            "width": 600,
+            "height": 800,
+            "authorId": "yuyudaodevlab"
+        }
+    ]
+}
