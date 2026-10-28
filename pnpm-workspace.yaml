@@ -1,0 +1,9 @@
+allowBuilds:
+  esbuild: true
+  sharp: false
+  unrs-resolver: false
+  workerd: true
+minimumReleaseAgeExclude:
+  - '@cloudflare/vitest-plugin@1.4.9'
+  - miniflare@5.20261023.1-beta
+  - wrangler@4.154.0

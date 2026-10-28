@@ -5,15 +5,15 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
-    "generate": "bun tools/generate-shops.ts",
-    "validate": "bun run generate && vitest run --config vitest.validation.config.ts",
-    "dev": "bun run generate && wrangler dev",
-    "deploy": "bun run generate && wrangler deploy --minify",
+    "generate": "node tools/generate-shops.ts",
+    "validate": "pnpm run generate && vitest run --config vitest.validation.config.ts",
+    "dev": "pnpm run generate && wrangler dev",
+    "deploy": "pnpm run generate && wrangler deploy --minify",
     "tail": "wrangler tail",
     "cf-typegen": "wrangler types"
   },
   "license": "MIT",
-  "packageManager": "bun@1.3.9",
+  "packageManager": "pnpm@12.15.0",
   "dependencies": {
     "@hono/graphql-server": "^0.4.1",
     "@hono/mcp": "^0.1.0",
@@ -32,7 +32,7 @@
     "wrangler": "^4.19.1"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22.18.0"
   },
   "resolutions": {
     "graphql": "^16.6.0"
