@@ -40,8 +40,8 @@ if ($image.PropertyIdList -contains $orientationTag) {
   }
 }
 
-# Same as sips -Z 800: fit the longest side to 800px, upscaling smaller images too.
-$scale = 800 / [Math]::Max($image.Width, $image.Height)
+# Fit the longest side to 800px, like resize.swift. Smaller images are not upscaled.
+$scale = [Math]::Min(1.0, 800 / [Math]::Max($image.Width, $image.Height))
 $width = [int][Math]::Round($image.Width * $scale)
 $height = [int][Math]::Round($image.Height * $scale)
 
