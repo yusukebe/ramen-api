@@ -35,7 +35,7 @@ This is the main way people contribute. Add one shop end to end.
    sh tools/resize.sh /path/to/original.jpg content/shops/{shopId}/{shopId}-001.jpg
    ```
 
-   It prints the final `pixelHeight`/`pixelWidth` — record them. Off macOS use an equivalent (ImageMagick `convert -resize 800x800 -strip`, read size with `identify -format '%w %h'`).
+   It prints the final `pixelHeight`/`pixelWidth` — record them. On Windows use `powershell -ExecutionPolicy Bypass -File tools/resize.ps1 <original> <output>` (same arguments and output, no extra tools needed). On other systems use an equivalent (ImageMagick `convert -resize 800x800 -strip`, read size with `identify -format '%w %h'`).
 
 4. **Prefecture** (optional but encouraged) — the 都道府県 the shop is physically in (must end with 都/道/府/県). **Verify the real location** (search the web); do not infer from the name — a "札幌ラーメン" shop can be in Kanagawa, a 家系 shop can be in Tokyo. For a nationwide chain or any shop whose branch you cannot pin down, **omit the field entirely** rather than recording a guess.
 

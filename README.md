@@ -437,6 +437,12 @@ Remove Exif and optimize the image:
 jpegtran -copy none -optimize -outfile yoshimuraya-001.jpg yoshimuraya-001.jpg
 ```
 
+On Windows, `tools/resize.ps1` does all of the above with no extra tools:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/resize.ps1 IMG_001.JPG ./content/shops/yoshimuraya/yoshimuraya-001.jpg
+```
+
 ## Projects using Ramen API
 
 - [yusukebe/ramen-api-example](https://github.com/yusukebe/ramen-api-example) - An example web pages with React and Cloudflare Workers.
