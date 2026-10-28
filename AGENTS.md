@@ -28,7 +28,7 @@ This is the main way people contribute. Add one shop end to end.
    }
    ```
 
-3. **Photo** — must be **under 300KB**, EXIF-stripped, longest side ~800px, named `{shopId}-001.jpg` (`-002`, … for more). Use the helper (macOS `sips` + `jpegtran`):
+3. **Photo** — must be **under 300KB**, EXIF-stripped, longest side ~800px, named `{shopId}-001.jpg` (`-002`, … for more). Use the helper (macOS `swift` + `sips` + `jpegtran`; it also applies the EXIF orientation so photos stay upright):
 
    ```sh
    mkdir -p content/shops/{shopId}
