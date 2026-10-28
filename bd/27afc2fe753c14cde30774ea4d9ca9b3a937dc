@@ -1,0 +1,23 @@
+AGENTS.md
+  s_17674a5275795e::t_7e6387326e0c2c 31
+tools/resize.sh
+  s_17674a5275795e::t_0cc3af4aa58d28 15
+tools/resize.swift
+  s_17674a5275795e::t_538dcc86b19a30 1-29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "bd27afc2fe753c14cde30774ea4d9ca9b3a937dc",
+  "prompts": {},
+  "sessions": {
+    "s_17674a5275795e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c9a9b67d-d2e7-41d6-a724-511828a29e8a",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Yusuke Wada <yusuke@kamawada.com>"
+    }
+  }
+}
