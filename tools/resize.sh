@@ -12,6 +12,6 @@ new_path=$2
 echo "Move: $org_path to $new_path"
 mv $org_path $new_path
 echo "Resize and Optimize: $new_path"
-sips -Z 800 $new_path
+swift "$(dirname "$0")/resize.swift" $new_path $new_path
 jpegtran -copy none -optimize -outfile $new_path $new_path
 sips -g pixelHeight -g pixelWidth $new_path
