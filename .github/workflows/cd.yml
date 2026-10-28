@@ -11,15 +11,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: voidzero-dev/setup-vp@v1.22.0
         with:
-          node-version: 24
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run test
-      - run: pnpm run validate
-      - run: pnpm run generate
+          node-version: '24'
+          cache: true
+      - run: vp check
+      - run: vp test run
+      - run: vp run validate
+      - run: vp run generate
       - name: deploy
         uses: cloudflare/wrangler-action@v3
         with:

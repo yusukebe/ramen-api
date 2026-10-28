@@ -1,9 +1,22 @@
 allowBuilds:
   esbuild: true
   sharp: false
-  unrs-resolver: false
   workerd: true
 minimumReleaseAgeExclude:
   - '@cloudflare/vitest-plugin@1.4.9'
   - miniflare@5.20261023.1-beta
   - wrangler@4.154.0
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@1.4.0
+  vitest: 5.0.5
+  vite-plus: 1.4.0
+overrides:
+  vite@*: 'catalog:'
+  vitest@*: 'catalog:'
+peerDependencyRules:
+  allowAny:
+    - vite
+    - vitest
+  allowedVersions:
+    vite: '*'
+    vitest: '*'

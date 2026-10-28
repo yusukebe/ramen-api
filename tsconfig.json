@@ -2,21 +2,12 @@
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "baseUrl": ".",
-    "lib": [
-      "ESNext"
-    ],
-    "types": [
-      "vite/client",
-      "vitest/globals",
-      "node",
-      "@cloudflare/vitest-plugin/types"
-    ],
+    "strict": false,
+    "lib": ["ESNext"],
+    "types": ["vitest/globals", "node", "@cloudflare/vitest-plugin/types"],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "./src/**/*",
