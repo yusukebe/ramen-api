@@ -1,7 +1,19 @@
 import * as path from 'node:path'
-import { defineWorkersConfig } from '@cloudflare/vitest-pool-workers/config'
+import { cloudflareTest } from '@cloudflare/vitest-plugin'
+import { defineConfig } from 'vitest/config'
 
-export default defineWorkersConfig({
+export default defineConfig({
+  plugins: [
+    cloudflareTest({
+      wrangler: {
+        configPath: './wrangler.jsonc',
+      },
+      miniflare: {
+        compatibilityDate: '2025-04-01',
+        compatibilityFlags: ['nodejs_compat'],
+      },
+    }),
+  ],
   test: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -16,19 +28,6 @@ export default defineWorkersConfig({
         ssr: {
           enabled: true,
           include: ['ajv', 'graphql', '@hono/graphql-server', 'statuses'],
-        },
-      },
-    },
-    poolOptions: {
-      workers: {
-        singleWorker: true,
-        wrangler: {
-          configPath: './wrangler.jsonc',
-        },
-        miniflare: {
-          compatibilityDate: '2025-04-01',
-          compatibilityFlags: ['nodejs_compat'],
-          isolatedStorage: false,
         },
       },
     },

@@ -23,12 +23,12 @@
     "zod": "^3.25.7"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.8.36",
+    "@cloudflare/vitest-plugin": "^1.4.9",
     "@hono/eslint-config": "^0.0.3",
     "@types/node": "^22.15.30",
     "eslint": "^8.56.0",
     "typescript": "^5.3.3",
-    "vitest": "~3.1.0",
+    "vitest": "^4.1.12",
     "wrangler": "^4.19.1"
   },
   "engines": {

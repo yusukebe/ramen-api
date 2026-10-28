@@ -1,7 +1,15 @@
 import * as path from 'node:path'
-import { defineWorkersConfig } from '@cloudflare/vitest-pool-workers/config'
+import { cloudflareTest } from '@cloudflare/vitest-plugin'
+import { defineConfig } from 'vitest/config'
 
-export default defineWorkersConfig({
+export default defineConfig({
+  plugins: [
+    cloudflareTest({
+      wrangler: {
+        configPath: './wrangler.jsonc',
+      },
+    }),
+  ],
   test: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -18,13 +26,6 @@ export default defineWorkersConfig({
             'fetch-to-node',
             'statuses',
           ],
-        },
-      },
-    },
-    poolOptions: {
-      workers: {
-        wrangler: {
-          configPath: './wrangler.jsonc',
         },
       },
     },
