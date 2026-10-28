@@ -7,9 +7,9 @@
   "scripts": {
     "test": "vp test",
     "generate": "node tools/generate-shops.ts",
-    "validate": "pnpm run generate && vp test run --config vitest.validation.config.ts",
-    "dev": "pnpm run generate && wrangler dev",
-    "deploy": "pnpm run generate && wrangler deploy --minify",
+    "validate": "vp run generate && vp test run --config vitest.validation.config.ts",
+    "dev": "vp run generate && wrangler dev",
+    "deploy": "vp run generate && wrangler deploy --minify",
     "tail": "wrangler tail",
     "cf-typegen": "wrangler types"
   },
