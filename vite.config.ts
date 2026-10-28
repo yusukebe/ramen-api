@@ -45,6 +45,7 @@ export default defineConfig({
   },
   lint: {
     ignorePatterns: ['worker-configuration.d.ts'],
+    rules: { 'typescript/no-useless-default-assignment': 'off' },
     options: { typeAware: true, typeCheck: true },
   },
 })
