@@ -153,7 +153,10 @@ const getQueryType = (options: Options) => {
   return queryType
 }
 
-const setShopPhotoAuthor = async (shop: Shop, options: Options): Promise<Shop> => {
+const setShopPhotoAuthor = async (
+  shop: Shop,
+  options: Options
+): Promise<Shop> => {
   for (let i = 0; i < shop.photos.length; i++) {
     const authorId = shop.photos[i].authorId
     if (authorId) {

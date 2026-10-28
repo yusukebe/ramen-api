@@ -2,7 +2,6 @@ import { graphqlServer } from '@hono/graphql-server'
 import { Hono } from 'hono'
 import { cache } from 'hono/cache'
 import { cors } from 'hono/cors'
-import { showRoutes } from 'hono/dev'
 import { poweredBy } from 'hono/powered-by'
 import { prettyJSON } from 'hono/pretty-json'
 import mcpApp from './mcp'
@@ -68,7 +67,7 @@ app.get('/shops/:id', async (c) => {
       )
     }
     return c.json({ shop: shop })
-  } catch (e) {
+  } catch {
     return c.json(
       createErrorMessage(`The requested Ramen Shop '${id}' is not found`),
       404

@@ -1,19 +1,18 @@
 {
   "name": "ramen-api",
   "version": "0.0.1",
-  "main": "src/index.ts",
+  "license": "MIT",
   "type": "module",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "vitest",
-    "generate": "bun tools/generate-shops.ts",
-    "validate": "bun run generate && vitest run --config vitest.validation.config.ts",
-    "dev": "bun run generate && wrangler dev",
-    "deploy": "bun run generate && wrangler deploy --minify",
+    "test": "vp test",
+    "generate": "vpx tools/generate-shops.ts",
+    "validate": "vp run generate && vp test run --config vitest.validation.config.ts",
+    "dev": "vp run generate && wrangler dev",
+    "deploy": "vp run generate && wrangler deploy --minify",
     "tail": "wrangler tail",
     "cf-typegen": "wrangler types"
   },
-  "license": "MIT",
-  "packageManager": "bun@1.3.9",
   "dependencies": {
     "@hono/graphql-server": "^0.4.1",
     "@hono/mcp": "^0.1.0",
@@ -24,17 +23,17 @@
   },
   "devDependencies": {
     "@cloudflare/vitest-plugin": "^1.4.9",
-    "@hono/eslint-config": "^0.0.3",
     "@types/node": "^22.15.30",
-    "eslint": "^8.56.0",
     "typescript": "^5.3.3",
-    "vitest": "^4.1.12",
+    "vite-plus": "catalog:",
+    "vitest": "catalog:",
     "wrangler": "^4.19.1"
-  },
-  "engines": {
-    "node": ">=18"
   },
   "resolutions": {
     "graphql": "^16.6.0"
-  }
+  },
+  "engines": {
+    "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+  },
+  "packageManager": "pnpm@12.15.0"
 }

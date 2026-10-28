@@ -11,12 +11,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Use Bun
-        uses: oven-sh/setup-bun@v2
-      - run: bun install --frozen-lockfile
-      - run: bun run test
-      - run: bun run validate
-      - run: bun run generate
+      - uses: voidzero-dev/setup-vp@v1.22.0
+        with:
+          node-version: '24'
+          cache: true
+      - run: vp check
+      - run: vp test run
+      - run: vp run validate
+      - run: vp run generate
       - name: deploy
         uses: cloudflare/wrangler-action@v3
         with:
@@ -25,5 +27,5 @@ jobs:
           # wrangler-action defaults to its own bundled wrangler (3.90.0),
           # which predates wrangler.jsonc support and fails with
           # "Missing entry-point". Pin to the project's wrangler version.
-          wranglerVersion: '4.19.1'
-          packageManager: bun
+          wranglerVersion: '4.154.0'
+          packageManager: pnpm

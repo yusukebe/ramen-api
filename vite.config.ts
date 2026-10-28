@@ -1,6 +1,6 @@
 import * as path from 'node:path'
 import { cloudflareTest } from '@cloudflare/vitest-plugin'
-import { defineConfig } from 'vitest/config'
+import { defineConfig } from 'vite-plus'
 
 export default defineConfig({
   plugins: [
@@ -32,5 +32,20 @@ export default defineConfig({
       },
     },
     include: ['./test/**/*.test.ts'],
+  },
+  fmt: {
+    printWidth: 80,
+    trailingComma: 'es5',
+    tabWidth: 2,
+    semi: false,
+    singleQuote: true,
+    jsxSingleQuote: true,
+    endOfLine: 'lf',
+    ignorePatterns: ['content/**', 'worker-configuration.d.ts'],
+  },
+  lint: {
+    ignorePatterns: ['worker-configuration.d.ts'],
+    rules: { 'typescript/no-useless-default-assignment': 'off' },
+    options: { typeAware: true, typeCheck: true },
   },
 })
