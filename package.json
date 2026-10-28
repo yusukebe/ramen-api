@@ -6,7 +6,7 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "vp test",
-    "generate": "node tools/generate-shops.ts",
+    "generate": "vpx tools/generate-shops.ts",
     "validate": "vp run generate && vp test run --config vitest.validation.config.ts",
     "dev": "vp run generate && wrangler dev",
     "deploy": "vp run generate && wrangler deploy --minify",
@@ -33,7 +33,7 @@
     "graphql": "^16.6.0"
   },
   "engines": {
-    "node": ">=22.18.0"
+    "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
   },
   "packageManager": "pnpm@12.15.0"
 }
