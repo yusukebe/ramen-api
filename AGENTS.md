@@ -86,3 +86,12 @@ vp check               # format, lint, and type check
 vp test                # unit + integration tests
 vp run validate        # validate all shop/author content
 ```
+
+Without a global `vp`, run the same commands through npx (use `--package=vite-plus`; the `vp` package on npm is a different one):
+
+```sh
+npx --package=vite-plus vp install
+npx vp check
+npx vp test
+npx vp run validate
+```
