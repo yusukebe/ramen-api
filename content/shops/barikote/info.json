@@ -1,0 +1,19 @@
+{
+  "id": "barikote",
+  "name": "博多ラーメン ばりこて",
+  "prefecture": "東京都",
+  "photos": [
+    {
+      "name": "barikote-001.jpg",
+      "width": 600,
+      "height": 800,
+      "authorId": "mkatoo"
+    },
+    {
+      "name": "barikote-002.jpg",
+      "width": 600,
+      "height": 800,
+      "authorId": "mkatoo"
+    }
+  ]
+}
