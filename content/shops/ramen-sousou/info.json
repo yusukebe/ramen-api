@@ -1,0 +1,13 @@
+{
+  "id": "ramen-sousou",
+  "name": "ラーメン そうそう",
+  "prefecture": "兵庫県",
+  "photos": [
+    {
+      "name": "ramen-sousou-001.jpg",
+      "width": 480,
+      "height": 640,
+      "authorId": "Allianaab2m"
+    }
+  ]
+}
