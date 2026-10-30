@@ -54,6 +54,10 @@ type Shop = {
   id: string
   name?: string
   prefecture?: string
+  location?: {
+    lat: number
+    lng: number
+  }
   photos?: Photo[]
 }
 
@@ -99,6 +103,10 @@ GET /shops?pretty&prefecture=神奈川県
       "id": "yoshimuraya",
       "name": "吉村家",
       "prefecture": "神奈川県",
+      "location": {
+        "lat": 35.463062,
+        "lng": 139.615063
+      },
       "photos": [
         {
           "name": "yoshimuraya-001.jpg",
@@ -233,7 +241,13 @@ type Shop {
   id: String
   name: String
   prefecture: String
+  location: Location
   photos: [Photo]
+}
+
+type Location {
+  lat: Float
+  lng: Float
 }
 ```
 
@@ -387,6 +401,7 @@ Edit `./content/shops/{shopId}/info.json` like this:
   "id": "yoshimuraya", // <-- must be /^[0-9a-z\-]+$/
   "name": "吉村家",
   "prefecture": "神奈川県", // <-- optional. a prefecture name ending with 都道府県
+  "location": { "lat": 35.463062, "lng": 139.615063 }, // <-- optional; WGS 84 decimal degrees
   "photos": [
     {
       "name": "yoshimuraya-001.jpg", // <-- must be /^[0-9a-z\-\.]+\.(jpg|jpeg|png|gif)$/
