@@ -2,6 +2,10 @@
   "id": "yoshimuraya",
   "name": "吉村家",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.463062,
+    "lng": 139.615063
+  },
   "photos": [
     {
       "name": "yoshimuraya-001.jpg",

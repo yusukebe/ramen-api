@@ -13,6 +13,7 @@ This is the main way people contribute. Add one shop end to end.
 3. **photo** — path to a real image the user provides. Do not invent one.
 4. **author** — `authorId` (`^[0-9a-zA-Z\-\_]+$`), display `name`, profile `url` (`^https?://.+`). Reuse an existing `content/authors/{authorId}` if present.
 5. **prefecture** — optional; see step 4.
+6. **location** — optional WGS 84 decimal-degree coordinates; see step 4.
 
 ### Steps
 
@@ -39,13 +40,19 @@ This is the main way people contribute. Add one shop end to end.
 
 4. **Prefecture** (optional but encouraged) — the 都道府県 the shop is physically in (must end with 都/道/府/県). **Verify the real location** (search the web); do not infer from the name — a "札幌ラーメン" shop can be in Kanagawa, a 家系 shop can be in Tokyo. For a nationwide chain or any shop whose branch you cannot pin down, **omit the field entirely** rather than recording a guess.
 
-5. **Write `content/shops/{shopId}/info.json`** — field order `id`, `name`, `prefecture` (if known), `photos`. Do **not** add a `url` field (it is generated at runtime).
+   If the branch is confirmed, add `location` as `{ "lat": number, "lng": number }`; otherwise omit it.
+
+5. **Write `content/shops/{shopId}/info.json`** — field order `id`, `name`, `prefecture` (if known), `location` (if known), `photos`. Do **not** add a `url` field (it is generated at runtime).
 
    ```json
    {
      "id": "{shopId}",
      "name": "{name}",
      "prefecture": "{prefecture}",
+     "location": {
+       "lat": 35.463062,
+       "lng": 139.615063
+     },
      "photos": [
        {
          "name": "{shopId}-001.jpg",
@@ -68,6 +75,8 @@ This is the main way people contribute. Add one shop end to end.
 | `photos[].width` / `height` | numbers (the real pixel size)                   |
 | `photos[].authorId`         | `^[0-9a-zA-Z\-\_]+$`, must resolve to an author |
 | `prefecture`                | optional; if present must end with 都/道/府/県  |
+| `location.lat`              | optional; number between -90 and 90             |
+| `location.lng`              | optional; number between -180 and 180           |
 
 ### Conventions / gotchas
 
@@ -75,6 +84,7 @@ This is the main way people contribute. Add one shop end to end.
 - Do not create or edit `content/shops.json`; it is generated from the `content/shops/*/` directories (`vp run generate`) and is not committed. Do not edit `tools/legacy-shops-order.json` either; it only freezes the order of the shops added before.
 - Keep photos under 300KB, longest side ~800px, EXIF stripped.
 - Omit `prefecture` when uncertain; never fabricate a location.
+- Omit `location` when the shop branch cannot be identified; never fabricate coordinates.
 
 ## Optional: local checks
 
