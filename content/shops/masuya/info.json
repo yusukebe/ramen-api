@@ -1,0 +1,13 @@
+{
+  "id": "masuya",
+  "name": "ます家",
+  "prefecture": "埼玉県",
+  "photos": [
+    {
+      "name": "masuya-001.jpg",
+      "width": 600,
+      "height": 800,
+      "authorId": "HexagonMD"
+    }
+  ]
+}
