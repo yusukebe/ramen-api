@@ -2,6 +2,10 @@
   "id": "asagakita",
   "name": "白河手打ち中華 アサガキタ",
   "prefecture": "東京都",
+    "location": {
+    "lat": 35.705062,
+    "lng": 139.634438
+  },
   "photos": [
     {
       "name": "asagakita-001.jpg",
