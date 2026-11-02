@@ -2,6 +2,10 @@
   "id": "kifuu",
   "name": "札幌らーめん輝風",
   "prefecture": "北海道",
+  "location": {
+    "lat": 43.054437,
+    "lng": 141.354688
+  },
   "photos": [
     {
       "name": "kifuu-001.jpg",
