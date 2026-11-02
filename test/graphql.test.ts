@@ -1,4 +1,4 @@
-import mockApp from './mockApp'
+import mockApp, { largeMockApp } from './mockApp'
 import { BASE_URL } from '@/app'
 import { app } from '@/index'
 
@@ -21,6 +21,17 @@ const postRequest = async (data: object): Promise<Response> => {
     ASSETS: {
       fetch: mockApp.request,
     },
+  })
+}
+
+const postLargeRequest = async (data: object): Promise<Response> => {
+  const req = new Request('http://localhost/graphql', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+  return await app.request(req, undefined, {
+    ASSETS: { fetch: largeMockApp.request },
   })
 }
 
@@ -72,6 +83,30 @@ describe('Query shop', () => {
 })
 
 describe('Query shops', () => {
+  it('Paginates across more than the listShops default limit', async () => {
+    const query = {
+      query: `
+        {
+          shops(first: 1, after: "c2hvcC0xMA==") {
+            edges { node { id } }
+            totalCount
+            pageInfo { hasNextPage hasPreviousPage }
+          }
+        }
+      `,
+    }
+    const res = await postLargeRequest(query)
+    const data = await res.json()
+    const shops = data['data']['shops']
+
+    expect(shops.edges).toEqual([{ node: { id: 'shop-11' } }])
+    expect(shops.totalCount).toBe(11)
+    expect(shops.pageInfo).toEqual({
+      hasNextPage: false,
+      hasPreviousPage: true,
+    })
+  })
+
   it('Return null', async () => {
     const query = {
       query: `
