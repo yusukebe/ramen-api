@@ -2,6 +2,10 @@
   "id": "jiro-meguro",
   "name": "ラーメン二郎 目黒店",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.634187,
+    "lng": 139.707063
+  },
   "photos": [
     {
       "name": "jiro-meguro-001.jpg",
