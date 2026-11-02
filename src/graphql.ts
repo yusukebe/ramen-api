@@ -6,7 +6,13 @@ import {
   GraphQLList,
   GraphQLInt,
 } from 'graphql'
-import { getShop, listShops, getAuthor, type Shop, type Options } from '@/app'
+import {
+  getShop,
+  listAllShops,
+  getAuthor,
+  type Shop,
+  type Options,
+} from '@/app'
 import { Pager } from '@/pager'
 
 const authorType = new GraphQLObjectType({
@@ -92,7 +98,7 @@ const getQueryType = (options: Options) => {
             before,
           }: { first: number; after: string; last: number; before: string }
         ) => {
-          const list = await listShops({}, options)
+          const list = await listAllShops(options)
           for (let i = 0; i < list.shops.length; i++) {
             list.shops[i] = await setShopPhotoAuthor(list.shops[i], options)
           }

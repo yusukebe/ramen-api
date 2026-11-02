@@ -150,6 +150,15 @@ export const listShops = async (
   return { shops, totalCount }
 }
 
+export const listAllShops = async (
+  options: Options
+): Promise<listShopsResult> => {
+  const data = await getShopsData(options.c.env.ASSETS, options.c.req.url)
+  const shopIds: string[] = data['shopIds']
+  const shops = await Promise.all(shopIds.map((id) => getShop(id, options)))
+  return { shops, totalCount: shopIds.length }
+}
+
 export const findIndexFromId = async (
   id: string,
   options: Options
