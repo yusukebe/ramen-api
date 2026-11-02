@@ -2,6 +2,10 @@
   "id": "hamatora",
   "name": "麺場 浜虎",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.469062,
+    "lng": 139.623313
+  }, 
   "photos": [
     {
       "name": "hamatora-001.jpg",
