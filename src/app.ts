@@ -39,6 +39,10 @@ export type Shop = {
   id: string
   name?: string
   prefecture?: string
+  location?: {
+    lat: number
+    lng: number
+  }
   photos?: Photo[]
 }
 
