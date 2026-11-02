@@ -2,6 +2,10 @@
   "id": "75hz",
   "name": "麺屋7.5Hz 梅田店",
   "prefecture": "大阪府",
+  "location": {
+    "lat": 34.698687,
+    "lng": 135.498313
+  },
   "photos": [
     {
       "name": "75hz-001.jpg",
