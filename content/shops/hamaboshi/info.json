@@ -2,6 +2,10 @@
   "id": "hamaboshi",
   "name": "濱星",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.601312,
+    "lng": 139.609813
+  },
   "photos": [
     {
       "name": "hamaboshi-001.jpg",
