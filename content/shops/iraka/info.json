@@ -2,6 +2,10 @@
   "id": "iraka",
   "name": "甍",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.457687,
+    "lng": 139.633313
+  },
   "photos": [
     {
       "name": "iraka-001.jpg",
