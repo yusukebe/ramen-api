@@ -2,6 +2,10 @@
   "id": "dontokoiya",
   "name": "どんとこい家",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.464562,
+    "lng": 139.589813
+  },
   "photos": [
     {
       "name": "dontokoiya-001.jpg",
