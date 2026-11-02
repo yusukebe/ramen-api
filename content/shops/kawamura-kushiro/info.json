@@ -2,6 +2,10 @@
   "id": "kawamura-kushiro",
   "name": "河むら 釧路本店",
   "prefecture": "北海道",
+  "location": {
+    "lat": 42.984476,
+    "lng": 144.386437
+  },
   "photos": [
     {
       "name": "kawamura-kushiro-001.jpg",
