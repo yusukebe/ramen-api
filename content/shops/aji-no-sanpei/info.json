@@ -2,6 +2,10 @@
   "id": "aji-no-sanpei",
   "name": "味の三平",
   "prefecture": "北海道",
+  "location": {
+    "lat": 43.058813,
+    "lng": 141.353688
+  },
   "photos": [
     {
       "name": "aji-no-sanpei-001.jpg",
