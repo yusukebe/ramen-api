@@ -2,6 +2,10 @@
   "id": "engine",
   "name": "札幌 炎神",
   "prefecture": "北海道",
+  "location": {
+    "lat": 43.053687,
+    "lng": 141.347188
+  },
   "photos": [
     {
       "name": "engine-001.jpg",
