@@ -1,0 +1,13 @@
+{
+  "id": "sagami-shokudo",
+  "name": "相模食堂",
+  "prefecture": "神奈川県",
+  "photos": [
+    {
+      "name": "sagami-shokudo-001.jpg",
+      "width": 800,
+      "height": 602,
+      "authorId": "shm11C3"
+    }
+  ]
+}
