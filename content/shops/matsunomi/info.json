@@ -1,0 +1,13 @@
+{
+  "id": "matsunomi",
+  "name": "中華そば まつのみ",
+  "prefecture": "神奈川県",
+  "photos": [
+    {
+      "name": "matsunomi-001.jpg",
+      "width": 800,
+      "height": 600,
+      "authorId": "kubosho"
+    }
+  ]
+}
