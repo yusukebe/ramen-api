@@ -2,6 +2,10 @@
   "id": "koguma",
   "name": "札幌ラーメン こぐま",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.339312,
+    "lng": 139.489063
+  },
   "photos": [
     {
       "name": "koguma-001.jpg",
