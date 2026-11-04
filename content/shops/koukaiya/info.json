@@ -2,6 +2,10 @@
   "id": "koukaiya",
   "name": "航海屋",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.691938,
+    "lng": 139.706063
+  },
   "photos": [
     {
       "name": "koukaiya-001.jpg",
