@@ -2,6 +2,10 @@
   "id": "matsuya",
   "name": "らーめん まつや",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.367188,
+    "lng": 139.433688
+  },
   "photos": [
     {
       "name": "matsuya-001.jpg",
