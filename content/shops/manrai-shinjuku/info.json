@@ -2,6 +2,10 @@
   "id": "manrai-shinjuku",
   "name": "らぁめん 満来",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.692937,
+    "lng": 139.697938
+  },
   "photos": [
     {
       "name": "manrai-shinjuku-001.jpg",
