@@ -2,6 +2,10 @@
   "id": "kashimaya-koganecho",
   "name": "らーめん 鹿島家 黄金町店",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.439062,
+    "lng": 139.623813
+  },
   "photos": [
     {
       "name": "kashimaya-koganecho-001.jpg",
