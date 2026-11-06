@@ -2,6 +2,10 @@
   "id": "menderu-kawasaki-808ism",
   "name": "麺でる 川崎店808ism",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.548562,
+    "lng": 139.688313
+  },
   "photos": [
     {
       "name": "menderu-kawasaki-808ism-001.jpg",
