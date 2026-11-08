@@ -2,6 +2,10 @@
   "id": "menya-haru",
   "name": "麺屋 はる",
   "prefecture": "鹿児島県",
+  "location": {
+    "lat": 31.571187,
+    "lng": 130.547063
+  },
   "photos": [
     {
       "name": "menya-haru-001.jpg",
