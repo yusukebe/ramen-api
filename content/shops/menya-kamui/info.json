@@ -2,6 +2,10 @@
   "id": "menya-kamui",
   "name": "麺屋 かむい",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.704062,
+    "lng": 139.649063
+  },
   "photos": [
     {
       "name": "menya-kamui-001.jpg",
