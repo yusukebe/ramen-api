@@ -2,6 +2,10 @@
   "id": "menya-sankai",
   "name": "麺屋 山界",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.698812,
+    "lng": 139.697563
+  },
   "photos": [
     {
       "name": "menya-sankai-001.jpg",
