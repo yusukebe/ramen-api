@@ -51,7 +51,9 @@ describe('Test /shops/yoshimuraya', () => {
   it('Should return JSON with charset=UTF-8 with ?pretty', async () => {
     const req = new Request('http://localhost/shops/yoshimuraya?pretty')
     const res = await app.request(req, undefined, mockEnv)
-    expect(res.headers.get('Content-Type')).toBe('application/json; charset=UTF-8')
+    expect(res.headers.get('Content-Type')).toBe(
+      'application/json; charset=UTF-8'
+    )
     expect(await res.json()).toEqual({ shop: yoshimurayaData })
   })
   it('Should return 404 response', async () => {
@@ -100,9 +102,9 @@ describe('Test /shops', () => {
     const data = await res.json()
     expect(data['totalCount']).toBe(3)
     expect(data['shops'].length).toBe(3)
-    expect(
-      data['shops'].every((shop) => shop.prefecture === '神奈川県')
-    ).toBe(true)
+    expect(data['shops'].every((shop) => shop.prefecture === '神奈川県')).toBe(
+      true
+    )
   })
 
   it('Should return no shops for an unmatched prefecture', async () => {

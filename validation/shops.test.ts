@@ -41,7 +41,7 @@ describe('Validate shops with SELF and REST API', () => {
 
       // Validate each shop
       for (const shop of shopsData.shops) {
-        expect(shop.id).toMatch(/^[0-9a-z\-]+$/)
+        expect(shop.id).toMatch(/^[0-9a-z-]+$/)
         expect(shop.name).not.toBeFalsy()
         expect(Array.isArray(shop.photos)).toBe(true)
 
@@ -52,13 +52,13 @@ describe('Validate shops with SELF and REST API', () => {
 
         // Validate each photo
         for (const photo of shop.photos) {
-          expect(photo.name).toMatch(/^[0-9a-z\-\.]+\.(jpg|jpeg|png|gif)$/)
+          expect(photo.name).toMatch(/^[0-9a-z.-]+\.(jpg|jpeg|png|gif)$/)
           expect(photo.url).toMatch(
             /^https:\/\/ramen-api.dev\/.+\.(jpg|jpeg|png|gif)$/
           )
           expect(typeof photo.height).toBe('number')
           expect(typeof photo.width).toBe('number')
-          expect(photo.authorId).toMatch(/^[0-9a-zA-Z\-\_]+$/)
+          expect(photo.authorId).toMatch(/^[0-9a-zA-Z_-]+$/)
 
           // Validate the photo file exists
           const photoResponse = await SELF.fetch(photo.url)
