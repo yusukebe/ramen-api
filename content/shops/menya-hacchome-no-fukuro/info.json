@@ -2,6 +2,10 @@
   "id": "menya-hacchome-no-fukuro",
   "name": "麺屋 八丁目ノ梟",
   "prefecture": "北海道",
+  "location": {
+    "lat": 43.056312,
+    "lng": 141.346563
+  },
   "photos": [
     {
       "name": "menya-hacchome-no-fukuro-001.jpg",
