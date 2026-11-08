@@ -50,6 +50,16 @@ describe('Validate shops with SELF and REST API', () => {
           expect(shop.prefecture).toMatch(/^.+[都道府県]$/)
         }
 
+        // location is optional, but when present it must contain valid coordinates
+        if (shop.location !== undefined) {
+          expect(typeof shop.location.lat).toBe('number')
+          expect(typeof shop.location.lng).toBe('number')
+          expect(shop.location.lat).toBeGreaterThanOrEqual(-90)
+          expect(shop.location.lat).toBeLessThanOrEqual(90)
+          expect(shop.location.lng).toBeGreaterThanOrEqual(-180)
+          expect(shop.location.lng).toBeLessThanOrEqual(180)
+        }
+
         // Validate each photo
         for (const photo of shop.photos) {
           expect(photo.name).toMatch(/^[0-9a-z.-]+\.(jpg|jpeg|png|gif)$/)
