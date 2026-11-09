@@ -2,6 +2,10 @@
   "id": "menson-rage-nakano-wanto",
   "name": "麺尊RAGE 中野 腕刀",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.708813,
+    "lng": 139.666313
+  },
   "photos": [
     {
       "name": "menson-rage-nakano-wanto-001.jpg",

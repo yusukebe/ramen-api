@@ -2,6 +2,10 @@
   "id": "menya-jugemu",
   "name": "麺屋 じゅげむ",
   "prefecture": "北海道",
+  "location": {
+    "lat": 43.054938,
+    "lng": 141.356188
+  },
   "photos": [
     {
       "name": "menya-jugemu-001.jpg",

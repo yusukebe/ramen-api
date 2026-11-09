@@ -2,6 +2,10 @@
   "id": "musashiya-hiyoshi",
   "name": "武蔵家　日吉店",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.554063,
+    "lng": 139.645688
+  },
   "photos": [
     {
       "name": "musashiya-hiyoshi-001.jpg",

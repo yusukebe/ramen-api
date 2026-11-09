@@ -2,6 +2,10 @@
   "id": "kikunoya",
   "name": "菊の屋",
   "prefecture": "大分県",
+  "location": {
+    "lat": 33.214937,
+    "lng": 131.619313
+  },
   "photos": [
     {
       "name": "kikunoya-001.jpg",

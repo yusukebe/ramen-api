@@ -5,6 +5,7 @@ import {
   GraphQLSchema,
   GraphQLList,
   GraphQLInt,
+  GraphQLFloat,
 } from 'graphql'
 import { getShop, listShops, getAuthor, type Shop, type Options } from '@/app'
 import { Pager } from '@/pager'
@@ -35,6 +36,15 @@ const shopType = new GraphQLObjectType({
     id: { type: GraphQLString },
     name: { type: GraphQLString },
     prefecture: { type: GraphQLString },
+    location: {
+      type: new GraphQLObjectType({
+        name: 'Location',
+        fields: {
+          lat: { type: GraphQLFloat },
+          lng: { type: GraphQLFloat },
+        },
+      }),
+    },
     photos: {
       type: new GraphQLList(photoType),
     },

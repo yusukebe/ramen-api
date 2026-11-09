@@ -2,6 +2,10 @@
   "id": "hinoki",
   "name": "ひの木",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.348062,
+    "lng": 139.494438
+  },
   "photos": [
     {
       "name": "hinoki-001.jpg",

@@ -2,6 +2,10 @@
   "id": "menya-yoshikawa",
   "name": "麺家よし川",
   "prefecture": "大阪府",
+  "location": {
+    "lat": 34.675812,
+    "lng": 135.502063
+  },
   "photos": [
     {
       "name": "menya-yoshikawa-001.jpg",

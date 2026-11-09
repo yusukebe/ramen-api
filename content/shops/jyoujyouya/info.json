@@ -2,6 +2,10 @@
   "id": "jyoujyouya",
   "name": "上々家",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.552312,
+    "lng": 139.737313
+  },
   "photos": [
     {
       "name": "jyoujyouya-001.jpg",
