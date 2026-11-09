@@ -2,6 +2,10 @@
   "id": "muteppou",
   "name": "無鉄砲",
   "prefecture": "京都府",
+  "location": {
+    "lat": 34.722467,
+    "lng": 135.844439
+  },
   "photos": [
     {
       "name": "muteppou-001.jpg",
