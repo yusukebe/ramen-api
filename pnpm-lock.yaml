@@ -195,8 +195,8 @@ importers:
         specifier: ^4.7.11
         version: 4.7.11
       zod:
-        specifier: ^3.25.7
-        version: 3.25.7
+        specifier: ^4.6.6
+        version: 4.6.6
     devDependencies:
       '@cloudflare/vitest-plugin':
         specifier: ^1.4.9

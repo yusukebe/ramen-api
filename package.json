@@ -19,7 +19,7 @@
     "@modelcontextprotocol/sdk": "^1.12.1",
     "graphql": "^16.6.0",
     "hono": "^4.7.11",
-    "zod": "^3.25.7"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@cloudflare/vitest-plugin": "^1.4.9",
