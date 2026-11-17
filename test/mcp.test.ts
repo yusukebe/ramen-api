@@ -263,9 +263,8 @@ describe('Test /mcp', () => {
     const result = messages.find((m) => m.id === 6)
 
     expect(res.status).toBe(200)
-    expect(result).toHaveProperty('error')
-    expect(result.error.code).toBe(-32602)
-    expect(result.error.message).toContain(
+    expect(result.result.isError).toBe(true)
+    expect(result.result.content[0].text).toContain(
       'Invalid arguments for tool get_shops'
     )
   })
