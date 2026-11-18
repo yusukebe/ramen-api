@@ -2,6 +2,10 @@
   "id": "sazanami",
   "name": "麺匠 さざ波",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.563812,
+    "lng": 139.714562
+  },
   "photos": [
     {
       "name": "sazanami-001.jpg",
