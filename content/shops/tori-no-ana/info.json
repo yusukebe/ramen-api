@@ -2,6 +2,10 @@
   "id": "tori-no-ana",
   "name": "鶏の穴",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.732563,
+    "lng": 139.714688
+  },
   "photos": [
     {
       "name": "tori-no-ana-001.jpg",
