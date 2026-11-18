@@ -2,6 +2,10 @@
   "id": "jindagi",
   "name": "神儺祁",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.694063,
+    "lng": 139.765688
+  },
   "photos": [
     {
       "name": "jindagi-001.jpg",
