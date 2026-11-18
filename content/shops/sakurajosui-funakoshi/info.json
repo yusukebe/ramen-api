@@ -2,6 +2,10 @@
   "id": "sakurajosui-funakoshi",
   "name": "桜上水 船越",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.668813,
+    "lng": 139.633563
+  },
   "photos": [
     {
       "name": "sakurajosui-funakoshi-001.jpg",
