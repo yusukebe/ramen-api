@@ -2,6 +2,10 @@
   "id": "rajuku",
   "name": "ら塾",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.337812,
+    "lng": 139.485313
+  },
   "photos": [
     {
       "name": "rajuku-001.jpg",
