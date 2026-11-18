@@ -2,6 +2,10 @@
   "id": "rokkakuya-totsuka",
   "name": "六角家 戸塚店",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.400937,
+    "lng": 139.532438
+  },
   "photos": [
     {
       "name": "rokkakuya-totsuka-001.jpg",
