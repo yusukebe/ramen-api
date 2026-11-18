@@ -2,6 +2,10 @@
   "id": "chikyukibo-sora", 
   "name": "ラーメン荘 地球規模で考えろ ソラ",
   "prefecture": "京都府", 
+  "location": {
+    "lat": 34.998188,
+    "lng": 135.725688
+  },
   "photos": [
     {
       "name": "chikyukibo-sora-001.jpg", 
