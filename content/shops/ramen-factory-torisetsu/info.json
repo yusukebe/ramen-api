@@ -2,6 +2,10 @@
   "id": "ramen-factory-torisetsu",
   "name": "RAMEN FACTORY TORISETSU",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.603063,
+    "lng": 139.509188
+  },
   "photos": [
     {
       "name": "ramen-factory-torisetsu-001.jpg",
