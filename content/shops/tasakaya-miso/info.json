@@ -2,6 +2,10 @@
   "id": "tasakaya-miso",
   "name": "味噌麺処 田坂屋",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.730562,
+    "lng": 139.706813
+  },
   "photos": [
     {
       "name": "tasakaya-miso-001.jpg",
