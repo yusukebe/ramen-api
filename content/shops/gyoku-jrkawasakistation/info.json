@@ -2,6 +2,10 @@
   "id": "gyoku-jrkawasakistation",
   "name": "玉 JR川崎タワー店",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.530062,
+    "lng": 139.694438
+  },
   "photos": [
     {
       "name": "gyoku-jrkawasakistation.jpg",

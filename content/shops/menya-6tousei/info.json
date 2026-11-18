@@ -2,6 +2,10 @@
   "id": "menya-6tousei",
   "name": "麺や 六等星",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.633688,
+    "lng": 139.535563
+  },
   "photos": [
     {
       "name": "menya-6tousei-001.jpg",

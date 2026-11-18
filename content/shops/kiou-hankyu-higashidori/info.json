@@ -2,6 +2,10 @@
   "id": "kiou-hankyu-higashidori",
   "name": "らーめん 亀王 阪急東通り店",
   "prefecture": "大阪府",
+  "location": {
+    "lat": 34.702687,
+    "lng": 135.500938
+  },
   "photos": [
     {
       "name": "kiou-hankyu-higashidori-001.jpg",

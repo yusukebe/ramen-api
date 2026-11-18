@@ -2,6 +2,10 @@
   "id": "tryjin",
   "name": "家麺屋渡来人",
   "prefecture": "茨城県",
+  "location": {
+    "lat": 36.312146,
+    "lng": 140.561054
+  },
   "photos": [
     {
       "name": "tryjin-001.jpg",

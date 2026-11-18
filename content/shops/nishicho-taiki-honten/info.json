@@ -2,6 +2,10 @@
   "id": "nishicho-taiki-honten",
   "name": "西町大喜 西町本店",
   "prefecture": "富山県",
+  "location": {
+    "lat": 36.688312,
+    "lng": 137.214562
+  },
   "photos": [
     {
       "name": "nishicho-taiki-honten-001.jpg",

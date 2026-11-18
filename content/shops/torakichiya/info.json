@@ -2,6 +2,10 @@
   "id": "torakichiya",
   "name": "とらきち家",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.484687,
+    "lng": 139.627438
+  },
   "photos": [
     {
       "name": "torakichiya-001.jpg",

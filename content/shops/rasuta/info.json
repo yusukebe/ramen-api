@@ -2,6 +2,10 @@
   "id": "rasuta",
   "name": "らすた",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.553937,
+    "lng": 139.644688
+  },
   "photos": [
     {
       "name": "rasuta-001.jpg",

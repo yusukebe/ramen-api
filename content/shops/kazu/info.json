@@ -1,6 +1,10 @@
 {
   "id": "kazu",
   "name": "つけ麺 和",
+  "location": {
+    "lat": 35.793813,
+    "lng": 139.789438
+  },
   "photos": [
     {
       "name": "kazu-001.jpg",

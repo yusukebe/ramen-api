@@ -2,6 +2,10 @@
   "id": "huten",
   "name": "麺者 風天",
   "prefecture": "新潟県",
+  "location": {
+    "lat": 37.875812,
+    "lng": 139.104313
+  },
   "photos": [
     {
       "name": "huten-001.jpg",

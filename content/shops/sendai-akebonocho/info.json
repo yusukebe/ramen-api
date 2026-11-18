@@ -2,6 +2,10 @@
   "id": "sendai-akebonocho",
   "name": "らーめん家 せんだい 曙町店",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.438938,
+    "lng": 139.626688
+  },
   "photos": [
     {
       "name": "sendai-akebonocho-001.jpg",

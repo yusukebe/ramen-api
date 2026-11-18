@@ -2,6 +2,10 @@
   "id": "ramen-ichiren",
   "name": "らーめん 一嗹 本店",
   "prefecture": "兵庫県",
+  "location": {
+    "lat": 34.695937,
+    "lng": 135.192188
+  },
   "photos": [
     {
       "name": "ramen-ichiren.jpg",

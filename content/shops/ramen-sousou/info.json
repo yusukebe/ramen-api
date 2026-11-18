@@ -2,6 +2,10 @@
   "id": "ramen-sousou",
   "name": "ラーメン そうそう",
   "prefecture": "兵庫県",
+  "location": {
+    "lat": 34.831937,
+    "lng": 134.685688
+  },
   "photos": [
     {
       "name": "ramen-sousou-001.jpg",

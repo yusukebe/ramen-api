@@ -2,6 +2,10 @@
   "id": "gyoranntei-kokura-ekimae",
   "name": "ぎょらん亭 小倉駅前店",
   "prefecture": "福岡県",
+  "location": {
+    "lat": 33.886063,
+    "lng": 130.880688
+  },
   "photos": [
     {
       "name": "gyoranntei-kokura-ekimae-001.jpg",

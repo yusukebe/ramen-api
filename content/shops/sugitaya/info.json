@@ -2,6 +2,10 @@
   "id": "sugitaya",
   "name": "杉田家",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.388188,
+    "lng": 139.618188
+  },
   "photos": [
     {
       "name": "sugitaya-001.jpg",

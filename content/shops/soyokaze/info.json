@@ -2,6 +2,10 @@
   "id": "soyokaze",
   "name": "らーめん そよ風",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.336188,
+    "lng": 139.488063
+  },
   "photos": [
     {
       "name": "soyokaze-001.jpg",

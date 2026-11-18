@@ -2,6 +2,10 @@
   "id": "taihou",
   "name": "大鵬",
   "prefecture": "北海道",
+  "location": {
+    "lat": 43.064301,
+    "lng": 141.782391
+  },
   "photos": [
     {
       "name": "taihou-001.jpg",

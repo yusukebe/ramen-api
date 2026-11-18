@@ -2,6 +2,10 @@
   "id": "tonpatatei-katakuracho",
   "name": "とんぱた亭 片倉町本店",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.488062,
+    "lng": 139.604813
+  },
   "photos": [
     {
       "name": "tonpatatei-katakuracho-001.jpg",

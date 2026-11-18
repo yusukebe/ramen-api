@@ -2,6 +2,10 @@
   "id": "magokorotei",
   "name": "吟醸味噌らーめん まごころ亭 本店",
   "prefecture": "新潟県",
+  "location": {
+    "lat": 37.897437,
+    "lng": 139.067313
+  },
   "photos": [
     {
       "name": "magokorotei-001.jpg",

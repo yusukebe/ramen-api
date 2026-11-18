@@ -2,6 +2,10 @@
   "id": "lameijie",
   "name": "辣妹姐",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.534562,
+    "lng": 139.696813
+  },
   "photos": [
     {
       "name": "lameijie-001.jpg",

@@ -2,6 +2,10 @@
   "id": "hasumi-noborito",
   "name": "蓮爾 登戸店",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.620312,
+    "lng": 139.561688
+  },
   "photos": [
     {
       "name": "hasumi-noborito-001.jpg",

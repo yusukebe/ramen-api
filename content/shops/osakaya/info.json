@@ -1,6 +1,10 @@
 {
   "id": "osakaya",
   "name": "大輝家直系家系ラーメン 大阪家",
+  "location": {
+    "lat": 34.668813,
+    "lng": 135.507188
+  },
   "photos": [
     {
       "name": "osakaya-001.jpg",

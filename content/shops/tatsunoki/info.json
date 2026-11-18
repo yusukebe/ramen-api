@@ -2,6 +2,10 @@
   "id": "tatsunoki",
   "name": "めん処 樹",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.457687,
+    "lng": 139.600188
+  },
   "photos": [
     {
       "name": "tatsunoki-001.jpg",

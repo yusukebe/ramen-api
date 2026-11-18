@@ -2,6 +2,10 @@
   "id": "miuraya",
   "name": "三浦家",
   "prefecture": "東京都",
+  "location": {
+    "lat": 35.768812,
+    "lng": 139.871438
+  },
   "photos": [
     {
       "name": "miuraya-001.jpg",

@@ -2,6 +2,10 @@
   "id": "sugari",
   "name": "和醸良麺 すがり",
   "prefecture": "京都府",
+  "location": {
+    "lat": 35.004312,
+    "lng": 135.757313
+  },
   "photos": [
     {
       "name": "sugari-001.jpg",

@@ -2,6 +2,10 @@
   "id": "ramen-kai",
   "name": "らーめん 会",
   "prefecture": "兵庫県",
+  "location": {
+    "lat": 34.678187,
+    "lng": 135.177188
+  },
   "photos": [
     {
       "name": "ramen-kai-001.jpeg",

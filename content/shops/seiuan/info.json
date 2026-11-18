@@ -2,6 +2,10 @@
   "id": "seiuan",
   "name": "静雨庵",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.318188,
+    "lng": 139.548813
+  },
   "photos": [
     {
       "name": "seiuan-001.jpg",
