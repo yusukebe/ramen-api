@@ -2,6 +2,10 @@
   "id": "sagami-shokudo",
   "name": "相模食堂",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.532062,
+    "lng": 139.433813
+  },
   "photos": [
     {
       "name": "sagami-shokudo-001.jpg",
