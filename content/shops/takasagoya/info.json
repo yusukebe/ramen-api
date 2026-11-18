@@ -2,6 +2,10 @@
   "id": "takasagoya",
   "name": "たかさご家",
   "prefecture": "神奈川県",
+  "location": {
+    "lat": 35.445937,
+    "lng": 139.627563
+  },
   "photos": [
     {
       "name": "takasagoya-001.jpg",
