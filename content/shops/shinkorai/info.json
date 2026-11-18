@@ -2,6 +2,10 @@
   "id": "shinkorai",
   "name": "蔘好来",
   "prefecture": "愛知県",
+  "location": {
+    "lat": 35.174437,
+    "lng": 136.904188
+  },
   "photos": [
     {
       "name": "shinkorai-001.jpg",
